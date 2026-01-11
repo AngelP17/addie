@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
-  Award, TrendingUp, Star, Quote, MapPin,
+  Award, TrendingUp, Star, MapPin,
   GraduationCap, Briefcase, Users, Target,
   ExternalLink, Linkedin, Twitter, Mail, Phone, Book
 } from 'lucide-react';
@@ -13,15 +13,6 @@ interface TimelineItem {
   description: string;
   type: 'education' | 'experience' | 'achievement';
   icon: React.ComponentType<{ className?: string }>;
-}
-
-interface Testimonial {
-  name: string;
-  role: string;
-  company: string;
-  quote: string;
-  rating: number;
-  avatar?: string;
 }
 
 const timeline: TimelineItem[] = [
@@ -80,33 +71,6 @@ const timeline: TimelineItem[] = [
     description: "Minors in Gender Studies, Nonprofit Studies, and Rhetoric Writing. Fulbright Honors College Sturgis Fellow. Honors Thesis: Reading Between the Lines: Educational Equity and Book Access in Northwest Arkansas",
     type: "education",
     icon: GraduationCap
-  }
-];
-
-const testimonials: Testimonial[] = [
-  {
-    name: "Diana Gonzales Worthen",
-    role: "State Representative",
-    company: "Arkansas House of Representatives",
-    quote: "Addie's leadership in the Young Democrats was instrumental in my historic election as Arkansas's first Latina state representative. Her dedication to civic engagement and grassroots organizing is unmatched.",
-    rating: 5,
-    avatar: "/api/placeholder/60/60"
-  },
-  {
-    name: "Dr. Janine Parry",
-    role: "Professor",
-    company: "University of Arkansas",
-    quote: "Addie's commitment to policy analysis and civic engagement makes her an exceptional student leader. Her work on educational equity and legislative tracking demonstrates both academic rigor and practical impact.",
-    rating: 5,
-    avatar: "/api/placeholder/60/60"
-  },
-  {
-    name: "Sarah Chen",
-    role: "Editor-in-Chief",
-    company: "Arkansas Traveler",
-    quote: "Addie's editorial leadership transformed our content strategy. Her ability to balance journalistic integrity with engaging storytelling has significantly increased our readership and community impact.",
-    rating: 5,
-    avatar: "/api/placeholder/60/60"
   }
 ];
 
@@ -171,34 +135,6 @@ export default function About() {
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{item.title}</h3>
           <p className="text-purple-600 dark:text-white font-medium mb-2">{item.organization}</p>
           <p className="text-gray-600 dark:text-white text-sm">{item.description}</p>
-        </div>
-      </div>
-    </motion.div>
-  );
-
-  const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
-    <motion.div
-      variants={itemVariants}
-      className="bg-gray-100/80 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-purple-400/30 transition-all duration-300"
-    >
-      <div className="flex items-center gap-1 mb-4">
-        {[...Array(testimonial.rating)].map((_, i) => (
-          <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-        ))}
-      </div>
-
-      <Quote className="w-6 h-6 text-purple-600 mb-4" />
-
-      <p className="text-gray-600 dark:text-white mb-6 italic leading-relaxed">"{testimonial.quote}"</p>
-
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
-          <Users className="w-6 h-6 text-white" />
-        </div>
-        <div>
-          <div className="font-semibold text-gray-900 dark:text-white">{testimonial.name}</div>
-          <div className="text-purple-600 dark:text-purple-400 text-sm">{testimonial.role}</div>
-          <div className="text-gray-500 dark:text-white text-sm">{testimonial.company}</div>
         </div>
       </div>
     </motion.div>
@@ -336,22 +272,6 @@ export default function About() {
             </motion.div>
           </div>
         </div>
-
-        {/* Testimonials */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-20"
-        >
-          <h3 className="text-3xl font-semibold text-gray-900 dark:text-white text-center mb-12">What People Say</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} testimonial={testimonial} />
-            ))}
-          </div>
-      </motion.div>
       </div>
     </section>
   );

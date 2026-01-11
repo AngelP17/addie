@@ -2,9 +2,8 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import {
   PenTool, Users, MessageSquare, Target, BookOpen, Lightbulb,
-  TrendingUp, Award, Star, CheckCircle, ArrowRight
+  TrendingUp, Award, Star, CheckCircle
 } from 'lucide-react';
-import { useState } from 'react';
 
 interface Competency {
   icon: React.ComponentType<{ className?: string }>;
@@ -95,14 +94,10 @@ export default function Competencies() {
   };
 
   const CompetencyCard = ({ competency, index }: { competency: Competency; index: number }) => {
-    const [isHovered, setIsHovered] = useState(false);
-
   return (
       <motion.div
         variants={cardVariants}
         whileHover={{ y: -8 }}
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
         className="group bg-card backdrop-blur-sm rounded-2xl p-6 border border-border hover:border-purple-500/30 transition-all duration-300 relative overflow-hidden"
       >
         {/* Background Gradient */}
@@ -158,22 +153,6 @@ export default function Competencies() {
               ))}
             </ul>
           </div>
-
-          {/* Hover Overlay */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isHovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-2xl flex items-center justify-center"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white/20 dark:bg-gray-700/60 backdrop-blur-sm text-gray-900 dark:text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 border border-white/30 dark:border-gray-600/50"
-            >
-              Learn More
-              <ArrowRight className="w-4 h-4" />
-            </motion.button>
-          </motion.div>
         </div>
       </motion.div>
     );
