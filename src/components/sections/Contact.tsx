@@ -154,8 +154,8 @@ export default function Contact() {
       className="bg-navy-700 dark:bg-navy-800 rounded-2xl p-6 border border-navy-600 dark:border-cream-300 hover:border-cream-400/30 transition-all duration-300 shadow-lg"
     >
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 bg-gradient-to-r from-navy-600 to-cream-400 rounded-xl flex items-center justify-center flex-shrink-0">
-          <info.icon className="w-6 h-6 text-navy-700 dark:text-white" />
+        <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+          <info.icon className="w-6 h-6 text-white" />
         </div>
         <div className="flex-1">
           <h3 className="text-lg font-semibold text-navy-900 dark:text-white mb-1">{info.label}</h3>
@@ -386,7 +386,7 @@ export default function Contact() {
             </div>
 
             {/* Response Time */}
-            <div className="bg-navy/50 backdrop-blur-sm rounded-2xl p-6 border border-navy/50">
+            <div className="bg-gray-800 rounded-2xl p-6 border border-gray-700">
               <div className="flex items-center gap-3 mb-3">
                 <Clock className="w-6 h-6 text-purple-400" />
                 <h4 className="text-lg font-semibold text-white">{t('contact.response.title')}</h4>
