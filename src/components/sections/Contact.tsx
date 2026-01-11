@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import {
   Mail, Phone, MapPin, Send, Clock,
-  Linkedin, Twitter, CheckCircle,
+  Linkedin, CheckCircle,
   AlertCircle, User, MessageSquare, Building
 } from 'lucide-react';
 
@@ -61,14 +61,8 @@ export default function Contact() {
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/addie-jones-b5a5b6250",
+      href: "https://www.linkedin.com/in/addie-jones-b5a5b6250/",
       color: "hover:bg-blue-500/20 hover:text-blue-400"
-    },
-    {
-      icon: Twitter,
-      label: "Twitter",
-      href: "https://twitter.com",
-      color: "hover:bg-sky-500/20 hover:text-sky-400"
     }
   ];
 
@@ -107,18 +101,19 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
+      const submitData = new FormData();
+      submitData.append('name', formData.name);
+      submitData.append('email', formData.email);
+      submitData.append('company', formData.company);
+      submitData.append('subject', formData.subject);
+      submitData.append('message', formData.message);
+
       const response = await fetch('https://formspree.io/f/xzddpoqv', {
         method: 'POST',
+        body: submitData,
         headers: {
-          'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          subject: formData.subject,
-          message: formData.message,
-        }),
       });
 
       if (response.ok) {
@@ -204,7 +199,7 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-              <div>
+            <div>
               <h3 className="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
                 <MessageSquare className="w-6 h-6 text-purple-400" />
                 {t('contact.form.title')}
@@ -235,9 +230,8 @@ export default function Contact() {
                           type="text"
                           value={formData.name}
                           onChange={(e) => handleInputChange('name', e.target.value)}
-                          className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${
-                            errors.name ? 'border-red-500' : 'border-white/20'
-                          }`}
+                          className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${errors.name ? 'border-red-500' : 'border-white/20'
+                            }`}
                           placeholder="Your name"
                         />
                       </div>
@@ -259,9 +253,8 @@ export default function Contact() {
                           type="email"
                           value={formData.email}
                           onChange={(e) => handleInputChange('email', e.target.value)}
-                          className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${
-                            errors.email ? 'border-red-500' : 'border-white/20'
-                          }`}
+                          className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${errors.email ? 'border-red-500' : 'border-white/20'
+                            }`}
                           placeholder="your@email.com"
                         />
                       </div>
@@ -271,10 +264,10 @@ export default function Contact() {
                           {errors.email}
                         </p>
                       )}
-              </div>
-            </div>
+                    </div>
+                  </div>
 
-              <div>
+                  <div>
                     <label className="block text-gray-300 text-sm font-medium mb-2">
                       {t('contact.form.company')}
                     </label>
@@ -287,8 +280,8 @@ export default function Contact() {
                         className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
                         placeholder="Your company (optional)"
                       />
-              </div>
-            </div>
+                    </div>
+                  </div>
 
                   <div>
                     <label className="block text-gray-300 text-sm font-medium mb-2">
@@ -298,9 +291,8 @@ export default function Contact() {
                       type="text"
                       value={formData.subject}
                       onChange={(e) => handleInputChange('subject', e.target.value)}
-                      className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${
-                        errors.subject ? 'border-red-500' : 'border-white/20'
-                      }`}
+                      className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${errors.subject ? 'border-red-500' : 'border-white/20'
+                        }`}
                       placeholder="What can I help you with?"
                     />
                     {errors.subject && (
@@ -309,9 +301,9 @@ export default function Contact() {
                         {errors.subject}
                       </p>
                     )}
-              </div>
+                  </div>
 
-              <div>
+                  <div>
                     <label className="block text-gray-300 text-sm font-medium mb-2">
                       {t('contact.form.message')} *
                     </label>
@@ -319,9 +311,8 @@ export default function Contact() {
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
                       rows={6}
-                      className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 resize-none ${
-                        errors.message ? 'border-red-500' : 'border-white/20'
-                      }`}
+                      className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 resize-none ${errors.message ? 'border-red-500' : 'border-white/20'
+                        }`}
                       placeholder="Tell me about your project or inquiry..."
                     />
                     {errors.message && (
@@ -365,17 +356,17 @@ export default function Contact() {
             className="space-y-8"
           >
             {/* Contact Information */}
-              <div>
+            <div>
               <h3 className="text-2xl font-semibold text-white mb-6">{t('contact.info.title')}</h3>
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (
                   <ContactInfoCard key={index} info={info} />
                 ))}
               </div>
-              </div>
+            </div>
 
             {/* Social Links */}
-              <div>
+            <div>
               <h3 className="text-xl font-semibold text-white mb-4">{t('contact.social.title')}</h3>
               <div className="flex gap-3">
                 {socialLinks.map((social, index) => (
@@ -392,7 +383,7 @@ export default function Contact() {
                   </motion.a>
                 ))}
               </div>
-              </div>
+            </div>
 
             {/* Response Time */}
             <div className="bg-navy/50 backdrop-blur-sm rounded-2xl p-6 border border-navy/50">

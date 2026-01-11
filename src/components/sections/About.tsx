@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import {
   Award, TrendingUp, Star, MapPin,
   GraduationCap, Briefcase, Users, Target,
-  ExternalLink, Linkedin, Twitter, Mail, Phone, Book
+  Linkedin, Mail, Phone, Book
 } from 'lucide-react';
 
 interface TimelineItem {
@@ -124,11 +124,10 @@ export default function About() {
         <div className="bg-gray-100/80 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-purple-400/30 transition-all duration-300">
           <div className="flex items-center gap-3 mb-3">
             <span className="text-purple-600 font-semibold">{item.year}</span>
-            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-              item.type === 'education' ? 'bg-blue-100 text-blue-600' :
+            <span className={`px-2 py-1 rounded-full text-xs font-medium ${item.type === 'education' ? 'bg-blue-100 text-blue-600' :
               item.type === 'experience' ? 'bg-green-100 text-green-600' :
-              'bg-yellow-100 text-yellow-600'
-            }`}>
+                'bg-yellow-100 text-yellow-600'
+              }`}>
               {item.type}
             </span>
           </div>
@@ -181,10 +180,10 @@ export default function About() {
             </motion.div>
 
             {/* Timeline */}
-      <motion.div
-        ref={ref}
-        variants={containerVariants}
-        initial="hidden"
+            <motion.div
+              ref={ref}
+              variants={containerVariants}
+              initial="hidden"
               animate={inView ? "visible" : "hidden"}
               className="mb-12"
             >
@@ -256,14 +255,11 @@ export default function About() {
               </div>
 
               <div className="flex gap-3 mt-6">
-                <a href="https://www.linkedin.com/in/addie-jones-b5a5b6250" className="w-10 h-10 bg-purple-500/20 dark:bg-purple-500/40 rounded-lg flex items-center justify-center hover:bg-purple-500/30 transition-colors">
+                <a href="https://www.linkedin.com/in/addie-jones-b5a5b6250/" className="w-10 h-10 bg-purple-500/20 dark:bg-purple-500/40 rounded-lg flex items-center justify-center hover:bg-purple-500/30 transition-colors">
                   <Linkedin className="w-5 h-5 text-purple-400" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-purple-500/20 dark:bg-purple-500/40 rounded-lg flex items-center justify-center hover:bg-purple-500/30 transition-colors">
-                  <Twitter className="w-5 h-5 text-purple-400" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-purple-500/20 dark:bg-purple-500/40 rounded-lg flex items-center justify-center hover:bg-purple-500/30 transition-colors">
-                  <ExternalLink className="w-5 h-5 text-purple-400" />
+                <a href="mailto:addie.elizabethjones@gmail.com" className="w-10 h-10 bg-purple-500/20 dark:bg-purple-500/40 rounded-lg flex items-center justify-center hover:bg-purple-500/30 transition-colors">
+                  <Mail className="w-5 h-5 text-purple-400" />
                 </a>
               </div>
             </motion.div>

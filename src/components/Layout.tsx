@@ -43,11 +43,10 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       <nav
-        className={`fixed w-full z-50 transition-all duration-300 ${
-          isScrolled
+        className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
             ? 'bg-background/95 backdrop-blur-md shadow-lg border-b border-border'
             : 'bg-background/80 backdrop-blur-sm'
-        }`}
+          }`}
       >
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
@@ -81,7 +80,7 @@ export default function Layout({ children }: LayoutProps) {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </motion.a>
               ))}
-              
+
               {/* Resume Button */}
               <a
                 href="/resume.pdf"
@@ -93,7 +92,7 @@ export default function Layout({ children }: LayoutProps) {
                 Download Resume
                 <ArrowRight className="w-4 h-4" />
               </a>
-              
+
               {/* Theme Toggle */}
               <div className="relative">
                 <motion.button
@@ -117,7 +116,7 @@ export default function Layout({ children }: LayoutProps) {
                   </div>
                 )}
               </div>
-              
+
               {/* Language Toggle */}
               <div className="relative">
                 <motion.button
@@ -231,11 +230,11 @@ export default function Layout({ children }: LayoutProps) {
               </h3>
               <p className="text-gray-400 text-sm">
                 © {new Date().getFullYear()} All rights reserved.
-            </p>
+              </p>
             </div>
             <div className="flex space-x-6">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/addie-jones-b5a5b6250/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-purple-400 transition-colors duration-200"
@@ -243,15 +242,7 @@ export default function Layout({ children }: LayoutProps) {
                 LinkedIn
               </a>
               <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-400 transition-colors duration-200"
-              >
-                Twitter
-              </a>
-              <a
-                href="mailto:addie@example.com"
+                href="mailto:addie.elizabethjones@gmail.com"
                 className="text-gray-400 hover:text-purple-400 transition-colors duration-200"
               >
                 Email
