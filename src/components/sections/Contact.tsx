@@ -377,9 +377,9 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className={`w-12 h-12 bg-navy/50 border border-navy/50 rounded-xl flex items-center justify-center transition-all duration-200 ${social.color}`}
+                    className={`w-12 h-12 bg-gray-800 border border-gray-700 rounded-xl flex items-center justify-center transition-all duration-200 ${social.color}`}
                   >
-                    <social.icon className="w-5 h-5 text-gray-400" />
+                    <social.icon className="w-5 h-5 text-gray-300" />
                   </motion.a>
                 ))}
               </div>
