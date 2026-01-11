@@ -25,6 +25,22 @@ export default function About() {
 
   const timeline: TimelineItem[] = [
     {
+      year: "2026",
+      title: t('timeline.emailIntern.title'),
+      organization: t('timeline.emailIntern.org'),
+      description: t('timeline.emailIntern.desc'),
+      type: "experience",
+      icon: Briefcase
+    },
+    {
+      year: "2026",
+      title: t('timeline.editorialIntern.title'),
+      organization: t('timeline.editorialIntern.org'),
+      description: t('timeline.editorialIntern.desc'),
+      type: "experience",
+      icon: Target
+    },
+    {
       year: "2025",
       title: t('timeline.govAffairsIntern.title'),
       organization: t('timeline.govAffairsIntern.org'),
@@ -37,22 +53,6 @@ export default function About() {
       title: t('timeline.ballotpediaIntern.title'),
       organization: t('timeline.ballotpediaIntern.org'),
       description: t('timeline.ballotpediaIntern.desc'),
-      type: "experience",
-      icon: Target
-    },
-    {
-      year: "2025",
-      title: t('timeline.emailIntern.title'),
-      organization: t('timeline.emailIntern.org'),
-      description: t('timeline.emailIntern.desc'),
-      type: "experience",
-      icon: Briefcase
-    },
-    {
-      year: "2025",
-      title: t('timeline.editorialIntern.title'),
-      organization: t('timeline.editorialIntern.org'),
-      description: t('timeline.editorialIntern.desc'),
       type: "experience",
       icon: Target
     },
@@ -89,20 +89,20 @@ export default function About() {
       icon: Users
     },
     {
-      year: "2011",
-      title: t('timeline.nonprofitFounder.title'),
-      organization: t('timeline.nonprofitFounder.org'),
-      description: t('timeline.nonprofitFounder.desc'),
-      type: "achievement",
-      icon: Book
-    },
-    {
       year: "2026",
       title: t('timeline.education.title'),
       organization: t('timeline.education.org'),
       description: t('timeline.education.desc'),
       type: "education",
       icon: GraduationCap
+    },
+    {
+      year: "2011",
+      title: t('timeline.nonprofitFounder.title'),
+      organization: t('timeline.nonprofitFounder.org'),
+      description: t('timeline.nonprofitFounder.desc'),
+      type: "achievement",
+      icon: Book
     }
   ];
 
