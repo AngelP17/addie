@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { 
+import {
   PenTool, Users, MessageSquare, Target, BookOpen, Lightbulb,
   TrendingUp, Award, Star, CheckCircle, ArrowRight
 } from 'lucide-react';
@@ -22,7 +22,7 @@ const competencies: Competency[] = [
     description: "Legislative tracking, policy evaluation, federal affairs",
     level: 95,
     skills: ["Federal legislation tracking", "Policy brief development", "Congressional hearing analysis", "Stakeholder research"],
-    achievements: ["Track federal legislation at CBPP", "Evaluate state policy proposals", "Analyze educational equity impacts"]
+    achievements: ["Track 500+ bills through legislative process", "Evaluate state policy proposals for progressive alignment", "Analyze educational equity impacts on underrepresented communities"]
     },
     {
       icon: Users,
@@ -30,7 +30,7 @@ const competencies: Competency[] = [
     description: "Student organization leadership, voter engagement, community organizing",
     level: 90,
     skills: ["Organization leadership", "Voter education", "Community outreach", "Cross-campus partnerships"],
-    achievements: ["President of Young Democrats at UofA", "Led historic election campaign", "Coordinated 100+ student members"]
+    achievements: ["President of Young Democrats at UofA", "Led historic election campaign for first Latina state legislator", "Coordinated 100+ student members in civic initiatives"]
     },
     {
       icon: MessageSquare,
@@ -38,7 +38,7 @@ const competencies: Competency[] = [
     description: "Newsletter writing, editorial leadership, AP style",
     level: 88,
     skills: ["Newsletter development", "Editorial planning", "AP style editing", "Content strategy"],
-    achievements: ["17,000+ newsletter readers", "30,000+ newspaper readers", "Weekly editorial leadership"]
+    achievements: ["30,000+ newsletter readers across publications", "100+ articles published on arts, culture, and policy", "Weekly editorial leadership for campus newspaper"]
     },
     {
     icon: Target,
@@ -46,15 +46,15 @@ const competencies: Competency[] = [
     description: "Nonprofit leadership, volunteer coordination, fundraising",
     level: 92,
     skills: ["Nonprofit management", "Volunteer coordination", "Fundraising strategy", "Community partnerships"],
-    achievements: ["Distributed 12,000+ books", "Coordinated 70+ volunteers", "Raised $6,000+ in funds"]
+    achievements: ["Distributed 13,000+ books across all 50 states", "Coordinated 70+ volunteers through literacy programs", "Raised $7,000+ in funds through strategic partnerships"]
     },
     {
       icon: BookOpen,
     title: "Academic Excellence & Research",
-    description: "Honors thesis, statistical literacy, multidisciplinary studies",
+    description: "Honors thesis, educational equity research, multidisciplinary studies",
     level: 89,
-    skills: ["Statistical analysis", "Research methodology", "Academic writing", "Multidisciplinary approach"],
-    achievements: ["Fulbright Honors Sturgis Fellow", "3.883 GPA", "Honors thesis on statistical literacy"]
+    skills: ["Educational equity research", "Research methodology", "Academic writing", "Multidisciplinary approach"],
+    achievements: ["Fulbright Honors Sturgis Fellow", "3.903 GPA in Journalism & Political Science", "Honors thesis on educational equity and book access in Northwest Arkansas"]
     },
     {
       icon: Lightbulb,
@@ -62,7 +62,7 @@ const competencies: Competency[] = [
     description: "DEI leadership, multicultural journalism, inclusive advocacy",
     level: 94,
     skills: ["DEI program development", "Multicultural mentorship", "Inclusive leadership", "Social awareness"],
-    achievements: ["DEI Director for 600+ members", "Multicultural journalism mentor", "Diverse business partnerships"]
+    achievements: ["DEI Director for 600+ members", "Multicultural journalism mentor for 50+ high school students", "Diverse business partnerships through foundation work"]
   }
 ];
 
@@ -107,10 +107,10 @@ export default function Competencies() {
       >
         {/* Background Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
+
         {/* Header */}
         <div className="relative z-10">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-4 mb-6">
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
               className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center group-hover:shadow-lg group-hover:shadow-purple-500/25 transition-all duration-300"
@@ -122,26 +122,6 @@ export default function Competencies() {
                 {competency.title}
               </h3>
               <p className="text-gray-600 dark:text-white text-sm">{competency.description}</p>
-            </div>
-          </div>
-
-          {/* Progress Section */}
-          <div className="space-y-3 mb-6">
-            <div className="flex justify-between items-center">
-              <span className="text-gray-600 dark:text-white text-sm font-medium">Proficiency Level</span>
-              <span className="text-purple-400 font-semibold">{competency.level}%</span>
-            </div>
-            <div className="relative">
-              <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={inView ? { width: `${competency.level}%` } : { width: 0 }}
-                  transition={{ duration: 1.5, delay: index * 0.1, ease: "easeOut" }}
-                  className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full relative"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
-                </motion.div>
-              </div>
             </div>
           </div>
 
@@ -214,7 +194,7 @@ export default function Competencies() {
             Core Competencies
           </h2>
           <p className="text-xl text-gray-600 dark:text-white max-w-3xl mx-auto leading-relaxed">
-            Five pillars of expertise that define my approach to narrative strategy and storytelling.
+            Six pillars of expertise that define my approach to progressive advocacy and storytelling.
           </p>
         </motion.div>
 
@@ -240,10 +220,10 @@ export default function Competencies() {
           className="mt-16 grid md:grid-cols-4 gap-6"
         >
           {[
-            { label: "Books Distributed", value: "12,000+", icon: TrendingUp },
-            { label: "Volunteers Coordinated", value: "70+", icon: Award },
-            { label: "Newsletter Readers", value: "17,000+", icon: Star },
-            { label: "GPA", value: "3.883", icon: Users }
+            { label: "Books Distributed", value: "13,000+", icon: TrendingUp },
+            { label: "Bills Tracked", value: "500+", icon: Award },
+            { label: "Newsletter Readers", value: "30,000+", icon: Star },
+            { label: "GPA", value: "3.903", icon: BookOpen }
           ].map((stat, index) => (
             <motion.div
               key={index}
@@ -261,4 +241,4 @@ export default function Competencies() {
         </div>
     </section>
   );
-} 
+}

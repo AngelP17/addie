@@ -5,14 +5,25 @@ import { Briefcase, Heart } from 'lucide-react';
 
 const experiences = [
   {
-    title: 'Government Affairs Intern',
-    company: 'Center on Budget and Policy Priorities',
-    location: 'Washington, DC',
+    title: 'Email Intern',
+    company: 'Middle Seat',
+    location: 'Remote',
     period: 'May 2025 - Present',
     description: [
-      'Track federal legislation through congressional process and attend hearings to summarize policy debates.',
-      'Prepare briefing materials and maintain databases for advocacy coalition partners and policymakers.',
-      'Support policy analysis and research on federal budget and economic policy issues.'
+      'Develop and execute email fundraising campaigns for progressive political causes.',
+      'Craft compelling narratives that drive engagement and support democratic candidates and initiatives.',
+      'Translate complex policy issues into accessible content for diverse audiences.'
+    ],
+  },
+  {
+    title: 'Editorial Intern',
+    company: 'The American Prospect',
+    location: 'Remote',
+    period: 'Jan 2025 - Present',
+    description: [
+      'Conduct editorial research and support content development for progressive policy journalism.',
+      'Assist with fact-checking, source verification, and background research for investigative pieces.',
+      'Contribute to editorial planning and content strategy for online publication.'
     ],
   },
   {
@@ -23,7 +34,7 @@ const experiences = [
     description: [
       'Evaluate proposed state legislation based on alignment with progressive policy priorities.',
       'Focus on impact on underrepresented communities, specifically educational equity.',
-      'Track key policy developments and identify key media moments in education and commerce committees.'
+      'Track 500+ bills and identify key media moments in education and commerce committees.'
     ],
   },
   {
@@ -32,7 +43,7 @@ const experiences = [
     location: 'Fayetteville, AR',
     period: 'May 2024 - Present',
     description: [
-      'Write and edit weekly newsletter sent to 17,000+ students, staff, parents, and alumni.',
+      'Write and edit weekly newsletter sent to 30,000+ students, staff, parents, and alumni.',
       'Cultivate relationships with campus organizations to source and maintain comprehensive resource database.',
       'Develop engaging content that promotes college initiatives and student engagement.'
     ],
@@ -44,6 +55,7 @@ const experiences = [
     period: 'May 2023 - Present',
     description: [
       'Edit and curate arts, culture, entertainment, and opinion content for 30,000+ readers.',
+      'Published 100+ articles covering music journalism, feature stories, and investigative reporting.',
       'Lead weekly editorial meetings while managing content strategy and adhering to AP style guidelines.',
       'Coordinate with writers and photographers to ensure high-quality, engaging content.'
     ],
@@ -85,13 +97,13 @@ const volunteering = [
     ],
   },
   {
-    title: 'Founder and Secretary',
+    title: 'Nonprofit Founder and Secretary',
     organization: 'Bright Beginnings Books',
     location: 'Harrison, AR',
     period: '2011 - Present',
     description: [
-      'Distributed 12,000+ new books to underserved students in all 50 states and 12 other countries.',
-      'Secured more than $6,000 from area businesses through fundraising efforts and marketing.',
+      'Founded 501(c)(3) nonprofit that has distributed 13,000+ new books to underserved students in all 50 states and 12 other countries.',
+      'Secured more than $7,000 from area businesses through fundraising efforts and marketing.',
       'Developed sustainable partnerships with Arkansas State Police, medical clinics, and school districts.'
     ],
   },
@@ -176,4 +188,4 @@ export default function Experience() {
       </motion.div>
     </section>
   );
-} 
+}

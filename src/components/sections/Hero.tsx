@@ -81,10 +81,6 @@ export default function Hero() {
                     2000,
                     'Fulbright Honors Sturgis Fellow',
                     2000,
-                    'Government Affairs Intern',
-                    2000,
-                    'Young Democrats President',
-                    2000,
                   ]}
                   wrapper="span"
                   speed={50}
@@ -93,8 +89,7 @@ export default function Hero() {
               </span>
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Dedicated to civic engagement, literacy advocacy, and policy analysis. Currently serving as 
-              Government Affairs Intern at Center on Budget and Policy Priorities and President of Young Democrats at UofA.
+              Dedicated to civic engagement, literacy advocacy, and policy analysis. Skilled in investigative + feature journalism and political communication. Currently serving as an Email Intern at Middle Seat and an Editorial Intern at The American Prospect.
             </p>
           </motion.div>
 
@@ -114,7 +109,7 @@ export default function Hero() {
               View My Work
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.button>
-            
+
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -147,25 +142,25 @@ export default function Hero() {
 
       {/* Floating Elements */}
       <motion.div
-        animate={{ 
+        animate={{
           y: [0, -20, 0],
           rotate: [0, 5, 0]
         }}
-        transition={{ 
-          duration: 6, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
         className="absolute top-20 right-20 w-4 h-4 bg-primary/60 rounded-full"
       />
       <motion.div
-        animate={{ 
+        animate={{
           y: [0, 20, 0],
           rotate: [0, -5, 0]
         }}
-        transition={{ 
-          duration: 8, 
-          repeat: Infinity, 
+        transition={{
+          duration: 8,
+          repeat: Infinity,
           ease: "easeInOut",
           delay: 2
         }}
@@ -173,4 +168,4 @@ export default function Hero() {
       />
     </section>
   );
-} 
+}

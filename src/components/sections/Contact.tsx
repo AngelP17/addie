@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Mail, Phone, MapPin, Send, Calendar, Clock, 
-  Linkedin, Twitter, Github, CheckCircle,
+import {
+  Mail, Phone, MapPin, Send, Clock,
+  Linkedin, Twitter, CheckCircle,
   AlertCircle, User, MessageSquare, Building
 } from 'lucide-react';
 
@@ -34,8 +34,8 @@ export default function Contact() {
     {
       icon: Mail,
       label: "Email",
-      value: "addiej@uark.edu",
-      href: "mailto:addiej@uark.edu",
+      value: "addie.elizabethjones@gmail.com",
+      href: "mailto:addie.elizabethjones@gmail.com",
       description: "For general inquiries and collaboration opportunities"
     },
     {
@@ -66,33 +66,6 @@ export default function Contact() {
       label: "Twitter",
       href: "https://twitter.com",
       color: "hover:bg-sky-500/20 hover:text-sky-400"
-    },
-    {
-      icon: Github,
-      label: "GitHub",
-      href: "https://github.com",
-      color: "hover:bg-gray-500/20 hover:text-gray-400"
-    }
-  ];
-
-  const services = [
-    {
-      title: "Policy Analysis",
-      description: "Legislative research and policy evaluation",
-      duration: "2-4 weeks",
-      price: "Starting at $3,500"
-    },
-    {
-      title: "Civic Engagement",
-      description: "Voter education and community organizing",
-      duration: "1-3 weeks",
-      price: "Starting at $2,500"
-    },
-    {
-      title: "Editorial Services",
-      description: "Content writing and editorial leadership",
-      duration: "1-2 weeks",
-      price: "Starting at $2,000"
     }
   ];
 
@@ -125,28 +98,49 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after successful submission
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        subject: '',
-        message: ''
+
+    try {
+      const response = await fetch('https://formspree.io/f/xzddpoqv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       });
-      setIsSubmitted(false);
-    }, 5000);
+
+      if (response.ok) {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+
+        // Reset form after successful submission
+        setTimeout(() => {
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            subject: '',
+            message: ''
+          });
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setIsSubmitting(false);
+      // Could add error state here
+    }
   };
 
   const handleInputChange = (field: keyof ContactForm, value: string) => {
@@ -167,7 +161,7 @@ export default function Contact() {
         </div>
         <div className="flex-1">
           <h3 className="text-lg font-semibold text-navy-900 dark:text-white mb-1">{info.label}</h3>
-          <a 
+          <a
             href={info.href}
             className="text-navy-700 dark:text-white hover:text-navy-800 dark:hover:text-white transition-colors font-medium"
           >
@@ -175,20 +169,6 @@ export default function Contact() {
           </a>
           <p className="text-navy-700 dark:text-white text-sm mt-2">{info.description}</p>
         </div>
-      </div>
-    </motion.div>
-  );
-
-  const ServiceCard = ({ service }: { service: typeof services[0] }) => (
-    <motion.div
-      whileHover={{ y: -4 }}
-      className="bg-navy-700 dark:bg-navy-800 rounded-2xl p-6 border border-navy-600 dark:border-cream-300 hover:border-cream-400/30 transition-all duration-300 shadow-lg"
-    >
-      <h3 className="text-lg font-semibold text-navy-900 dark:text-white mb-2">{service.title}</h3>
-      <p className="text-navy-700 dark:text-white text-sm mb-4">{service.description}</p>
-      <div className="flex items-center justify-between text-sm">
-        <span className="text-navy-700 dark:text-white">Duration: {service.duration}</span>
-        <span className="text-navy-700 dark:text-white font-medium">{service.price}</span>
       </div>
     </motion.div>
   );
@@ -208,7 +188,7 @@ export default function Contact() {
             Let's Work Together
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Ready to transform your narrative strategy? I'm here to help you craft compelling stories 
+            Ready to transform your narrative strategy? I'm here to help you craft compelling stories
             that drive impact and foster meaningful connections.
           </p>
         </motion.div>
@@ -227,7 +207,7 @@ export default function Contact() {
                 <MessageSquare className="w-6 h-6 text-purple-400" />
                 Send a Message
               </h3>
-              
+
               {isSubmitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -356,7 +336,7 @@ export default function Contact() {
                     whileTap={{ scale: 0.98 }}
                     disabled={isSubmitting}
                     className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
+                  >
                     {isSubmitting ? (
                       <>
                         <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -374,7 +354,7 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Contact Info & Services */}
+          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -412,19 +392,6 @@ export default function Contact() {
               </div>
               </div>
 
-            {/* Services */}
-              <div>
-              <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                <Calendar className="w-5 h-5 text-purple-400" />
-                Services & Availability
-              </h3>
-              <div className="space-y-4">
-                {services.map((service, index) => (
-                  <ServiceCard key={index} service={service} />
-                ))}
-              </div>
-              </div>
-
             {/* Response Time */}
             <div className="bg-navy/50 backdrop-blur-sm rounded-2xl p-6 border border-navy/50">
               <div className="flex items-center gap-3 mb-3">
@@ -432,7 +399,7 @@ export default function Contact() {
                 <h4 className="text-lg font-semibold text-white">Response Time</h4>
               </div>
               <p className="text-gray-400 text-sm">
-                I typically respond to all inquiries within 24 hours during business days. 
+                I typically respond to all inquiries within 24 hours during business days.
                 For urgent matters, please include "URGENT" in your subject line.
               </p>
             </div>
@@ -441,4 +408,4 @@ export default function Contact() {
       </div>
     </section>
   );
-} 
+}

@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { 
-  Award, TrendingUp, Star, Quote, MapPin, 
+import {
+  Award, TrendingUp, Star, Quote, MapPin,
   GraduationCap, Briefcase, Users, Target,
-  ExternalLink, Linkedin, Twitter, Mail, Phone
+  ExternalLink, Linkedin, Twitter, Mail, Phone, Book
 } from 'lucide-react';
 
 interface TimelineItem {
@@ -27,11 +27,19 @@ interface Testimonial {
 const timeline: TimelineItem[] = [
   {
     year: "2025",
-    title: "Government Affairs Intern",
-    organization: "Center on Budget and Policy Priorities",
-    description: "Track federal legislation through congressional process and attend hearings to summarize policy debates.",
+    title: "Email Intern",
+    organization: "Middle Seat",
+    description: "Digital fundraising campaigns and email communications for progressive causes.",
     type: "experience",
     icon: Briefcase
+  },
+  {
+    year: "2025",
+    title: "Editorial Intern",
+    organization: "The American Prospect",
+    description: "Editorial research and content development for progressive policy journalism.",
+    type: "experience",
+    icon: Target
   },
   {
     year: "2024",
@@ -45,7 +53,7 @@ const timeline: TimelineItem[] = [
     year: "2024",
     title: "Content Writing Intern",
     organization: "Sam M. Walton College of Business",
-    description: "Write and edit weekly newsletter sent to 17,000+ students, staff, parents, and alumni.",
+    description: "Write and edit weekly newsletter sent to 30,000+ students, staff, parents, and alumni.",
     type: "experience",
     icon: Target
   },
@@ -53,15 +61,23 @@ const timeline: TimelineItem[] = [
     year: "2023",
     title: "Lifestyles Editor",
     organization: "Arkansas Traveler Newspaper",
-    description: "Edit and curate arts, culture, entertainment, and opinion content for 30,000+ readers.",
+    description: "Edit and curate arts, culture, entertainment, and opinion content for 30,000+ readers. Published 100+ articles.",
     type: "experience",
     icon: Users
+  },
+  {
+    year: "2011",
+    title: "Nonprofit Founder",
+    organization: "Bright Beginnings Books",
+    description: "Founded 501(c)(3) nonprofit that has distributed 13,000+ books across all 50 states, raised $7,000+ through strategic partnerships.",
+    type: "achievement",
+    icon: Book
   },
   {
     year: "2026",
     title: "Bachelor's in Journalism & Political Science",
     organization: "University of Arkansas",
-    description: "Minors in Gender Studies, Nonprofit Studies, and Rhetoric Writing. Fulbright Honors College Sturgis Fellow.",
+    description: "Minors in Gender Studies, Nonprofit Studies, and Rhetoric Writing. Fulbright Honors College Sturgis Fellow. Honors Thesis: Reading Between the Lines: Educational Equity and Book Access in Northwest Arkansas",
     type: "education",
     icon: GraduationCap
   }
@@ -92,15 +108,6 @@ const testimonials: Testimonial[] = [
     rating: 5,
     avatar: "/api/placeholder/60/60"
   }
-];
-
-const skills = [
-  { name: "Policy Analysis", level: 95 },
-  { name: "Civic Engagement", level: 92 },
-  { name: "Editorial Leadership", level: 88 },
-  { name: "Legislative Research", level: 89 },
-  { name: "Community Organizing", level: 94 },
-  { name: "Literacy Advocacy", level: 90 }
 ];
 
 export default function About() {
@@ -140,7 +147,7 @@ export default function About() {
       {index < timeline.length - 1 && (
         <div className="absolute left-6 top-12 w-0.5 h-full bg-gradient-to-b from-purple-500 to-transparent" />
       )}
-      
+
       {/* Icon */}
       <div className="relative z-10">
         <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
@@ -179,11 +186,11 @@ export default function About() {
           <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
         ))}
       </div>
-      
+
       <Quote className="w-6 h-6 text-purple-600 mb-4" />
-      
+
       <p className="text-gray-600 dark:text-white mb-6 italic leading-relaxed">"{testimonial.quote}"</p>
-      
+
       <div className="flex items-center gap-4">
         <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
           <Users className="w-6 h-6 text-white" />
@@ -212,7 +219,7 @@ export default function About() {
             About Addie Elizabeth Jones
           </h2>
           <p className="text-xl text-gray-500 dark:text-white max-w-3xl mx-auto leading-relaxed">
-            A dedicated advocate for civic engagement, literacy, and policy analysis committed to creating positive change in communities.
+            Dedicated to civic engagement, literacy advocacy, and policy analysis. Skilled in investigative + feature journalism and political communication. Currently serving as an Email Intern at Middle Seat and an Editorial Intern at The American Prospect.
           </p>
         </motion.div>
 
@@ -229,13 +236,13 @@ export default function About() {
             >
               <div className="prose prose-lg prose-invert max-w-none">
                 <p className="text-gray-600 dark:text-white leading-relaxed mb-6 text-lg">
-                  I am a Journalism and Political Science major at the University of Arkansas with minors in Gender Studies, Nonprofit Studies, and Rhetoric Writing. As a Fulbright Honors College Sturgis Fellow, I'm dedicated to civic engagement, literacy advocacy, and policy analysis.
+                  I am a Journalism and Political Science major at the University of Arkansas with minors in Gender Studies, Nonprofit Studies, and Rhetoric Writing. As a Fulbright Honors College Sturgis Fellow, I'm dedicated to progressive campaign communications, policy analysis, and investigative reporting.
                 </p>
                 <p className="text-gray-600 dark:text-white leading-relaxed mb-6">
-                  Currently serving as Government Affairs Intern at the Center on Budget and Policy Priorities and President of Young Democrats at UofA, I focus on tracking federal legislation and promoting civic engagement. My work spans from legislative research to community organizing, with a particular emphasis on educational equity and underrepresented communities.
+                  Currently serving as Email Intern at Middle Seat and Editorial Intern at The American Prospect, I focus on translating complex policy issues into accessible narratives that drive engagement. My work spans digital fundraising campaigns to investigative journalism, with particular emphasis on education equity and amplifying underrepresented voices.
                 </p>
                 <p className="text-gray-600 dark:text-white leading-relaxed">
-                  Through my leadership roles and community service, including founding Bright Beginnings Books and serving as Director of Diversity, Equity and Inclusion for Delta Delta Delta, I've developed a comprehensive approach to advocacy that combines policy analysis with grassroots organizing and community engagement.
+                  Through past federal and state legislative internships, my presidency of Young Democrats at UofA where I helped elect Arkansas's first Latina state legislator, and founding Bright Beginnings Books – a nonprofit that has distributed 13,000+ books across all 50 states – I have developed a comprehensive approach to advocacy combining grassroots organizing with strategic communications. My writing reaches 30,000+ readers through the Arkansas Traveler and Hill Magazine.
                 </p>
               </div>
             </motion.div>
@@ -252,36 +259,6 @@ export default function About() {
               <div className="space-y-0">
                 {timeline.map((item, index) => (
                   <TimelineItem key={index} item={item} index={index} />
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Skills */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="mb-12"
-            >
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Skills & Expertise</h3>
-              <div className="space-y-4">
-                {skills.map((skill, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-600 font-medium dark:text-white">{skill.name}</span>
-                      <span className="text-purple-400 font-semibold">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.5, delay: index * 0.1, ease: "easeOut" }}
-                        className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
-                      />
-                    </div>
-                  </div>
                 ))}
               </div>
             </motion.div>
@@ -303,10 +280,10 @@ export default function About() {
               </h3>
               <div className="space-y-4">
                 {[
-                  { label: "Books Distributed", value: "12,000+", icon: Award },
+                  { label: "Books Distributed", value: "13,000+", icon: Award },
                   { label: "Volunteers Coordinated", value: "70+", icon: Users },
-                  { label: "Newsletter Readers", value: "17,000+", icon: Target },
-                  { label: "Service Hours", value: "100+", icon: Star }
+                  { label: "Newsletter Readers", value: "30,000+", icon: Target },
+                  { label: "Articles Published", value: "100+", icon: Star }
                 ].map((stat, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -331,9 +308,9 @@ export default function About() {
             >
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Get In Touch</h3>
               <div className="space-y-4">
-                <a href="mailto:addiej@uark.edu" className="flex items-center gap-3 text-gray-600 dark:text-white hover:text-purple-400 transition-colors">
+                <a href="mailto:addie.elizabethjones@gmail.com" className="flex items-center gap-3 text-gray-600 dark:text-white hover:text-purple-400 transition-colors">
                   <Mail className="w-5 h-5 text-navy-700 dark:text-white" />
-                  <span>addiej@uark.edu</span>
+                  <span>addie.elizabethjones@gmail.com</span>
                 </a>
                 <a href="tel:+18705770389" className="flex items-center gap-3 text-gray-600 dark:text-white hover:text-purple-400 transition-colors">
                   <Phone className="w-5 h-5 text-navy-700 dark:text-white" />
@@ -344,7 +321,7 @@ export default function About() {
                   <span>Fayetteville, Arkansas</span>
                 </div>
               </div>
-              
+
               <div className="flex gap-3 mt-6">
                 <a href="https://www.linkedin.com/in/addie-jones-b5a5b6250" className="w-10 h-10 bg-purple-500/20 dark:bg-purple-500/40 rounded-lg flex items-center justify-center hover:bg-purple-500/30 transition-colors">
                   <Linkedin className="w-5 h-5 text-purple-400" />
@@ -378,4 +355,4 @@ export default function About() {
       </div>
     </section>
   );
-} 
+}
