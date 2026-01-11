@@ -230,7 +230,7 @@ export default function Contact() {
                           type="text"
                           value={formData.name}
                           onChange={(e) => handleInputChange('name', e.target.value)}
-                          className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${errors.name ? 'border-red-500' : 'border-white/20'
+                          className={`w-full bg-gray-800 border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${errors.name ? 'border-red-500' : 'border-gray-700'
                             }`}
                           placeholder="Your name"
                         />
@@ -253,7 +253,7 @@ export default function Contact() {
                           type="email"
                           value={formData.email}
                           onChange={(e) => handleInputChange('email', e.target.value)}
-                          className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${errors.email ? 'border-red-500' : 'border-white/20'
+                          className={`w-full bg-gray-800 border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${errors.email ? 'border-red-500' : 'border-gray-700'
                             }`}
                           placeholder="your@email.com"
                         />
@@ -277,7 +277,7 @@ export default function Contact() {
                         type="text"
                         value={formData.company}
                         onChange={(e) => handleInputChange('company', e.target.value)}
-                        className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
+                        className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
                         placeholder="Your company (optional)"
                       />
                     </div>
@@ -291,7 +291,7 @@ export default function Contact() {
                       type="text"
                       value={formData.subject}
                       onChange={(e) => handleInputChange('subject', e.target.value)}
-                      className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${errors.subject ? 'border-red-500' : 'border-white/20'
+                      className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${errors.subject ? 'border-red-500' : 'border-gray-700'
                         }`}
                       placeholder="What can I help you with?"
                     />
@@ -311,7 +311,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
                       rows={6}
-                      className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 resize-none ${errors.message ? 'border-red-500' : 'border-white/20'
+                      className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 resize-none ${errors.message ? 'border-red-500' : 'border-gray-700'
                         }`}
                       placeholder="Tell me about your project or inquiry..."
                     />
