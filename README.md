@@ -4,7 +4,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 
 ## 🚀 Live Demo
 
-Visit the live portfolio: [https://angelp17.github.io/addie/](https://angelp17.github.io/addie/)
+Visit the live portfolio: https://addieelizjones.com/
 
 ## 🛠️ Tech Stack
 
