@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Sparkles, ArrowRight } from 'lucide-react';
+import { ChevronDown, ArrowRight } from 'lucide-react';
 import { TypeAnimation } from 'react-type-animation';
+import { useTranslation } from 'react-i18next';
 
 export default function Hero() {
+  const { t } = useTranslation();
+
   const scrollToNext = () => {
     const nextSection = document.getElementById('about');
     if (nextSection) {
@@ -40,18 +43,11 @@ export default function Hero() {
                 <div className="w-full h-full bg-gray-100 rounded-full overflow-hidden">
                   <img
                     src="/avatar.jpg"
-                    alt="Addie Jones"
+                    alt={t('hero.title')}
                     className="w-full h-full object-cover"
                   />
                 </div>
               </div>
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center"
-              >
-                <Sparkles className="w-4 h-4 text-primary-foreground" />
-              </motion.div>
             </div>
           </motion.div>
 
@@ -62,7 +58,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground mb-6 tracking-tight"
           >
-            Addie Elizabeth Jones
+            {t('hero.title')}
           </motion.h1>
 
           {/* Animated Subtitle */}
@@ -77,9 +73,9 @@ export default function Hero() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 font-semibold">
                 <TypeAnimation
                   sequence={[
-                    'Journalism & Political Science Student',
+                    t('hero.role1'),
                     2000,
-                    'Fulbright Honors Sturgis Fellow',
+                    t('hero.role2'),
                     2000,
                   ]}
                   wrapper="span"
@@ -89,7 +85,7 @@ export default function Hero() {
               </span>
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Dedicated to civic engagement, literacy advocacy, and policy analysis. Skilled in investigative + feature journalism and political communication. Currently serving as an Email Intern at Middle Seat and an Editorial Intern at The American Prospect.
+              {t('hero.description')}
             </p>
           </motion.div>
 
@@ -106,7 +102,7 @@ export default function Hero() {
               className="btn-primary group text-lg px-8 py-4 flex items-center gap-3"
               onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              View My Work
+              {t('hero.cta')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.button>
 
@@ -116,7 +112,7 @@ export default function Hero() {
               className="btn-outline group text-lg px-8 py-4 flex items-center gap-3"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Let's Connect
+              {t('hero.contact')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.button>
           </motion.div>
