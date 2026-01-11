@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import {
   ExternalLink, Search, Download, FileText
 } from 'lucide-react';
@@ -96,6 +97,7 @@ const writingSamples: WritingSample[] = [
 const categories = ['All', 'Investigative Journalism', 'Feature', 'Arts & Entertainment', 'Music Journalism', 'Campus Features'];
 
 export default function Portfolio() {
+  const { t } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -160,7 +162,7 @@ export default function Portfolio() {
         <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{sample.description}</p>
 
         <div className="flex items-center gap-2 text-sm text-primary">
-          Read Article
+          {t('portfolio.readArticle')}
           <ExternalLink className="w-4 h-4" />
         </div>
       </div>
@@ -174,8 +176,8 @@ export default function Portfolio() {
         <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
           <div className="flex items-center gap-4">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-1">Writing Samples</h2>
-              <p className="text-muted-foreground text-lg">Journalism & Political Science Student | Fulbright Honors Sturgis Fellow</p>
+              <h2 className="text-3xl font-bold text-foreground mb-1">{t('portfolio.title')}</h2>
+              <p className="text-muted-foreground text-lg">{t('portfolio.subtitle')}</p>
             </div>
           </div>
           <button
@@ -183,7 +185,7 @@ export default function Portfolio() {
             className="btn-primary flex items-center gap-2"
           >
             <Download className="w-5 h-5" />
-            Download Resume
+            {t('portfolio.downloadResume')}
           </button>
         </div>
 
@@ -206,7 +208,7 @@ export default function Portfolio() {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <input
               type="text"
-              placeholder="Search articles..."
+              placeholder={t('portfolio.search')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="form-input pl-10"
@@ -229,16 +231,16 @@ export default function Portfolio() {
         {/* No results message */}
         {filteredSamples.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground text-lg">No articles found matching your criteria.</p>
+            <p className="text-muted-foreground text-lg">{t('portfolio.noResults')}</p>
           </div>
         )}
 
         {/* Additional Info */}
         <div className="bg-card mt-20 py-16 rounded-lg border border-border">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-card-foreground mb-6">100+ Published Articles</h2>
+            <h2 className="text-3xl font-bold text-card-foreground mb-6">{t('portfolio.moreArticles.title')}</h2>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto mb-8">
-              I have written 80+ stories spanning news, features, and arts + entertainment for various publications including the Arkansas Traveler, Hill Magazine, and Division of Student Affairs Bulletin. My work focuses on translating complex policy issues into accessible narratives that drive engagement, with particular emphasis on educational equity and amplifying underrepresented voices.
+              {t('portfolio.moreArticles.description')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
@@ -247,7 +249,7 @@ export default function Portfolio() {
                 rel="noopener noreferrer"
                 className="btn-outline flex items-center gap-2"
               >
-                View All Arkansas Traveler Articles
+                {t('portfolio.viewAll')}
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>

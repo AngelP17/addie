@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
 import {
   Award, TrendingUp, Star, MapPin,
   GraduationCap, Briefcase, Users, Target,
@@ -75,6 +76,7 @@ const timeline: TimelineItem[] = [
 ];
 
 export default function About() {
+  const { t } = useTranslation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -151,7 +153,7 @@ export default function About() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            About Addie Elizabeth Jones
+            {t('about.title')}
           </h2>
         </motion.div>
 
@@ -168,13 +170,13 @@ export default function About() {
             >
               <div className="prose prose-lg prose-invert max-w-none">
                 <p className="text-gray-600 dark:text-white leading-relaxed mb-6 text-lg">
-                  I am a Journalism and Political Science major at the University of Arkansas with minors in Gender Studies, Nonprofit Studies, and Rhetoric Writing. As a Fulbright Honors College Sturgis Fellow, I'm dedicated to progressive campaign communications, policy analysis, and investigative reporting.
+                  {t('about.bio.p1')}
                 </p>
                 <p className="text-gray-600 dark:text-white leading-relaxed mb-6">
-                  Currently serving as Email Intern at Middle Seat and Editorial Intern at The American Prospect, I focus on translating complex policy issues into accessible narratives that drive engagement. My work spans digital fundraising campaigns to investigative journalism, with particular emphasis on education equity and amplifying underrepresented voices.
+                  {t('about.bio.p2')}
                 </p>
                 <p className="text-gray-600 dark:text-white leading-relaxed">
-                  Through past federal and state legislative internships, my presidency of Young Democrats at UofA where I helped elect Arkansas's first Latina state legislator, and founding Bright Beginnings Books – a nonprofit that has distributed 13,000+ books across all 50 states – I have developed a comprehensive approach to advocacy combining grassroots organizing with strategic communications. My writing reaches 30,000+ readers through the Arkansas Traveler and Hill Magazine.
+                  {t('about.bio.p3')}
                 </p>
               </div>
             </motion.div>
@@ -187,7 +189,7 @@ export default function About() {
               animate={inView ? "visible" : "hidden"}
               className="mb-12"
             >
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Professional Journey</h3>
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">{t('about.timeline.title')}</h3>
               <div className="space-y-0">
                 {timeline.map((item, index) => (
                   <TimelineItem key={index} item={item} index={index} />
@@ -208,7 +210,7 @@ export default function About() {
             >
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                 <TrendingUp className="w-5 h-5 text-purple-400" />
-                Key Achievements
+                {t('about.stats.title')}
               </h3>
               <div className="space-y-4">
                 {[
@@ -238,7 +240,7 @@ export default function About() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="bg-gray-100/50 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 dark:border-gray-700"
             >
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Get In Touch</h3>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('about.contact.title')}</h3>
               <div className="space-y-4">
                 <a href="mailto:addie.elizabethjones@gmail.com" className="flex items-center gap-3 text-gray-600 dark:text-white hover:text-purple-400 transition-colors">
                   <Mail className="w-5 h-5 text-navy-700 dark:text-white" />

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
 import {
   PenTool, Users, MessageSquare, Target, BookOpen, Lightbulb,
   TrendingUp, Award, Star, CheckCircle
@@ -15,48 +16,48 @@ interface Competency {
 }
 
 const competencies: Competency[] = [
-    {
-      icon: PenTool,
+  {
+    icon: PenTool,
     title: "Policy Analysis & Research",
     description: "Legislative tracking, policy evaluation, federal affairs",
     level: 95,
     skills: ["Federal legislation tracking", "Policy brief development", "Congressional hearing analysis", "Stakeholder research"],
     achievements: ["Track 500+ bills through legislative process", "Evaluate state policy proposals for progressive alignment", "Analyze educational equity impacts on underrepresented communities"]
-    },
-    {
-      icon: Users,
+  },
+  {
+    icon: Users,
     title: "Civic Engagement & Leadership",
     description: "Student organization leadership, voter engagement, community organizing",
     level: 90,
     skills: ["Organization leadership", "Voter education", "Community outreach", "Cross-campus partnerships"],
     achievements: ["President of Young Democrats at UofA", "Led historic election campaign for first Latina state legislator", "Coordinated 100+ student members in civic initiatives"]
-    },
-    {
-      icon: MessageSquare,
+  },
+  {
+    icon: MessageSquare,
     title: "Editorial & Content Management",
     description: "Newsletter writing, editorial leadership, AP style",
     level: 88,
     skills: ["Newsletter development", "Editorial planning", "AP style editing", "Content strategy"],
     achievements: ["30,000+ newsletter readers across publications", "100+ articles published on arts, culture, and policy", "Weekly editorial leadership for campus newspaper"]
-    },
-    {
+  },
+  {
     icon: Target,
     title: "Literacy Advocacy & Community Service",
     description: "Nonprofit leadership, volunteer coordination, fundraising",
     level: 92,
     skills: ["Nonprofit management", "Volunteer coordination", "Fundraising strategy", "Community partnerships"],
     achievements: ["Distributed 13,000+ books across all 50 states", "Coordinated 70+ volunteers through literacy programs", "Raised $7,000+ in funds through strategic partnerships"]
-    },
-    {
-      icon: BookOpen,
+  },
+  {
+    icon: BookOpen,
     title: "Academic Excellence & Research",
     description: "Honors thesis, educational equity research, multidisciplinary studies",
     level: 89,
     skills: ["Educational equity research", "Research methodology", "Academic writing", "Multidisciplinary approach"],
     achievements: ["Fulbright Honors Sturgis Fellow", "3.903 GPA in Journalism & Political Science", "Honors thesis on educational equity and book access in Northwest Arkansas"]
-    },
-    {
-      icon: Lightbulb,
+  },
+  {
+    icon: Lightbulb,
     title: "Diversity, Equity & Inclusion",
     description: "DEI leadership, multicultural journalism, inclusive advocacy",
     level: 94,
@@ -66,6 +67,7 @@ const competencies: Competency[] = [
 ];
 
 export default function Competencies() {
+  const { t } = useTranslation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -94,7 +96,7 @@ export default function Competencies() {
   };
 
   const CompetencyCard = ({ competency, index }: { competency: Competency; index: number }) => {
-  return (
+    return (
       <motion.div
         variants={cardVariants}
         whileHover={{ y: -8 }}
@@ -124,7 +126,7 @@ export default function Competencies() {
           <div className="mb-4">
             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-green-400" />
-              Key Skills
+              {t('competencies.keySkills')}
             </h4>
             <div className="flex flex-wrap gap-2">
               {competency.skills.map((skill, skillIndex) => (
@@ -142,7 +144,7 @@ export default function Competencies() {
           <div>
             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
               <Award className="w-4 h-4 text-yellow-400" />
-              Notable Achievements
+              {t('competencies.achievements')}
             </h4>
             <ul className="space-y-1">
               {competency.achievements.map((achievement, achievementIndex) => (
@@ -170,10 +172,10 @@ export default function Competencies() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Core Competencies
+            {t('competencies.title')}
           </h2>
           <p className="text-xl text-gray-600 dark:text-white max-w-3xl mx-auto leading-relaxed">
-            Six pillars of expertise that define my approach to progressive advocacy and storytelling.
+            {t('competencies.description')}
           </p>
         </motion.div>
 
@@ -217,7 +219,7 @@ export default function Competencies() {
             </motion.div>
           ))}
         </motion.div>
-        </div>
+      </div>
     </section>
   );
 }
