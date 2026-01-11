@@ -108,7 +108,7 @@ export default function Contact() {
       submitData.append('subject', formData.subject);
       submitData.append('message', formData.message);
 
-      const response = await fetch('https://formspree.io/f/xzddpoqv', {
+      const response = await fetch('https://formspree.io/f/xzddpogv', {
         method: 'POST',
         body: submitData,
         headers: {
