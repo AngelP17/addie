@@ -242,7 +242,7 @@ export default function Portfolio() {
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
-                href="https://www.uatrav.com"
+                href="https://www.uatrav.com/users/profile/addie%20jones/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-outline flex items-center gap-2"

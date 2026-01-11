@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import {
   Mail, Phone, MapPin, Send, Clock,
   Linkedin, Twitter, CheckCircle,
@@ -19,6 +20,8 @@ interface FormErrors {
 }
 
 export default function Contact() {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState<ContactForm>({
     name: '',
     email: '',
@@ -33,24 +36,24 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: Mail,
-      label: "Email",
+      label: t('contact.info.title'),
       value: "addie.elizabethjones@gmail.com",
       href: "mailto:addie.elizabethjones@gmail.com",
-      description: "For general inquiries and collaboration opportunities"
+      description: t('contact.info.email.desc')
     },
     {
       icon: Phone,
       label: "Phone",
       value: "(870) 577-0389",
       href: "tel:+18705770389",
-      description: "Available for urgent matters and consultations"
+      description: t('contact.info.phone.desc')
     },
     {
       icon: MapPin,
       label: "Location",
       value: "Fayetteville, Arkansas",
       href: "#",
-      description: "Based in Arkansas, serving clients nationwide"
+      description: t('contact.info.location.desc')
     }
   ];
 
@@ -185,11 +188,10 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Let's Work Together
+            {t('contact.title')}
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Ready to transform your narrative strategy? I'm here to help you craft compelling stories
-            that drive impact and foster meaningful connections.
+            {t('contact.description')}
           </p>
         </motion.div>
 
@@ -205,7 +207,7 @@ export default function Contact() {
               <div>
               <h3 className="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
                 <MessageSquare className="w-6 h-6 text-purple-400" />
-                Send a Message
+                {t('contact.form.title')}
               </h3>
 
               {isSubmitted ? (
@@ -215,9 +217,9 @@ export default function Contact() {
                   className="bg-green-500/20 border border-green-500/30 rounded-2xl p-6 text-center"
                 >
                   <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                  <h4 className="text-xl font-semibold text-white mb-2">Message Sent!</h4>
+                  <h4 className="text-xl font-semibold text-white mb-2">{t('contact.form.success.title')}</h4>
                   <p className="text-gray-300">
-                    Thank you for reaching out. I'll get back to you within 24 hours.
+                    {t('contact.form.success.message')}
                   </p>
                 </motion.div>
               ) : (
@@ -225,16 +227,16 @@ export default function Contact() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-gray-300 text-sm font-medium mb-2">
-                        Name *
+                        {t('contact.form.name')} *
                       </label>
                       <div className="relative">
-                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
                         <input
                           type="text"
                           value={formData.name}
                           onChange={(e) => handleInputChange('name', e.target.value)}
-                          className={`w-full bg-navy/50 border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${
-                            errors.name ? 'border-red-500' : 'border-navy'
+                          className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${
+                            errors.name ? 'border-red-500' : 'border-white/20'
                           }`}
                           placeholder="Your name"
                         />
@@ -249,16 +251,16 @@ export default function Contact() {
 
                     <div>
                       <label className="block text-gray-300 text-sm font-medium mb-2">
-                        Email *
+                        {t('contact.form.email')} *
                       </label>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
                         <input
                           type="email"
                           value={formData.email}
                           onChange={(e) => handleInputChange('email', e.target.value)}
-                          className={`w-full bg-navy/50 border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${
-                            errors.email ? 'border-red-500' : 'border-navy'
+                          className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${
+                            errors.email ? 'border-red-500' : 'border-white/20'
                           }`}
                           placeholder="your@email.com"
                         />
@@ -274,15 +276,15 @@ export default function Contact() {
 
               <div>
                     <label className="block text-gray-300 text-sm font-medium mb-2">
-                      Company
+                      {t('contact.form.company')}
                     </label>
                     <div className="relative">
-                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
                       <input
                         type="text"
                         value={formData.company}
                         onChange={(e) => handleInputChange('company', e.target.value)}
-                        className="w-full bg-navy/50 border border-navy rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
+                        className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
                         placeholder="Your company (optional)"
                       />
               </div>
@@ -290,14 +292,14 @@ export default function Contact() {
 
                   <div>
                     <label className="block text-gray-300 text-sm font-medium mb-2">
-                      Subject *
+                      {t('contact.form.subject')} *
                     </label>
                     <input
                       type="text"
                       value={formData.subject}
                       onChange={(e) => handleInputChange('subject', e.target.value)}
-                      className={`w-full bg-navy/50 border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${
-                        errors.subject ? 'border-red-500' : 'border-navy'
+                      className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${
+                        errors.subject ? 'border-red-500' : 'border-white/20'
                       }`}
                       placeholder="What can I help you with?"
                     />
@@ -311,14 +313,14 @@ export default function Contact() {
 
               <div>
                     <label className="block text-gray-300 text-sm font-medium mb-2">
-                      Message *
+                      {t('contact.form.message')} *
                     </label>
                     <textarea
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
                       rows={6}
-                      className={`w-full bg-navy/50 border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 resize-none ${
-                        errors.message ? 'border-red-500' : 'border-navy'
+                      className={`w-full bg-white/10 backdrop-blur-sm border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 resize-none ${
+                        errors.message ? 'border-red-500' : 'border-white/20'
                       }`}
                       placeholder="Tell me about your project or inquiry..."
                     />
@@ -340,11 +342,11 @@ export default function Contact() {
                     {isSubmitting ? (
                       <>
                         <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        Sending...
+                        {t('contact.form.sending')}
                       </>
                     ) : (
                       <>
-                        Send Message
+                        {t('contact.form.submit')}
                         <Send className="w-5 h-5" />
                       </>
                     )}
@@ -364,7 +366,7 @@ export default function Contact() {
           >
             {/* Contact Information */}
               <div>
-              <h3 className="text-2xl font-semibold text-white mb-6">Get In Touch</h3>
+              <h3 className="text-2xl font-semibold text-white mb-6">{t('contact.info.title')}</h3>
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (
                   <ContactInfoCard key={index} info={info} />
@@ -374,7 +376,7 @@ export default function Contact() {
 
             {/* Social Links */}
               <div>
-              <h3 className="text-xl font-semibold text-white mb-4">Follow Me</h3>
+              <h3 className="text-xl font-semibold text-white mb-4">{t('contact.social.title')}</h3>
               <div className="flex gap-3">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -396,11 +398,10 @@ export default function Contact() {
             <div className="bg-navy/50 backdrop-blur-sm rounded-2xl p-6 border border-navy/50">
               <div className="flex items-center gap-3 mb-3">
                 <Clock className="w-6 h-6 text-purple-400" />
-                <h4 className="text-lg font-semibold text-white">Response Time</h4>
+                <h4 className="text-lg font-semibold text-white">{t('contact.response.title')}</h4>
               </div>
               <p className="text-gray-400 text-sm">
-                I typically respond to all inquiries within 24 hours during business days.
-                For urgent matters, please include "URGENT" in your subject line.
+                {t('contact.response.message')}
               </p>
             </div>
           </motion.div>
