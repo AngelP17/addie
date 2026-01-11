@@ -92,7 +92,7 @@ const volunteering = [
     period: '2023 - Present',
     description: [
       'Designed literacy and mentoring curriculum reaching K-12 students across five local partner sites.',
-      'Managed and conducted monthly training meetings with 70+ Passionate About Literacy volunteers.',
+      'Managed and conducted monthly training meetings with 100+ Passionate About Literacy volunteers.',
       'Facilitated communications strategy, including social media, campus outreach, and recruitment campaigns.'
     ],
   },

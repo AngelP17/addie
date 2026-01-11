@@ -46,7 +46,7 @@ const competencies: Competency[] = [
     description: "Nonprofit leadership, volunteer coordination, fundraising",
     level: 92,
     skills: ["Nonprofit management", "Volunteer coordination", "Fundraising strategy", "Community partnerships"],
-    achievements: ["Distributed 13,000+ books across all 50 states", "Coordinated 70+ volunteers through literacy programs", "Raised $7,000+ in funds through strategic partnerships"]
+    achievements: ["Distributed 13,000+ books across all 50 states", "Coordinated 100+ volunteers through literacy programs", "Raised $7,000+ in funds through strategic partnerships"]
   },
   {
     icon: BookOpen,

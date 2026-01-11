@@ -16,71 +16,95 @@ interface TimelineItem {
   icon: React.ComponentType<{ className?: string }>;
 }
 
-const timeline: TimelineItem[] = [
-  {
-    year: "2025",
-    title: "Email Intern",
-    organization: "Middle Seat",
-    description: "Digital fundraising campaigns and email communications for progressive causes.",
-    type: "experience",
-    icon: Briefcase
-  },
-  {
-    year: "2025",
-    title: "Editorial Intern",
-    organization: "The American Prospect",
-    description: "Editorial research and content development for progressive policy journalism.",
-    type: "experience",
-    icon: Target
-  },
-  {
-    year: "2024",
-    title: "Legislative Policy Intern",
-    organization: "Democratic Party of Arkansas",
-    description: "Evaluate proposed state legislation based on alignment with progressive policy priorities and impact on underrepresented communities.",
-    type: "experience",
-    icon: Users
-  },
-  {
-    year: "2024",
-    title: "Content Writing Intern",
-    organization: "Sam M. Walton College of Business",
-    description: "Write and edit weekly newsletter sent to 30,000+ students, staff, parents, and alumni.",
-    type: "experience",
-    icon: Target
-  },
-  {
-    year: "2023",
-    title: "Lifestyles Editor",
-    organization: "Arkansas Traveler Newspaper",
-    description: "Edit and curate arts, culture, entertainment, and opinion content for 30,000+ readers. Published 100+ articles.",
-    type: "experience",
-    icon: Users
-  },
-  {
-    year: "2011",
-    title: "Nonprofit Founder",
-    organization: "Bright Beginnings Books",
-    description: "Founded 501(c)(3) nonprofit that has distributed 13,000+ books across all 50 states, raised $7,000+ through strategic partnerships.",
-    type: "achievement",
-    icon: Book
-  },
-  {
-    year: "2026",
-    title: "Bachelor's in Journalism & Political Science",
-    organization: "University of Arkansas",
-    description: "Minors in Gender Studies, Nonprofit Studies, and Rhetoric Writing. Fulbright Honors College Sturgis Fellow. Honors Thesis: Reading Between the Lines: Educational Equity and Book Access in Northwest Arkansas",
-    type: "education",
-    icon: GraduationCap
-  }
-];
-
 export default function About() {
   const { t } = useTranslation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const timeline: TimelineItem[] = [
+    {
+      year: "2025",
+      title: t('timeline.govAffairsIntern.title'),
+      organization: t('timeline.govAffairsIntern.org'),
+      description: t('timeline.govAffairsIntern.desc'),
+      type: "experience",
+      icon: Briefcase
+    },
+    {
+      year: "2025",
+      title: t('timeline.ballotpediaIntern.title'),
+      organization: t('timeline.ballotpediaIntern.org'),
+      description: t('timeline.ballotpediaIntern.desc'),
+      type: "experience",
+      icon: Target
+    },
+    {
+      year: "2025",
+      title: t('timeline.emailIntern.title'),
+      organization: t('timeline.emailIntern.org'),
+      description: t('timeline.emailIntern.desc'),
+      type: "experience",
+      icon: Briefcase
+    },
+    {
+      year: "2025",
+      title: t('timeline.editorialIntern.title'),
+      organization: t('timeline.editorialIntern.org'),
+      description: t('timeline.editorialIntern.desc'),
+      type: "experience",
+      icon: Target
+    },
+    {
+      year: "2024",
+      title: t('timeline.copywritingIntern.title'),
+      organization: t('timeline.copywritingIntern.org'),
+      description: t('timeline.copywritingIntern.desc'),
+      type: "experience",
+      icon: Target
+    },
+    {
+      year: "2024",
+      title: t('timeline.legislativeIntern.title'),
+      organization: t('timeline.legislativeIntern.org'),
+      description: t('timeline.legislativeIntern.desc'),
+      type: "experience",
+      icon: Users
+    },
+    {
+      year: "2024",
+      title: t('timeline.contentWriting.title'),
+      organization: t('timeline.contentWriting.org'),
+      description: t('timeline.contentWriting.desc'),
+      type: "experience",
+      icon: Target
+    },
+    {
+      year: "2023",
+      title: t('timeline.lifestylesEditor.title'),
+      organization: t('timeline.lifestylesEditor.org'),
+      description: t('timeline.lifestylesEditor.desc'),
+      type: "experience",
+      icon: Users
+    },
+    {
+      year: "2011",
+      title: t('timeline.nonprofitFounder.title'),
+      organization: t('timeline.nonprofitFounder.org'),
+      description: t('timeline.nonprofitFounder.desc'),
+      type: "achievement",
+      icon: Book
+    },
+    {
+      year: "2026",
+      title: t('timeline.education.title'),
+      organization: t('timeline.education.org'),
+      description: t('timeline.education.desc'),
+      type: "education",
+      icon: GraduationCap
+    }
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -130,7 +154,7 @@ export default function About() {
               item.type === 'experience' ? 'bg-green-100 text-green-600' :
                 'bg-yellow-100 text-yellow-600'
               }`}>
-              {item.type}
+              {t(`timeline.type.${item.type}`)}
             </span>
           </div>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{item.title}</h3>
@@ -215,7 +239,7 @@ export default function About() {
               <div className="space-y-4">
                 {[
                   { label: "Books Distributed", value: "13,000+", icon: Award },
-                  { label: "Volunteers Coordinated", value: "70+", icon: Users },
+                  { label: "Volunteers Coordinated", value: "100+", icon: Users },
                   { label: "Newsletter Readers", value: "30,000+", icon: Target },
                   { label: "Articles Published", value: "100+", icon: Star }
                 ].map((stat, index) => (
