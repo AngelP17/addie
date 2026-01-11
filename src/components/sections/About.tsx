@@ -154,9 +154,6 @@ export default function About() {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             About Addie Elizabeth Jones
           </h2>
-          <p className="text-xl text-gray-500 dark:text-white max-w-3xl mx-auto leading-relaxed">
-            Dedicated to civic engagement, literacy advocacy, and policy analysis. Skilled in investigative + feature journalism and political communication. Currently serving as an Email Intern at Middle Seat and an Editorial Intern at The American Prospect.
-          </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-12">
