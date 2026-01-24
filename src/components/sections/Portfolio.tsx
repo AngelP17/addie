@@ -55,7 +55,7 @@ const writingSamples: WritingSample[] = [
     category: "Music Journalism",
     description: "Concert review of Hozier and Allison Russell at Walmart AMP highlighting their music as a call to action and reminder of art's resilient power, leaving fans with a sense of purpose toward creating a better tomorrow as they exited the amphitheater.",
     url: "https://www.uatrav.com/lifestyles/article_76298b2e-0cae-11ef-9529-b7ae1a7bc804.html",
-    image: "/api/placeholder/400/300",
+    image: "/hozier.png",
     photoCredit: "McKena Jensen // Staff Photographer"
   },
   {
@@ -74,7 +74,7 @@ const writingSamples: WritingSample[] = [
     category: "Arts & Culture",
     description: "One publication I freelance for is The Idle Class magazine, Northwest Arkansas's arts and culture quarterly. This article examining local arts and culture can be found on page 18 of the Holidays Issue.",
     url: "https://issuu.com/theidleclass/docs/the_idle_class_holidays_issue",
-    image: "/api/placeholder/400/300"
+    image: "/illuminating.png"
   },
   {
     id: 7,
