@@ -14,6 +14,7 @@ interface WritingSample {
   url: string;
   image: string;
   featured?: boolean;
+  photoCredit?: string;
 }
 
 const writingSamples: WritingSample[] = [
@@ -24,7 +25,7 @@ const writingSamples: WritingSample[] = [
     category: "Investigative Journalism",
     description: "An investigative report exposing the transparency issues surrounding a controversial $1 billion prison facility in Charleston, Arkansas. The piece combines financial analysis, document research, and diverse source perspectives to examine the impact of state-level decisions on rural communities.",
     url: "https://www.uatrav.com/news/article_5c393792-b225-11ef-b5d7-dfe62040b69c.html",
-    image: "/api/placeholder/400/300",
+    image: "/leftinthedark.jpg",
     featured: true
   },
   {
@@ -34,7 +35,7 @@ const writingSamples: WritingSample[] = [
     category: "Feature",
     description: "A feature for Hill Magazine examining how Northwest Arkansas salons are becoming spaces for LGBTQ+ self-expression and affirmation. This piece provides personal narratives with broader social commentary to show how beauty services can be a powerful tool for resistance and self-expression.",
     url: "https://uahillmag.com/2023/10/18/styled-in-love-transforming-hearts-redefining-beauty/",
-    image: "/api/placeholder/400/300",
+    image: "/styledinlove.webp",
     featured: true
   },
   {
@@ -44,7 +45,7 @@ const writingSamples: WritingSample[] = [
     category: "Arts & Entertainment",
     description: "A concert review capturing the cultural significance of Chappell Roan's largest headlining show to date, examining how the artist created a celebration of queer identity in the South and Midwest. Walking out on that stage the first time and seeing all 11,000 people cheering was insane. Especially since this is my hometown, this is my community, and it was so gratifying to be embraced.",
     url: "https://www.uatrav.com/lifestyles/article_6818cda6-8b48-11ef-a198-778537f74602.html",
-    image: "/api/placeholder/400/300",
+    image: "/chappellroan.webp",
     featured: true
   },
   {
@@ -53,8 +54,9 @@ const writingSamples: WritingSample[] = [
     publication: "Arkansas Traveler",
     category: "Music Journalism",
     description: "Concert review of Hozier and Allison Russell at Walmart AMP highlighting their music as a call to action and reminder of art's resilient power, leaving fans with a sense of purpose toward creating a better tomorrow as they exited the amphitheater.",
-    url: "https://www.uatrav.com/lifestyles/article_427945a6-59b4-11ee-a069-5390ca7f0cdc.html",
-    image: "/api/placeholder/400/300"
+    url: "https://www.uatrav.com/lifestyles/article_76298b2e-0cae-11ef-9529-b7ae1a7bc804.html",
+    image: "/api/placeholder/400/300",
+    photoCredit: "McKena Jensen // Staff Photographer"
   },
   {
     id: 5,
@@ -63,7 +65,7 @@ const writingSamples: WritingSample[] = [
     category: "Campus Features",
     description: "Through more than a dozen features for the Division of Student Affairs Bulletin blog, I crafted engaging narratives about campus life, from student organizations to academic achievements, reaching thousands of students, staff, and alumni.",
     url: "https://studentaffairsbulletin.uark.edu/springtime-of-youth-2023/",
-    image: "/api/placeholder/400/300"
+    image: "/soy2023.jpg"
   },
   {
     id: 6,
@@ -80,21 +82,33 @@ const writingSamples: WritingSample[] = [
     publication: "Arkansas Traveler",
     category: "Music Journalism",
     description: "This record is a departure from her past works, as she travels away from the flashing city lights of synth-pop and toward the rugged mountains of acoustic indie-folk.",
-    url: "https://www.uatrav.com/news/article_50a7b6ac-9d87-4120-98e4-98db4800671e.html",
-    image: "/api/placeholder/400/300"
+    url: "https://www.uatrav.com/lifestyles/article_427945a6-59b4-11ee-a069-5390ca7f0cdc.html",
+    image: "/mitski.webp",
+    photoCredit: "Courtesy of Spotify"
   },
   {
     id: 8,
-    title: "Kali Uchis' 'Orquídeas' is a blooming and bold flourish of sound",
+    title: "Funding cuts leave domestic violence programs in crisis",
     publication: "Arkansas Traveler",
-    category: "Music Journalism",
-    description: "Still, this interruption cannot wither the beauty of the blissful and vivid flower that is 'Orquídeas.' One publication I freelance for is The Idle Class magazine, Northwest Arkansas's arts and culture quarterly.",
+    category: "Investigative Journalism",
+    description: "An examination of how funding cuts are affecting programs meant to help victims of domestic violence, and how organizations like Peace at Home rely on alternative methods to achieve funding goals.",
     url: "https://www.uatrav.com/news/article_4dc3454d-26e8-4b11-8fbd-da2690e7ef91.html",
-    image: "/api/placeholder/400/300"
+    image: "/domesticviolence.webp",
+    photoCredit: "Marshall Deree // Staff Photographer"
+  },
+  {
+    id: 9,
+    title: "SNAP benefits delay leaves Arkansans struggling with food insecurity",
+    publication: "Arkansas Traveler",
+    category: "Investigative Journalism",
+    description: "A report on how the delay in SNAP benefits is impacting Arkansas families and how community efforts like local blessing boxes are stepping in to combat food insecurity.",
+    url: "https://www.uatrav.com/news/article_50a7b6ac-9d87-4120-98e4-98db4800671e.html",
+    image: "/nutrition.webp",
+    photoCredit: "Marshall Deree // Staff Photographer"
   }
 ];
 
-const categories = ['All', 'Investigative Journalism', 'Feature', 'Arts & Entertainment', 'Music Journalism', 'Campus Features'];
+const categories = ['All', 'Investigative Journalism', 'Feature', 'Arts & Entertainment', 'Arts & Culture', 'Music Journalism', 'Campus Features'];
 
 export default function Portfolio() {
   const { t } = useTranslation();
@@ -125,17 +139,32 @@ export default function Portfolio() {
       rel="noopener noreferrer"
       className="card card-hover cursor-pointer overflow-hidden block group"
     >
-      {/* Article Image Placeholder */}
+      {/* Article Image */}
       <div className="relative aspect-video bg-gradient-to-br from-purple-500/10 to-blue-500/10 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-muted/10 to-accent/10"></div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-16 h-16 bg-muted/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <FileText className="w-8 h-8 text-muted-foreground" />
-          </div>
-        </div>
+        {sample.image && !sample.image.includes('placeholder') ? (
+          <img
+            src={sample.image}
+            alt={sample.title}
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-br from-muted/10 to-accent/10"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-16 h-16 bg-muted/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <FileText className="w-8 h-8 text-muted-foreground" />
+              </div>
+            </div>
+          </>
+        )}
         {sample.featured && (
           <div className="absolute top-4 left-4 px-3 py-1 bg-gradient-to-r from-primary to-accent text-primary-foreground text-xs font-semibold rounded-full">
             Featured
+          </div>
+        )}
+        {sample.photoCredit && (
+          <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/60 text-white text-xs rounded">
+            {sample.photoCredit}
           </div>
         )}
         <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
