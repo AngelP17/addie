@@ -181,82 +181,75 @@ export default function About() {
         </motion.div>
 
         <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
-          {/* Main Content */}
-          <div className="lg:col-span-2">
-            {/* Bio */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="mb-12 rounded-2xl border border-border bg-card p-5 backdrop-blur-sm sm:p-8"
-            >
-              <div className="prose prose-lg prose-invert max-w-none">
-                <p className="mb-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
-                  {t('about.bio.p1')}
-                </p>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {t('about.bio.p2')}
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  {t('about.bio.p3')}
-                </p>
-              </div>
-            </motion.div>
+          {/* Bio */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="rounded-2xl border border-border bg-card p-5 backdrop-blur-sm sm:p-8 lg:col-span-2"
+          >
+            <div className="prose prose-lg prose-invert max-w-none">
+              <p className="mb-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                {t('about.bio.p1')}
+              </p>
+              <p className="mb-6 leading-relaxed text-muted-foreground">
+                {t('about.bio.p2')}
+              </p>
+              <p className="leading-relaxed text-muted-foreground">
+                {t('about.bio.p3')}
+              </p>
+            </div>
+          </motion.div>
 
-            {/* Timeline */}
-            <motion.div
-              ref={ref}
-              variants={containerVariants}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              className="mb-12"
-            >
-              <h3 className="mb-8 text-xl font-semibold text-foreground sm:text-2xl">{t('about.timeline.title')}</h3>
-              <div className="space-y-0">
-                {timeline.map((item, index) => (
-                  <TimelineItem key={index} item={item} index={index} />
-                ))}
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Sidebar */}
-          <div className="space-y-8">
-            {/* Quick Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="bg-card backdrop-blur-sm rounded-2xl p-6 border border-border"
-            >
-              <h3 className="text-xl font-semibold text-card-foreground mb-6 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-primary" />
-                {t('about.stats.title')}
-              </h3>
-              <div className="space-y-4">
-                {[
-                  { label: "Books Distributed", value: "13,000+", icon: Award },
-                  { label: "Volunteers Coordinated", value: "100+", icon: Users },
-                  { label: "Newsletter Readers", value: "30,000+", icon: Target },
-                  { label: "Articles Published", value: "100+", icon: Star }
-                ].map((stat, index) => (
-                  <div key={index} className="flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
-                        <stat.icon className="w-4 h-4 text-primary" />
-                      </div>
-                      <span className="text-xs text-muted-foreground sm:text-sm">{stat.label}</span>
+          {/* Key Achievements */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="h-full rounded-2xl border border-border bg-card p-6 backdrop-blur-sm"
+          >
+            <h3 className="mb-6 flex items-center gap-2 text-xl font-semibold text-card-foreground">
+              <TrendingUp className="h-5 w-5 text-primary" />
+              {t('about.stats.title')}
+            </h3>
+            <div className="space-y-4">
+              {[
+                { label: "Books Distributed", value: "13,000+", icon: Award },
+                { label: "Volunteers Coordinated", value: "100+", icon: Users },
+                { label: "Newsletter Readers", value: "30,000+", icon: Target },
+                { label: "Articles Published", value: "100+", icon: Star }
+              ].map((stat, index) => (
+                <div key={index} className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/20">
+                      <stat.icon className="h-4 w-4 text-primary" />
                     </div>
-                    <span className="text-card-foreground font-semibold">{stat.value}</span>
+                    <span className="text-xs text-muted-foreground sm:text-sm">{stat.label}</span>
                   </div>
-                ))}
-              </div>
-            </motion.div>
-
-          </div>
+                  <span className="font-semibold text-card-foreground">{stat.value}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
+
+        {/* Timeline */}
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="mt-12"
+        >
+          <h3 className="mb-8 text-xl font-semibold text-foreground sm:text-2xl">{t('about.timeline.title')}</h3>
+          <div className="space-y-0">
+            {timeline.map((item, index) => (
+              <TimelineItem key={index} item={item} index={index} />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
