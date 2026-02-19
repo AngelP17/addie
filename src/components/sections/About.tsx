@@ -2,9 +2,8 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
 import {
-  Award, TrendingUp, Star, MapPin,
-  GraduationCap, Briefcase, Users, Target,
-  Linkedin, Mail, Phone, Book
+  Award, TrendingUp, Star,
+  GraduationCap, Briefcase, Users, Target, Book
 } from 'lucide-react';
 
 interface TimelineItem {
@@ -256,39 +255,6 @@ export default function About() {
               </div>
             </motion.div>
 
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-card backdrop-blur-sm rounded-2xl p-6 border border-border"
-            >
-              <h3 className="text-xl font-semibold text-card-foreground mb-6">{t('about.contact.title')}</h3>
-              <div className="space-y-4">
-                <a href="mailto:addie.elizabethjones@gmail.com" className="flex items-center gap-3 break-all text-sm text-muted-foreground transition-colors hover:text-primary sm:text-base">
-                  <Mail className="w-5 h-5 text-foreground" />
-                  <span>addie.elizabethjones@gmail.com</span>
-                </a>
-                <a href="tel:+18705770389" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
-                  <Phone className="w-5 h-5 text-foreground" />
-                  <span>(870) 577-0389</span>
-                </a>
-                <div className="flex items-center gap-3 text-muted-foreground">
-                  <MapPin className="w-5 h-5 text-foreground" />
-                  <span>Fayetteville, Arkansas</span>
-                </div>
-              </div>
-
-              <div className="flex gap-3 mt-6">
-                <a href="https://www.linkedin.com/in/addie-jones-b5a5b6250/" className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-colors">
-                  <Linkedin className="w-5 h-5 text-primary" />
-                </a>
-                <a href="mailto:addie.elizabethjones@gmail.com" className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-colors">
-                  <Mail className="w-5 h-5 text-primary" />
-                </a>
-              </div>
-            </motion.div>
           </div>
         </div>
       </div>
