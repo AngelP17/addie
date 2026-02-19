@@ -131,24 +131,24 @@ export default function About() {
   const TimelineItem = ({ item, index }: { item: TimelineItem; index: number }) => (
     <motion.div
       variants={itemVariants}
-      className="flex gap-6 relative"
+      className="relative flex gap-3 sm:gap-6"
     >
       {/* Timeline Line */}
       {index < timeline.length - 1 && (
-        <div className="absolute left-6 top-12 w-0.5 h-full bg-gradient-to-b from-purple-500 to-transparent" />
+        <div className="absolute left-5 top-10 h-full w-0.5 bg-gradient-to-b from-purple-500 to-transparent sm:left-6 sm:top-12" />
       )}
 
       {/* Icon */}
       <div className="relative z-10">
-        <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-          <item.icon className="w-6 h-6 text-white" />
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 sm:h-12 sm:w-12">
+          <item.icon className="h-5 w-5 text-white sm:h-6 sm:w-6" />
         </div>
       </div>
 
       {/* Content */}
       <div className="flex-1 pb-8">
-        <div className="bg-card backdrop-blur-sm rounded-2xl p-6 border border-border hover:border-primary/30 transition-all duration-300">
-          <div className="flex items-center gap-3 mb-3">
+        <div className="rounded-2xl border border-border bg-card p-4 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 sm:p-6">
+          <div className="mb-3 flex flex-wrap items-center gap-2 sm:gap-3">
             <span className="text-purple-600 font-semibold">{item.year}</span>
             <span className={`px-2 py-1 rounded-full text-xs font-medium ${item.type === 'education' ? 'bg-blue-100 text-blue-600' :
               item.type === 'experience' ? 'bg-green-100 text-green-600' :
@@ -157,8 +157,8 @@ export default function About() {
               {t(`timeline.type.${item.type}`)}
             </span>
           </div>
-          <h3 className="text-lg font-semibold text-card-foreground mb-2">{item.title}</h3>
-          <p className="text-primary font-medium mb-2">{item.organization}</p>
+          <h3 className="mb-2 text-base font-semibold text-card-foreground sm:text-lg">{item.title}</h3>
+          <p className="mb-2 text-sm font-medium text-primary sm:text-base">{item.organization}</p>
           <p className="text-muted-foreground text-sm">{item.description}</p>
         </div>
       </div>
@@ -166,7 +166,7 @@ export default function About() {
   );
 
   return (
-    <section id="about" className="py-20 px-6 bg-background">
+    <section id="about" className="bg-background px-4 py-20 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -174,14 +174,14 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-12 text-center sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="mb-6 text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">
             {t('about.title')}
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
+        <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
           {/* Main Content */}
           <div className="lg:col-span-2">
             {/* Bio */}
@@ -190,10 +190,10 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="bg-card backdrop-blur-sm rounded-2xl p-8 border border-border mb-12"
+              className="mb-12 rounded-2xl border border-border bg-card p-5 backdrop-blur-sm sm:p-8"
             >
               <div className="prose prose-lg prose-invert max-w-none">
-                <p className="text-muted-foreground leading-relaxed mb-6 text-lg">
+                <p className="mb-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
                   {t('about.bio.p1')}
                 </p>
                 <p className="text-muted-foreground leading-relaxed mb-6">
@@ -213,7 +213,7 @@ export default function About() {
               animate={inView ? "visible" : "hidden"}
               className="mb-12"
             >
-              <h3 className="text-2xl font-semibold text-foreground mb-8">{t('about.timeline.title')}</h3>
+              <h3 className="mb-8 text-xl font-semibold text-foreground sm:text-2xl">{t('about.timeline.title')}</h3>
               <div className="space-y-0">
                 {timeline.map((item, index) => (
                   <TimelineItem key={index} item={item} index={index} />
@@ -243,12 +243,12 @@ export default function About() {
                   { label: "Newsletter Readers", value: "30,000+", icon: Target },
                   { label: "Articles Published", value: "100+", icon: Star }
                 ].map((stat, index) => (
-                  <div key={index} className="flex items-center justify-between">
+                  <div key={index} className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
                         <stat.icon className="w-4 h-4 text-primary" />
                       </div>
-                      <span className="text-muted-foreground text-sm">{stat.label}</span>
+                      <span className="text-xs text-muted-foreground sm:text-sm">{stat.label}</span>
                     </div>
                     <span className="text-card-foreground font-semibold">{stat.value}</span>
                   </div>
@@ -266,7 +266,7 @@ export default function About() {
             >
               <h3 className="text-xl font-semibold text-card-foreground mb-6">{t('about.contact.title')}</h3>
               <div className="space-y-4">
-                <a href="mailto:addie.elizabethjones@gmail.com" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                <a href="mailto:addie.elizabethjones@gmail.com" className="flex items-center gap-3 break-all text-sm text-muted-foreground transition-colors hover:text-primary sm:text-base">
                   <Mail className="w-5 h-5 text-foreground" />
                   <span>addie.elizabethjones@gmail.com</span>
                 </a>

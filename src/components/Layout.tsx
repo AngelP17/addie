@@ -53,7 +53,7 @@ export default function Layout({ children }: LayoutProps) {
           <div className="flex items-center justify-between h-16">
             <motion.a
               href="#"
-              className="flex items-center gap-3 text-2xl font-bold text-foreground transition-all duration-300"
+              className="flex min-w-0 max-w-[calc(100%-3.5rem)] items-center gap-3 truncate text-lg font-bold text-foreground transition-all duration-300 sm:text-2xl md:max-w-none"
               onClick={(e) => {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -61,7 +61,7 @@ export default function Layout({ children }: LayoutProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Addie Elizabeth Jones
+              <span className="truncate">Addie Elizabeth Jones</span>
             </motion.a>
 
             {/* Desktop Navigation */}
@@ -144,7 +144,7 @@ export default function Layout({ children }: LayoutProps) {
 
             {/* Mobile Menu Button */}
             <motion.button
-              className="md:hidden p-2 rounded-lg hover:bg-accent hover:text-accent-foreground transition-all duration-200 focus-ring"
+              className="md:hidden flex-shrink-0 rounded-lg p-2 transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus-ring"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
               whileHover={{ scale: 1.1 }}
@@ -184,10 +184,20 @@ export default function Layout({ children }: LayoutProps) {
                       {link.label}
                     </motion.a>
                   ))}
-                  <div className="flex items-center space-x-4 pt-4 border-t border-border">
+                  <a
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary inline-flex w-full items-center justify-center gap-2"
+                    aria-label="Download Resume"
+                  >
+                    Download Resume
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                  <div className="flex flex-col gap-3 border-t border-border pt-4 sm:flex-row sm:items-center">
                     <motion.button
                       onClick={toggleTheme}
-                      className="flex items-center space-x-2 text-foreground hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-accent hover:text-accent-foreground"
+                      className="flex w-full items-center justify-center space-x-2 rounded-lg px-4 py-2 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground hover:text-primary sm:w-auto sm:justify-start"
                       whileHover={{ scale: 1.05 }}
                     >
                       {theme === 'dark' ? (
@@ -204,7 +214,7 @@ export default function Layout({ children }: LayoutProps) {
                     </motion.button>
                     <motion.button
                       onClick={toggleLanguage}
-                      className="flex items-center space-x-2 text-foreground hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-accent hover:text-accent-foreground"
+                      className="flex w-full items-center justify-center space-x-2 rounded-lg px-4 py-2 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground hover:text-primary sm:w-auto sm:justify-start"
                       whileHover={{ scale: 1.05 }}
                     >
                       <Globe className="w-5 h-5" />

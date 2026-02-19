@@ -151,7 +151,7 @@ export default function Contact() {
   const ContactInfoCard = ({ info }: { info: typeof contactInfo[0] }) => (
     <motion.div
       whileHover={{ y: -4 }}
-      className="bg-card rounded-2xl p-6 border border-border hover:border-primary/30 transition-all duration-300 shadow-lg"
+      className="rounded-2xl border border-border bg-card p-5 shadow-lg transition-all duration-300 hover:border-primary/30 sm:p-6"
     >
       <div className="flex items-start gap-4">
         <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -161,7 +161,8 @@ export default function Contact() {
           <h3 className="text-lg font-semibold text-card-foreground mb-1">{info.label}</h3>
           <a
             href={info.href}
-            className="text-foreground hover:text-primary transition-colors font-medium"          >
+            className="break-all font-medium text-foreground transition-colors hover:text-primary"
+          >
             {info.value}
           </a>
           <p className="text-muted-foreground text-sm mt-2">{info.description}</p>
@@ -171,7 +172,7 @@ export default function Contact() {
   );
 
   return (
-    <section id="contact" className="py-20 px-6 bg-background">
+    <section id="contact" className="bg-background px-4 py-20 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -179,12 +180,12 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-12 text-center sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="mb-6 text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">
             {t('contact.title')}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-base text-muted-foreground sm:text-xl">
             {t('contact.description')}
           </p>
         </motion.div>
@@ -199,7 +200,7 @@ export default function Contact() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
+              <h3 className="mb-6 flex items-center gap-2 text-xl font-semibold text-foreground sm:text-2xl">
                 <MessageSquare className="w-6 h-6 text-purple-400" />
                 {t('contact.form.title')}
               </h3>

@@ -15,7 +15,7 @@ export default function Freelance() {
     ];
 
     return (
-        <section id="freelance" className="py-24 px-6 bg-background relative border-t border-border/40">
+        <section id="freelance" className="relative border-t border-border/40 bg-background px-4 py-24 sm:px-6">
             <div className="max-w-6xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -26,11 +26,11 @@ export default function Freelance() {
                 >
                     {/* Main Content Area */}
                     <div className="mb-12">
-                        <h2 className="text-5xl md:text-6xl font-bold text-foreground tracking-tight mb-6 font-serif">
+                        <h2 className="mb-6 font-serif text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
                             {t('freelance.title')}
                         </h2>
 
-                        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                        <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl md:text-2xl">
                             {t('freelance.description')}
                         </p>
                     </div>
@@ -40,7 +40,7 @@ export default function Freelance() {
                         {services.map((service) => (
                             <div
                                 key={service.key}
-                                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-card/60 backdrop-blur-md border border-border/50 text-foreground font-medium shadow-sm hover:bg-card/80 transition-colors"
+                                className="flex items-center gap-2 rounded-full border border-border/50 bg-card/60 px-4 py-2.5 text-foreground shadow-sm transition-colors hover:bg-card/80 sm:px-5"
                             >
                                 <service.icon className="w-4 h-4 text-primary" />
                                 <span className="text-sm md:text-base">
@@ -62,7 +62,7 @@ export default function Freelance() {
                             href="https://jones-co.vercel.app/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background rounded-full font-semibold text-lg hover:bg-foreground/90 transition-colors shadow-lg"
+                            className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-foreground px-6 py-4 text-base font-semibold text-background shadow-lg transition-colors hover:bg-foreground/90 sm:w-auto sm:px-8 sm:text-lg"
                         >
                             {t('freelance.cta')}
                             <ExternalLink className="w-5 h-5" />

@@ -100,25 +100,25 @@ export default function Competencies() {
       <motion.div
         variants={cardVariants}
         whileHover={{ y: -8 }}
-        className="group bg-card backdrop-blur-sm rounded-2xl p-6 border border-border hover:border-purple-500/30 transition-all duration-300 relative overflow-hidden"
+        className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 backdrop-blur-sm transition-all duration-300 hover:border-purple-500/30 sm:p-6"
       >
         {/* Background Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* Header */}
         <div className="relative z-10">
-          <div className="flex items-center gap-4 mb-6">
+          <div className="mb-6 flex items-start gap-3 sm:gap-4">
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
-              className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center group-hover:shadow-lg group-hover:shadow-purple-500/25 transition-all duration-300"
+              className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-purple-500/25 sm:h-12 sm:w-12"
             >
-              <competency.icon className="w-6 h-6 text-white" />
+              <competency.icon className="h-5 w-5 text-white sm:h-6 sm:w-6" />
             </motion.div>
             <div className="flex-1">
-              <h3 className="text-lg font-semibold text-card-foreground mb-1 group-hover:text-primary transition-colors">
+              <h3 className="mb-1 text-base font-semibold text-card-foreground transition-colors group-hover:text-primary sm:text-lg">
                 {competency.title}
               </h3>
-              <p className="text-muted-foreground text-sm">{competency.description}</p>
+              <p className="text-xs text-muted-foreground sm:text-sm">{competency.description}</p>
             </div>
           </div>
 
@@ -161,7 +161,7 @@ export default function Competencies() {
   };
 
   return (
-    <section id="competencies" className="py-20 px-6 bg-background">
+    <section id="competencies" className="bg-background px-4 py-20 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -169,12 +169,12 @@ export default function Competencies() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="mb-12 text-center sm:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="mb-6 text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">
             {t('competencies.title')}
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="mx-auto max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-xl">
             {t('competencies.description')}
           </p>
         </motion.div>
@@ -198,7 +198,7 @@ export default function Competencies() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-16 grid md:grid-cols-4 gap-6"
+          className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4 sm:gap-6"
         >
           {[
             { label: "Books Distributed", value: "13,000+", icon: TrendingUp },
@@ -209,12 +209,12 @@ export default function Competencies() {
             <motion.div
               key={index}
               whileHover={{ scale: 1.05 }}
-              className="bg-card backdrop-blur-sm rounded-2xl p-6 border border-border text-center"
+              className="rounded-2xl border border-border bg-card p-4 text-center backdrop-blur-sm sm:p-6"
             >
               <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <stat.icon className="w-6 h-6 text-primary" />
               </div>
-              <div className="text-2xl font-bold text-card-foreground mb-2">{stat.value}</div>
+              <div className="mb-2 text-xl font-bold text-card-foreground sm:text-2xl">{stat.value}</div>
               <div className="text-muted-foreground text-sm">{stat.label}</div>
             </motion.div>
           ))}

@@ -163,7 +163,7 @@ export default function Portfolio() {
           </div>
         )}
         {sample.photoCredit && (
-          <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/60 text-white text-xs rounded">
+          <div className="absolute bottom-2 right-2 max-w-[80%] rounded bg-black/60 px-2 py-1 text-right text-xs text-white">
             {sample.photoCredit}
           </div>
         )}
@@ -177,12 +177,12 @@ export default function Portfolio() {
       </div>
 
       {/* Article Content */}
-      <div className="p-6">
-        <div className="flex items-center gap-2 mb-3">
+      <div className="p-5 sm:p-6">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
           <span className="px-3 py-1 bg-muted text-muted-foreground rounded-full text-xs font-medium">
             {sample.category}
           </span>
-          <span className="text-xs text-muted-foreground">{sample.publication}</span>
+          <span className="break-words text-xs text-muted-foreground">{sample.publication}</span>
         </div>
 
         <h3 className="text-lg font-semibold text-card-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
@@ -199,19 +199,19 @@ export default function Portfolio() {
   );
 
   return (
-    <section id="portfolio" className="py-20 px-6 bg-background">
+    <section id="portfolio" className="bg-background px-4 py-20 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
+        <div className="mb-12 flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="flex items-center gap-4 text-center md:text-left">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{t('portfolio.title')}</h2>
-              <p className="text-xl text-muted-foreground">{t('portfolio.subtitle')}</p>
+              <h2 className="mb-6 text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">{t('portfolio.title')}</h2>
+              <p className="text-base text-muted-foreground sm:text-xl">{t('portfolio.subtitle')}</p>
             </div>
           </div>
           <button
             onClick={handleDownloadResume}
-            className="btn-primary flex items-center gap-2"
+            className="btn-primary flex w-full items-center justify-center gap-2 sm:w-auto"
           >
             <Download className="w-5 h-5" />
             {t('portfolio.downloadResume')}
@@ -219,28 +219,26 @@ export default function Portfolio() {
         </div>
 
         {/* Filter Section */}
-        <div className="flex flex-wrap items-center gap-4 mb-8">
-          {categories.map(category => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={
-                selectedCategory === category
-                  ? 'btn-primary'
-                  : 'btn-outline'
-              }
-            >
-              {category}
-            </button>
-          ))}
-          <div className="ml-auto relative">
+        <div className="mb-8 space-y-4">
+          <div className="flex flex-wrap gap-3">
+            {categories.map(category => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`${selectedCategory === category ? 'btn-primary' : 'btn-outline'} text-xs sm:text-sm`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+          <div className="relative w-full sm:ml-auto sm:max-w-sm">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <input
               type="text"
               placeholder={t('portfolio.search')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="form-input pl-10"
+              className="form-input w-full pl-10"
             />
           </div>
         </div>
@@ -265,10 +263,10 @@ export default function Portfolio() {
         )}
 
         {/* Additional Info */}
-        <div className="bg-card mt-20 py-16 rounded-lg border border-border">
+        <div className="mt-16 rounded-lg border border-border bg-card py-12 sm:mt-20 sm:py-16">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-card-foreground mb-6">{t('portfolio.moreArticles.title')}</h2>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto mb-8">
+            <h2 className="mb-6 text-2xl font-bold text-card-foreground sm:text-3xl">{t('portfolio.moreArticles.title')}</h2>
+            <p className="mx-auto mb-8 max-w-3xl text-base text-muted-foreground sm:text-lg">
               {t('portfolio.moreArticles.description')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
