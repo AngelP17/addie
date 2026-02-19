@@ -95,7 +95,7 @@ export default function Competencies() {
     },
   };
 
-  const CompetencyCard = ({ competency, index }: { competency: Competency; index: number }) => {
+  const CompetencyCard = ({ competency }: { competency: Competency }) => {
     return (
       <motion.div
         variants={cardVariants}
@@ -188,7 +188,7 @@ export default function Competencies() {
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {competencies.map((competency, index) => (
-            <CompetencyCard key={index} competency={competency} index={index} />
+            <CompetencyCard key={index} competency={competency} />
           ))}
         </motion.div>
 
