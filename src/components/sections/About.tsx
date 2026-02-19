@@ -147,7 +147,7 @@ export default function About() {
 
       {/* Content */}
       <div className="flex-1 pb-8">
-        <div className="bg-gray-100/80 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-purple-400/30 transition-all duration-300">
+        <div className="bg-card backdrop-blur-sm rounded-2xl p-6 border border-border hover:border-primary/30 transition-all duration-300">
           <div className="flex items-center gap-3 mb-3">
             <span className="text-purple-600 font-semibold">{item.year}</span>
             <span className={`px-2 py-1 rounded-full text-xs font-medium ${item.type === 'education' ? 'bg-blue-100 text-blue-600' :
@@ -157,16 +157,16 @@ export default function About() {
               {t(`timeline.type.${item.type}`)}
             </span>
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{item.title}</h3>
-          <p className="text-purple-600 dark:text-white font-medium mb-2">{item.organization}</p>
-          <p className="text-gray-600 dark:text-white text-sm">{item.description}</p>
+          <h3 className="text-lg font-semibold text-card-foreground mb-2">{item.title}</h3>
+          <p className="text-primary font-medium mb-2">{item.organization}</p>
+          <p className="text-muted-foreground text-sm">{item.description}</p>
         </div>
       </div>
     </motion.div>
   );
 
   return (
-    <section id="about" className="py-20 px-6 bg-white dark:bg-gray-900">
+    <section id="about" className="py-20 px-6 bg-background">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -176,7 +176,7 @@ export default function About() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             {t('about.title')}
           </h2>
         </motion.div>
@@ -190,16 +190,16 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="bg-gray-100/50 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200 dark:border-gray-700 mb-12"
+              className="bg-card backdrop-blur-sm rounded-2xl p-8 border border-border mb-12"
             >
               <div className="prose prose-lg prose-invert max-w-none">
-                <p className="text-gray-600 dark:text-white leading-relaxed mb-6 text-lg">
+                <p className="text-muted-foreground leading-relaxed mb-6 text-lg">
                   {t('about.bio.p1')}
                 </p>
-                <p className="text-gray-600 dark:text-white leading-relaxed mb-6">
+                <p className="text-muted-foreground leading-relaxed mb-6">
                   {t('about.bio.p2')}
                 </p>
-                <p className="text-gray-600 dark:text-white leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {t('about.bio.p3')}
                 </p>
               </div>
@@ -213,7 +213,7 @@ export default function About() {
               animate={inView ? "visible" : "hidden"}
               className="mb-12"
             >
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">{t('about.timeline.title')}</h3>
+              <h3 className="text-2xl font-semibold text-foreground mb-8">{t('about.timeline.title')}</h3>
               <div className="space-y-0">
                 {timeline.map((item, index) => (
                   <TimelineItem key={index} item={item} index={index} />
@@ -230,10 +230,10 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="bg-gray-100/50 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 dark:border-gray-700"
+              className="bg-card backdrop-blur-sm rounded-2xl p-6 border border-border"
             >
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                <TrendingUp className="w-5 h-5 text-purple-400" />
+              <h3 className="text-xl font-semibold text-card-foreground mb-6 flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-primary" />
                 {t('about.stats.title')}
               </h3>
               <div className="space-y-4">
@@ -245,12 +245,12 @@ export default function About() {
                 ].map((stat, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                        <stat.icon className="w-4 h-4 text-purple-400" />
+                      <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
+                        <stat.icon className="w-4 h-4 text-primary" />
                       </div>
-                      <span className="text-gray-600 dark:text-white text-sm">{stat.label}</span>
+                      <span className="text-muted-foreground text-sm">{stat.label}</span>
                     </div>
-                    <span className="text-gray-900 dark:text-white font-semibold">{stat.value}</span>
+                    <span className="text-card-foreground font-semibold">{stat.value}</span>
                   </div>
                 ))}
               </div>
@@ -262,30 +262,30 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-gray-100/50 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 dark:border-gray-700"
+              className="bg-card backdrop-blur-sm rounded-2xl p-6 border border-border"
             >
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">{t('about.contact.title')}</h3>
+              <h3 className="text-xl font-semibold text-card-foreground mb-6">{t('about.contact.title')}</h3>
               <div className="space-y-4">
-                <a href="mailto:addie.elizabethjones@gmail.com" className="flex items-center gap-3 text-gray-600 dark:text-white hover:text-purple-400 transition-colors">
-                  <Mail className="w-5 h-5 text-navy-700 dark:text-white" />
+                <a href="mailto:addie.elizabethjones@gmail.com" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                  <Mail className="w-5 h-5 text-foreground" />
                   <span>addie.elizabethjones@gmail.com</span>
                 </a>
-                <a href="tel:+18705770389" className="flex items-center gap-3 text-gray-600 dark:text-white hover:text-purple-400 transition-colors">
-                  <Phone className="w-5 h-5 text-navy-700 dark:text-white" />
+                <a href="tel:+18705770389" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                  <Phone className="w-5 h-5 text-foreground" />
                   <span>(870) 577-0389</span>
                 </a>
-                <div className="flex items-center gap-3 text-gray-600 dark:text-white">
-                  <MapPin className="w-5 h-5 text-navy-700 dark:text-white" />
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <MapPin className="w-5 h-5 text-foreground" />
                   <span>Fayetteville, Arkansas</span>
                 </div>
               </div>
 
               <div className="flex gap-3 mt-6">
-                <a href="https://www.linkedin.com/in/addie-jones-b5a5b6250/" className="w-10 h-10 bg-purple-500/20 dark:bg-purple-500/40 rounded-lg flex items-center justify-center hover:bg-purple-500/30 transition-colors">
-                  <Linkedin className="w-5 h-5 text-purple-400" />
+                <a href="https://www.linkedin.com/in/addie-jones-b5a5b6250/" className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-colors">
+                  <Linkedin className="w-5 h-5 text-primary" />
                 </a>
-                <a href="mailto:addie.elizabethjones@gmail.com" className="w-10 h-10 bg-purple-500/20 dark:bg-purple-500/40 rounded-lg flex items-center justify-center hover:bg-purple-500/30 transition-colors">
-                  <Mail className="w-5 h-5 text-purple-400" />
+                <a href="mailto:addie.elizabethjones@gmail.com" className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-colors">
+                  <Mail className="w-5 h-5 text-primary" />
                 </a>
               </div>
             </motion.div>

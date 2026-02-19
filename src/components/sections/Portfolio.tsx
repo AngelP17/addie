@@ -203,10 +203,10 @@ export default function Portfolio() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 text-center md:text-left">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-1">{t('portfolio.title')}</h2>
-              <p className="text-muted-foreground text-lg">{t('portfolio.subtitle')}</p>
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{t('portfolio.title')}</h2>
+              <p className="text-xl text-muted-foreground">{t('portfolio.subtitle')}</p>
             </div>
           </div>
           <button

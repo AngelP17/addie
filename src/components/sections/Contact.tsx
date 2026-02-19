@@ -151,28 +151,27 @@ export default function Contact() {
   const ContactInfoCard = ({ info }: { info: typeof contactInfo[0] }) => (
     <motion.div
       whileHover={{ y: -4 }}
-      className="bg-navy-700 dark:bg-navy-800 rounded-2xl p-6 border border-navy-600 dark:border-cream-300 hover:border-cream-400/30 transition-all duration-300 shadow-lg"
+      className="bg-card rounded-2xl p-6 border border-border hover:border-primary/30 transition-all duration-300 shadow-lg"
     >
       <div className="flex items-start gap-4">
         <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
           <info.icon className="w-6 h-6 text-white" />
         </div>
         <div className="flex-1">
-          <h3 className="text-lg font-semibold text-navy-900 dark:text-white mb-1">{info.label}</h3>
+          <h3 className="text-lg font-semibold text-card-foreground mb-1">{info.label}</h3>
           <a
             href={info.href}
-            className="text-navy-700 dark:text-white hover:text-navy-800 dark:hover:text-white transition-colors font-medium"
-          >
+            className="text-foreground hover:text-primary transition-colors font-medium"          >
             {info.value}
           </a>
-          <p className="text-navy-700 dark:text-white text-sm mt-2">{info.description}</p>
+          <p className="text-muted-foreground text-sm mt-2">{info.description}</p>
         </div>
       </div>
     </motion.div>
   );
 
   return (
-    <section id="contact" className="py-20 px-6 bg-navy-900 dark:bg-cream-50">
+    <section id="contact" className="py-20 px-6 bg-background">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -182,10 +181,10 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             {t('contact.title')}
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             {t('contact.description')}
           </p>
         </motion.div>
@@ -200,7 +199,7 @@ export default function Contact() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
+              <h3 className="text-2xl font-semibold text-foreground mb-6 flex items-center gap-2">
                 <MessageSquare className="w-6 h-6 text-purple-400" />
                 {t('contact.form.title')}
               </h3>
@@ -212,8 +211,8 @@ export default function Contact() {
                   className="bg-green-500/20 border border-green-500/30 rounded-2xl p-6 text-center"
                 >
                   <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                  <h4 className="text-xl font-semibold text-white mb-2">{t('contact.form.success.title')}</h4>
-                  <p className="text-gray-300">
+                  <h4 className="text-xl font-semibold text-foreground mb-2">{t('contact.form.success.title')}</h4>
+                  <p className="text-muted-foreground">
                     {t('contact.form.success.message')}
                   </p>
                 </motion.div>
@@ -221,7 +220,7 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-gray-300 text-sm font-medium mb-2">
+                      <label className="block text-foreground text-sm font-medium mb-2">
                         {t('contact.form.name')} *
                       </label>
                       <div className="relative">
@@ -230,13 +229,13 @@ export default function Contact() {
                           type="text"
                           value={formData.name}
                           onChange={(e) => handleInputChange('name', e.target.value)}
-                          className={`w-full bg-gray-800 border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${errors.name ? 'border-red-500' : 'border-gray-700'
+                          className={`w-full bg-card border rounded-xl px-4 py-3 pl-10 text-card-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 ${errors.name ? 'border-destructive' : 'border-border'
                             }`}
                           placeholder="Your name"
                         />
                       </div>
                       {errors.name && (
-                        <p className="text-red-400 text-sm mt-1 flex items-center gap-1">
+                        <p className="text-destructive text-sm mt-1 flex items-center gap-1">
                           <AlertCircle className="w-4 h-4" />
                           {errors.name}
                         </p>
@@ -244,22 +243,22 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <label className="block text-gray-300 text-sm font-medium mb-2">
+                      <label className="block text-foreground text-sm font-medium mb-2">
                         {t('contact.form.email')} *
                       </label>
                       <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
+                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                         <input
                           type="email"
                           value={formData.email}
                           onChange={(e) => handleInputChange('email', e.target.value)}
-                          className={`w-full bg-gray-800 border rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${errors.email ? 'border-red-500' : 'border-gray-700'
+                          className={`w-full bg-card border rounded-xl px-4 py-3 pl-10 text-card-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 ${errors.email ? 'border-destructive' : 'border-border'
                             }`}
                           placeholder="your@email.com"
                         />
                       </div>
                       {errors.email && (
-                        <p className="text-red-400 text-sm mt-1 flex items-center gap-1">
+                        <p className="text-destructive text-sm mt-1 flex items-center gap-1">
                           <AlertCircle className="w-4 h-4" />
                           {errors.email}
                         </p>
@@ -268,35 +267,35 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">
+                    <label className="block text-foreground text-sm font-medium mb-2">
                       {t('contact.form.company')}
                     </label>
                     <div className="relative">
-                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
+                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                       <input
                         type="text"
                         value={formData.company}
                         onChange={(e) => handleInputChange('company', e.target.value)}
-                        className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 pl-10 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
+                        className="w-full bg-card border border-border rounded-xl px-4 py-3 pl-10 text-card-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200"
                         placeholder="Your company (optional)"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">
+                    <label className="block text-foreground text-sm font-medium mb-2">
                       {t('contact.form.subject')} *
                     </label>
                     <input
                       type="text"
                       value={formData.subject}
                       onChange={(e) => handleInputChange('subject', e.target.value)}
-                      className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 ${errors.subject ? 'border-red-500' : 'border-gray-700'
+                      className={`w-full bg-card border rounded-xl px-4 py-3 text-card-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 ${errors.subject ? 'border-destructive' : 'border-border'
                         }`}
                       placeholder="What can I help you with?"
                     />
                     {errors.subject && (
-                      <p className="text-red-400 text-sm mt-1 flex items-center gap-1">
+                      <p className="text-destructive text-sm mt-1 flex items-center gap-1">
                         <AlertCircle className="w-4 h-4" />
                         {errors.subject}
                       </p>
@@ -304,19 +303,19 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-gray-300 text-sm font-medium mb-2">
+                    <label className="block text-foreground text-sm font-medium mb-2">
                       {t('contact.form.message')} *
                     </label>
                     <textarea
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
                       rows={6}
-                      className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200 resize-none ${errors.message ? 'border-red-500' : 'border-gray-700'
+                      className={`w-full bg-card border rounded-xl px-4 py-3 text-card-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 resize-none ${errors.message ? 'border-destructive' : 'border-border'
                         }`}
                       placeholder="Tell me about your project or inquiry..."
                     />
                     {errors.message && (
-                      <p className="text-red-400 text-sm mt-1 flex items-center gap-1">
+                      <p className="text-destructive text-sm mt-1 flex items-center gap-1">
                         <AlertCircle className="w-4 h-4" />
                         {errors.message}
                       </p>
@@ -357,7 +356,7 @@ export default function Contact() {
           >
             {/* Contact Information */}
             <div>
-              <h3 className="text-2xl font-semibold text-white mb-6">{t('contact.info.title')}</h3>
+              <h3 className="text-2xl font-semibold text-foreground mb-6">{t('contact.info.title')}</h3>
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (
                   <ContactInfoCard key={index} info={info} />
@@ -367,7 +366,7 @@ export default function Contact() {
 
             {/* Social Links */}
             <div>
-              <h3 className="text-xl font-semibold text-white mb-4">{t('contact.social.title')}</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-4">{t('contact.social.title')}</h3>
               <div className="flex gap-3">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -377,21 +376,21 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    className={`w-12 h-12 bg-gray-800 border border-gray-700 rounded-xl flex items-center justify-center transition-all duration-200 ${social.color}`}
+                    className={`w-12 h-12 bg-card border border-border rounded-xl flex items-center justify-center transition-all duration-200 ${social.color}`}
                   >
-                    <social.icon className="w-5 h-5 text-gray-300" />
+                    <social.icon className="w-5 h-5 text-muted-foreground" />
                   </motion.a>
                 ))}
               </div>
             </div>
 
             {/* Response Time */}
-            <div className="bg-gray-800 rounded-2xl p-6 border border-gray-700">
+            <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="flex items-center gap-3 mb-3">
-                <Clock className="w-6 h-6 text-purple-400" />
-                <h4 className="text-lg font-semibold text-white">{t('contact.response.title')}</h4>
+                <Clock className="w-6 h-6 text-purple-500" />
+                <h4 className="text-lg font-semibold text-card-foreground">{t('contact.response.title')}</h4>
               </div>
-              <p className="text-gray-400 text-sm">
+              <p className="text-muted-foreground text-sm">
                 {t('contact.response.message')}
               </p>
             </div>

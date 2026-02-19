@@ -2,6 +2,7 @@ import Hero from './sections/Hero';
 import About from './sections/About';
 import Competencies from './sections/Competencies';
 import Portfolio from './sections/Portfolio';
+import Freelance from './sections/Freelance';
 import Contact from './sections/Contact';
 
 export default function AppRoutes() {
@@ -11,6 +12,7 @@ export default function AppRoutes() {
       <About />
       <Competencies />
       <Portfolio />
+      <Freelance />
       <Contact />
     </>
   );

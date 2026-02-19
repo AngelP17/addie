@@ -115,26 +115,26 @@ export default function Competencies() {
               <competency.icon className="w-6 h-6 text-white" />
             </motion.div>
             <div className="flex-1">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-purple-400 transition-colors">
+              <h3 className="text-lg font-semibold text-card-foreground mb-1 group-hover:text-primary transition-colors">
                 {competency.title}
               </h3>
-              <p className="text-gray-600 dark:text-white text-sm">{competency.description}</p>
+              <p className="text-muted-foreground text-sm">{competency.description}</p>
             </div>
           </div>
 
           {/* Skills */}
           <div className="mb-4">
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-green-400" />
+            <h4 className="text-sm font-semibold text-card-foreground mb-2 flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-green-500" />
               {t('competencies.keySkills')}
             </h4>
             <div className="flex flex-wrap gap-2">
               {competency.skills.map((skill, skillIndex) => (
                 <span
                   key={skillIndex}
-                  className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded text-xs border border-gray-300 dark:border-gray-600/50"
+                  className="px-2 py-1 bg-muted text-muted-foreground rounded text-xs border border-border"
                 >
-                  <span className="text-gray-600 font-medium dark:text-white">{skill}</span>
+                  <span className="font-medium">{skill}</span>
                 </span>
               ))}
             </div>
@@ -142,14 +142,14 @@ export default function Competencies() {
 
           {/* Achievements */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
-              <Award className="w-4 h-4 text-yellow-400" />
+            <h4 className="text-sm font-semibold text-card-foreground mb-2 flex items-center gap-2">
+              <Award className="w-4 h-4 text-yellow-500" />
               {t('competencies.achievements')}
             </h4>
             <ul className="space-y-1">
               {competency.achievements.map((achievement, achievementIndex) => (
-                <li key={achievementIndex} className="flex items-start gap-2 text-xs text-gray-600 dark:text-white">
-                  <Star className="w-3 h-3 text-purple-400 mt-0.5 flex-shrink-0" />
+                <li key={achievementIndex} className="flex items-start gap-2 text-xs text-muted-foreground">
+                  <Star className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
                   <span>{achievement}</span>
                 </li>
               ))}
@@ -171,10 +171,10 @@ export default function Competencies() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             {t('competencies.title')}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-white max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {t('competencies.description')}
           </p>
         </motion.div>
@@ -211,11 +211,11 @@ export default function Competencies() {
               whileHover={{ scale: 1.05 }}
               className="bg-card backdrop-blur-sm rounded-2xl p-6 border border-border text-center"
             >
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <stat.icon className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <stat.icon className="w-6 h-6 text-primary" />
               </div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{stat.value}</div>
-              <div className="text-gray-600 dark:text-white text-sm">{stat.label}</div>
+              <div className="text-2xl font-bold text-card-foreground mb-2">{stat.value}</div>
+              <div className="text-muted-foreground text-sm">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

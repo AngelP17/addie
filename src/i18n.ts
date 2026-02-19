@@ -164,6 +164,18 @@ const resources = {
       'portfolio.moreArticles.description': 'I have written 80+ stories spanning news, features, and arts + entertainment for various publications including the Arkansas Traveler, Hill Magazine, and Division of Student Affairs Bulletin. My work focuses on translating complex policy issues into accessible narratives that drive engagement, with particular emphasis on educational equity and amplifying underrepresented voices.',
       'portfolio.viewAll': 'View All Arkansas Traveler Articles',
 
+      // Freelance Section
+      'freelance.title': 'Jones & Co. Media',
+      'freelance.description': 'Ready to elevate your brand\'s story? I offer full-spectrum communications services — from social media strategy and web copy to PR and digital setup.',
+      'freelance.services.social': 'Social Media',
+      'freelance.services.websites': 'Websites',
+      'freelance.services.marketing': 'Marketing Materials',
+      'freelance.services.content': 'Content & Communications',
+      'freelance.services.pr': 'Media & PR',
+      'freelance.services.setup': 'Digital Setup',
+      'freelance.moreDetails': 'Visit the website for a full breakdown of packages and service details.',
+      'freelance.cta': 'Visit Jones & Co. Media',
+
       // Contact Section
       'contact.title': 'Let\'s Work Together',
       'contact.description': 'Ready to transform your narrative strategy? I\'m here to help you craft compelling stories that drive impact and foster meaningful connections.',
@@ -348,6 +360,18 @@ const resources = {
       'portfolio.moreArticles.description': 'He escrito más de 80 historias que abarcan noticias, artículos y artes + entretenimiento para diversas publicaciones, incluidas Arkansas Traveler, Hill Magazine y Division of Student Affairs Bulletin. Mi trabajo se enfoca en traducir temas de políticas complejas en narrativas accesibles que impulsen el compromiso, con énfasis particular en la equidad educativa y la amplificación de voces subrepresentadas.',
       'portfolio.viewAll': 'Ver Todos los Artículos de Arkansas Traveler',
 
+      // Freelance Section
+      'freelance.title': 'Jones & Co. Media',
+      'freelance.description': '¿Lista para elevar la historia de tu marca? Ofrezco servicios de comunicación de espectro completo — desde estrategia en redes sociales y contenido web hasta RR.PP. y configuración digital.',
+      'freelance.services.social': 'Redes Sociales',
+      'freelance.services.websites': 'Sitios Web',
+      'freelance.services.marketing': 'Materiales de Marketing',
+      'freelance.services.content': 'Contenido y Comunicaciones',
+      'freelance.services.pr': 'Medios y RR.PP.',
+      'freelance.services.setup': 'Configuración Digital',
+      'freelance.moreDetails': 'Visita el sitio web para obtener un desglose completo de paquetes y detalles de servicios.',
+      'freelance.cta': 'Visitar Jones & Co. Media',
+
       // Contact Section
       'contact.title': 'Trabajemos Juntos',
       'contact.description': '¿Listo para transformar tu estrategia narrativa? Estoy aquí para ayudarte a crear historias convincentes que generen impacto y fomenten conexiones significativas.',
@@ -372,7 +396,7 @@ const resources = {
   }
 };
 
-i18n
+export const i18nReady = i18n
   .use(initReactI18next)
   .init({
     resources,

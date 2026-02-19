@@ -29,6 +29,7 @@ export default function Layout({ children }: LayoutProps) {
     { href: '#about', label: language === 'en' ? 'About' : 'Sobre mí' },
     { href: '#competencies', label: language === 'en' ? 'Core Competencies' : 'Competencias' },
     { href: '#portfolio', label: language === 'en' ? 'Portfolio' : 'Portafolio' },
+    { href: '#freelance', label: language === 'en' ? 'Freelance' : 'Freelance' },
     { href: '#contact', label: language === 'en' ? 'Contact' : 'Contacto' },
   ];
 
@@ -43,9 +44,9 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       <nav
-        className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
-            ? 'bg-background/95 backdrop-blur-md shadow-lg border-b border-border'
-            : 'bg-background/80 backdrop-blur-sm'
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled
+          ? 'bg-background/80 backdrop-blur-md shadow-sm border-b border-border'
+          : 'bg-transparent'
           }`}
       >
         <div className="container mx-auto px-4 sm:px-6">
@@ -221,14 +222,14 @@ export default function Layout({ children }: LayoutProps) {
         {children}
       </main>
 
-      <footer className="bg-gray-900/50 backdrop-blur-sm border-t border-gray-800/50 py-12 mt-20">
+      <footer className="bg-card/50 backdrop-blur-sm border-t border-border py-12 mt-20">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
-              <h3 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
-                Addie Jones
-              </h3>
-              <p className="text-gray-400 text-sm">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                AJ
+              </h1>
+              <p className="text-muted-foreground text-sm">
                 © {new Date().getFullYear()} All rights reserved.
               </p>
             </div>
@@ -237,13 +238,13 @@ export default function Layout({ children }: LayoutProps) {
                 href="https://www.linkedin.com/in/addie-jones-b5a5b6250/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-purple-400 transition-colors duration-200"
+                className="text-muted-foreground hover:text-primary transition-colors duration-200"
               >
                 LinkedIn
               </a>
               <a
                 href="mailto:addie.elizabethjones@gmail.com"
-                className="text-gray-400 hover:text-purple-400 transition-colors duration-200"
+                className="text-muted-foreground hover:text-primary transition-colors duration-200"
               >
                 Email
               </a>
