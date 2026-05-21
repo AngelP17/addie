@@ -100,19 +100,18 @@ export default function Competencies() {
       <motion.div
         variants={cardVariants}
         whileHover={{ y: -8 }}
-        className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 backdrop-blur-sm transition-all duration-300 hover:border-purple-500/30 sm:p-6"
+        className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 sm:p-6"
       >
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-muted/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* Header */}
         <div className="relative z-10">
           <div className="mb-6 flex items-start gap-3 sm:gap-4">
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
-              className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-purple-500/25 sm:h-12 sm:w-12"
+              className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary transition-all duration-300 group-hover:shadow-lg sm:h-12 sm:w-12"
             >
-              <competency.icon className="h-5 w-5 text-white sm:h-6 sm:w-6" />
+              <competency.icon className="h-5 w-5 text-primary-foreground sm:h-6 sm:w-6" />
             </motion.div>
             <div className="flex-1">
               <h3 className="mb-1 text-base font-semibold text-card-foreground transition-colors group-hover:text-primary sm:text-lg">

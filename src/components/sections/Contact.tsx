@@ -154,8 +154,8 @@ export default function Contact() {
       className="rounded-2xl border border-border bg-card p-5 shadow-lg transition-all duration-300 hover:border-primary/30 sm:p-6"
     >
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
-          <info.icon className="w-6 h-6 text-white" />
+        <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+          <info.icon className="w-6 h-6 text-primary-foreground" />
         </div>
         <div className="flex-1">
           <h3 className="text-lg font-semibold text-card-foreground mb-1">{info.label}</h3>
@@ -201,7 +201,7 @@ export default function Contact() {
           >
             <div>
               <h3 className="mb-6 flex items-center gap-2 text-xl font-semibold text-foreground sm:text-2xl">
-                <MessageSquare className="w-6 h-6 text-purple-400" />
+                <MessageSquare className="w-6 h-6 text-primary" />
                 {t('contact.form.title')}
               </h3>
 
@@ -328,7 +328,7 @@ export default function Contact() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-4 font-semibold text-primary-foreground transition-all duration-200 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     {isSubmitting ? (
                       <>
@@ -388,7 +388,7 @@ export default function Contact() {
             {/* Response Time */}
             <div className="bg-card rounded-2xl p-6 border border-border">
               <div className="flex items-center gap-3 mb-3">
-                <Clock className="w-6 h-6 text-purple-500" />
+                <Clock className="w-6 h-6 text-primary" />
                 <h4 className="text-lg font-semibold text-card-foreground">{t('contact.response.title')}</h4>
               </div>
               <p className="text-muted-foreground text-sm">

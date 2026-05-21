@@ -2,8 +2,38 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Briefcase, Heart } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
-const experiences = [
+interface ExperienceItem {
+  title: string;
+  titleEs?: string;
+  company: string;
+  location: string;
+  locationEs?: string;
+  period: string;
+  description: string[];
+  descriptionEs?: string[];
+}
+
+const experiences: ExperienceItem[] = [
+  {
+    title: 'Texting Coordinator',
+    titleEs: 'Coordinadora de Mensajes de Texto',
+    company: 'Middle Seat',
+    location: 'Remote',
+    locationEs: 'Remoto',
+    period: '2026',
+    description: [
+      'Full-time role supporting progressive digital campaigns through peer-to-peer texting strategy.',
+      'Coordinate supporter engagement and rapid-response political communication.',
+      'Build on email and digital fundraising experience for mission-driven campaigns.'
+    ],
+    descriptionEs: [
+      'Puesto de tiempo completo apoyando campañas digitales progresistas mediante estrategia de mensajes de texto entre pares.',
+      'Coordina la participación de simpatizantes y la comunicación política de respuesta rápida.',
+      'Construye sobre experiencia en correo electrónico y recaudación digital para campañas con propósito.'
+    ],
+  },
   {
     title: 'Email Intern',
     company: 'Middle Seat',
@@ -111,6 +141,7 @@ const volunteering = [
 
 export default function Experience() {
   const { t } = useTranslation();
+  const { language } = useLanguage();
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const sectionVariants = {
@@ -148,12 +179,14 @@ export default function Experience() {
             >
               <div className="flex items-center mb-2">
                 <Briefcase className="w-5 h-5 text-accent mr-2" />
-                <span className="font-bold text-charcoal dark:text-cream text-lg">{exp.title}</span>
+                <span className="font-bold text-charcoal dark:text-cream text-lg">{language === 'es' && exp.titleEs ? exp.titleEs : exp.title}</span>
                 <span className="ml-2 text-gray-500 dark:text-cream/60">@ {exp.company}</span>
               </div>
-              <div className="text-sm text-gray-500 dark:text-cream/60 mb-2">{exp.location} &middot; {exp.period}</div>
+              <div className="text-sm text-gray-500 dark:text-cream/60 mb-2">
+                {language === 'es' && exp.locationEs ? exp.locationEs : exp.location} &middot; {exp.period}
+              </div>
               <ul className="list-disc ml-6 text-gray-700 dark:text-cream/80">
-                {exp.description.map((d, i) => <li key={i}>{d}</li>)}
+                {(language === 'es' && exp.descriptionEs ? exp.descriptionEs : exp.description).map((d, i) => <li key={i}>{d}</li>)}
               </ul>
             </motion.div>
           ))}

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { useLanguage } from '../../contexts/LanguageContext';
 import {
-  ExternalLink, Search, Download, FileText
+  ExternalLink, Search, Download, FileText, ArrowRight
 } from 'lucide-react';
 
 interface WritingSample {
@@ -11,13 +13,47 @@ interface WritingSample {
   publication: string;
   category: string;
   description: string;
+  descriptionEs?: string;
   url: string;
   image: string;
   featured?: boolean;
   photoCredit?: string;
+  isInternal?: boolean;
+  publicationEs?: string;
+  categoryEs?: string;
+  actionLabel?: {
+    en: string;
+    es: string;
+  };
+  status?: {
+    en: string;
+    es: string;
+  };
 }
 
 const writingSamples: WritingSample[] = [
+  {
+    id: 10,
+    title: "What Bolivia reads: Pages, palabras and the stories in between",
+    publication: "Unpublished / PDF Feature",
+    publicationEs: "Inédito / Reportaje en PDF",
+    category: "Feature",
+    categoryEs: "Reportaje",
+    description: "A field-reported feature on Bolivia's reading culture, education access, indigenous languages, and the divide between urban book communities and rural literacy barriers.",
+    descriptionEs: "Un reportaje de campo sobre la cultura lectora en Bolivia, el acceso a la educación, las lenguas indígenas y la brecha entre comunidades lectoras urbanas y barreras rurales de alfabetización.",
+    url: "/articles/bolivia",
+    image: "/articles/bolivia/photo-1.jpg",
+    featured: true,
+    isInternal: true,
+    actionLabel: {
+      en: "View Portfolio Sample",
+      es: "Ver muestra de portafolio"
+    },
+    status: {
+      en: "Hidden article page",
+      es: "Página de artículo oculta"
+    }
+  },
   {
     id: 1,
     title: "Left in the dark: Charleston prison plan draws unified opposition",
@@ -108,95 +144,181 @@ const writingSamples: WritingSample[] = [
   }
 ];
 
-const categories = ['All', 'Investigative Journalism', 'Feature', 'Arts & Entertainment', 'Arts & Culture', 'Music Journalism', 'Campus Features'];
+const categories = [
+  { value: 'All', en: 'All', es: 'Todos' },
+  { value: 'Investigative Journalism', en: 'Investigative Journalism', es: 'Periodismo investigativo' },
+  { value: 'Feature', en: 'Feature', es: 'Reportaje' },
+  { value: 'Arts & Entertainment', en: 'Arts & Entertainment', es: 'Arte y entretenimiento' },
+  { value: 'Arts & Culture', en: 'Arts & Culture', es: 'Arte y cultura' },
+  { value: 'Music Journalism', en: 'Music Journalism', es: 'Periodismo musical' },
+  { value: 'Campus Features', en: 'Campus Features', es: 'Historias universitarias' }
+];
+
+const portfolioCopy = {
+  en: {
+    selectedTitle: 'Selected Work',
+    selectedDescription: 'A curated first look at Addie’s strongest reporting, feature writing, and portfolio-only work.',
+    archiveTitle: 'Article Archive',
+    archiveDescription: 'Search and filter the full collection of writing samples.',
+  },
+  es: {
+    selectedTitle: 'Trabajo destacado',
+    selectedDescription: 'Una selección inicial de los reportajes, perfiles y muestras de portafolio más fuertes de Addie.',
+    archiveTitle: 'Archivo de artículos',
+    archiveDescription: 'Busca y filtra la colección completa de muestras de escritura.',
+  },
+};
 
 export default function Portfolio() {
   const { t } = useTranslation();
+  const { language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
+  const selectedSamples = writingSamples.filter(sample => [10, 1, 2].includes(sample.id));
 
   const filteredSamples = writingSamples.filter(sample => {
     const matchesCategory = selectedCategory === 'All' || sample.category === selectedCategory;
     const matchesSearch = sample.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       sample.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      sample.publication.toLowerCase().includes(searchTerm.toLowerCase());
+      sample.publication.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (sample.descriptionEs?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false) ||
+      (sample.publicationEs?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false);
     return matchesCategory && matchesSearch;
   });
+
+  const getSampleDescription = (sample: WritingSample) => (
+    language === 'es' && sample.descriptionEs ? sample.descriptionEs : sample.description
+  );
+
+  const getCategoryLabel = (sample: WritingSample) => (
+    language === 'es' && sample.categoryEs ? sample.categoryEs : sample.category
+  );
+
+  const getPublicationLabel = (sample: WritingSample) => (
+    language === 'es' && sample.publicationEs ? sample.publicationEs : sample.publication
+  );
+
+  const getActionLabel = (sample: WritingSample) => (
+    sample.actionLabel?.[language] ?? t('portfolio.readArticle')
+  );
 
   const handleDownloadResume = () => {
     window.open('/resume.pdf', '_blank');
   };
 
-  const WritingSampleCard = ({ sample }: { sample: WritingSample }) => (
-    <motion.a
-      layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      whileHover={{ y: -8 }}
-      href={sample.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="card card-hover cursor-pointer overflow-hidden block group"
-    >
-      {/* Article Image */}
-      <div className="relative aspect-video bg-gradient-to-br from-purple-500/10 to-blue-500/10 overflow-hidden">
-        {sample.image && !sample.image.includes('placeholder') ? (
-          <img
-            src={sample.image}
-            alt={sample.title}
-            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        ) : (
-          <>
-            <div className="absolute inset-0 bg-gradient-to-br from-muted/10 to-accent/10"></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-16 h-16 bg-muted/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <FileText className="w-8 h-8 text-muted-foreground" />
+  const WritingSampleCard = ({
+    sample,
+    selected = false,
+    className = '',
+    priority = false
+  }: {
+    sample: WritingSample;
+    selected?: boolean;
+    className?: string;
+    priority?: boolean;
+  }) => {
+    const cardContent = (
+      <>
+        {/* Article Image */}
+        <div className="relative aspect-video overflow-hidden bg-muted">
+          {sample.image && !sample.image.includes('placeholder') ? (
+            <img
+              src={sample.image}
+              alt={sample.title}
+              loading={priority ? 'eager' : 'lazy'}
+              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          ) : (
+            <>
+              <div className="absolute inset-0 bg-gradient-to-br from-muted/10 to-accent/10"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 bg-muted/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <FileText className="w-8 h-8 text-muted-foreground" />
+                </div>
+              </div>
+            </>
+          )}
+          {sample.featured && (
+            <div className="absolute top-4 left-4 px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full">
+              {language === 'es' ? 'Destacado' : 'Featured'}
+            </div>
+          )}
+          {sample.status && (
+            <div className="absolute bottom-2 left-2 max-w-[80%] rounded bg-black/60 px-2 py-1 text-xs text-white">
+              {sample.status[language]}
+            </div>
+          )}
+          {sample.photoCredit && (
+            <div className="absolute bottom-2 right-2 max-w-[80%] rounded bg-black/60 px-2 py-1 text-right text-xs text-white">
+              {sample.photoCredit}
+            </div>
+          )}
+          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="flex gap-2">
+              <div className="w-8 h-8 bg-background/20 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-background/30 transition-colors">
+                <ExternalLink className="w-4 h-4 text-foreground" />
               </div>
             </div>
-          </>
-        )}
-        {sample.featured && (
-          <div className="absolute top-4 left-4 px-3 py-1 bg-gradient-to-r from-primary to-accent text-primary-foreground text-xs font-semibold rounded-full">
-            Featured
-          </div>
-        )}
-        {sample.photoCredit && (
-          <div className="absolute bottom-2 right-2 max-w-[80%] rounded bg-black/60 px-2 py-1 text-right text-xs text-white">
-            {sample.photoCredit}
-          </div>
-        )}
-        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="flex gap-2">
-            <div className="w-8 h-8 bg-background/20 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-background/30 transition-colors">
-              <ExternalLink className="w-4 h-4 text-foreground" />
-            </div>
           </div>
         </div>
-      </div>
 
-      {/* Article Content */}
-      <div className="p-5 sm:p-6">
-        <div className="mb-3 flex flex-wrap items-center gap-2">
-          <span className="px-3 py-1 bg-muted text-muted-foreground rounded-full text-xs font-medium">
-            {sample.category}
-          </span>
-          <span className="break-words text-xs text-muted-foreground">{sample.publication}</span>
+        {/* Article Content */}
+        <div className={`p-5 sm:p-6 ${selected ? 'flex flex-1 flex-col' : ''}`}>
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            <span className="px-3 py-1 bg-muted text-muted-foreground rounded-full text-xs font-medium">
+              {getCategoryLabel(sample)}
+            </span>
+            <span className="break-words text-xs text-muted-foreground">{getPublicationLabel(sample)}</span>
+          </div>
+
+          <h3 className={`${selected ? 'text-xl sm:text-2xl' : 'text-lg'} font-semibold text-card-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2`}>
+            {sample.title}
+          </h3>
+          <p className={`text-muted-foreground text-sm mb-4 ${selected ? 'line-clamp-4' : 'line-clamp-3'}`}>{getSampleDescription(sample)}</p>
+
+          <div className={`flex items-center gap-2 text-sm text-primary ${selected ? 'mt-auto' : ''}`}>
+            {getActionLabel(sample)}
+            {sample.isInternal ? <ArrowRight className="w-4 h-4" /> : <ExternalLink className="w-4 h-4" />}
+          </div>
         </div>
+      </>
+    );
 
-        <h3 className="text-lg font-semibold text-card-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
-          {sample.title}
-        </h3>
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{sample.description}</p>
+    const cardClassName = "card card-hover cursor-pointer overflow-hidden flex h-full flex-col group";
 
-        <div className="flex items-center gap-2 text-sm text-primary">
-          {t('portfolio.readArticle')}
-          <ExternalLink className="w-4 h-4" />
-        </div>
-      </div>
-    </motion.a>
-  );
+    if (sample.isInternal) {
+      return (
+        <motion.div
+          className={className}
+          layout
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          whileHover={{ y: -8 }}
+        >
+          <Link to={sample.url} className={cardClassName}>
+            {cardContent}
+          </Link>
+        </motion.div>
+      );
+    }
+
+    return (
+      <motion.a
+        layout
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        whileHover={{ y: -8 }}
+        href={sample.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${cardClassName} ${className}`}
+      >
+        {cardContent}
+      </motion.a>
+    );
+  };
 
   return (
     <section id="portfolio" className="bg-background px-4 py-20 sm:px-6">
@@ -218,18 +340,47 @@ export default function Portfolio() {
           </button>
         </div>
 
+        <div className="mb-16">
+          <div className="mb-6 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+            <div>
+              <h3 className="text-2xl font-bold text-foreground sm:text-3xl">{portfolioCopy[language].selectedTitle}</h3>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground sm:text-base">
+                {portfolioCopy[language].selectedDescription}
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-flow-dense grid-cols-1 gap-6 lg:grid-cols-3">
+            {selectedSamples.map((sample, index) => (
+              <WritingSampleCard
+                key={sample.id}
+                sample={sample}
+                selected
+                priority={index === 0}
+              />
+            ))}
+          </div>
+        </div>
+
         {/* Filter Section */}
-        <div className="mb-8 space-y-4">
-          <div className="flex flex-wrap gap-3">
+        <div className="mb-8 space-y-5 border-t border-border pt-10">
+          <div>
+            <h3 className="text-2xl font-bold text-foreground sm:text-3xl">{portfolioCopy[language].archiveTitle}</h3>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground sm:text-base">
+              {portfolioCopy[language].archiveDescription}
+            </p>
+          </div>
+          <div className="-mx-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:overflow-visible sm:px-0">
+            <div className="flex w-max gap-3 sm:w-auto sm:flex-wrap">
             {categories.map(category => (
               <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`${selectedCategory === category ? 'btn-primary' : 'btn-outline'} text-xs sm:text-sm`}
+                key={category.value}
+                onClick={() => setSelectedCategory(category.value)}
+                className={`${selectedCategory === category.value ? 'btn-primary' : 'btn-outline'} shrink-0 text-xs sm:text-sm`}
               >
-                {category}
+                {category[language]}
               </button>
             ))}
+            </div>
           </div>
           <div className="relative w-full sm:ml-auto sm:max-w-sm">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />

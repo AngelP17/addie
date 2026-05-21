@@ -15,15 +15,15 @@ const resources = {
       'hero.title': 'Addie Elizabeth Jones',
       'hero.role1': 'Journalism & Political Science Student',
       'hero.role2': 'Fulbright Honors Sturgis Fellow',
-      'hero.description': 'Dedicated to civic engagement, literacy advocacy, and policy analysis. Skilled in investigative + feature journalism and political communication. Currently serving as an Email Intern at Middle Seat and an Editorial Intern at The American Prospect.',
+      'hero.description': 'Dedicated to civic engagement, literacy advocacy, and policy analysis. Skilled in investigative + feature journalism and political communication. In 2026, joining Middle Seat full time as a Texting Coordinator after serving as an Email Intern.',
       'hero.cta': 'View My Work',
       'hero.contact': 'Get In Touch',
 
       // About Section
       'about.title': 'About Addie Elizabeth Jones',
-      'about.subtitle': 'Dedicated to civic engagement, literacy advocacy, and policy analysis. Skilled in investigative + feature journalism and political communication. Currently serving as an Email Intern at Middle Seat and an Editorial Intern at The American Prospect.',
+      'about.subtitle': 'Dedicated to civic engagement, literacy advocacy, and policy analysis. Skilled in investigative + feature journalism and political communication. In 2026, joining Middle Seat full time as a Texting Coordinator after serving as an Email Intern.',
       'about.bio.p1': 'I am a Journalism and Political Science major at the University of Arkansas with minors in Gender Studies, Nonprofit Studies, and Rhetoric Writing. As a Fulbright Honors College Sturgis Fellow, I\'m dedicated to progressive campaign communications, policy analysis, and investigative reporting.',
-      'about.bio.p2': 'Currently serving as Email Intern at Middle Seat and Editorial Intern at The American Prospect, I focus on translating complex policy issues into accessible narratives that drive engagement. My work spans digital fundraising campaigns to investigative journalism, with particular emphasis on education equity and amplifying underrepresented voices.',
+      'about.bio.p2': 'In 2026, I will join Middle Seat full time as a Texting Coordinator after serving as an Email Intern, building on my work translating complex policy issues into accessible narratives that drive engagement. My work spans digital fundraising campaigns to investigative journalism, with particular emphasis on education equity and amplifying underrepresented voices.',
       'about.bio.p3': 'Through past federal and state legislative internships, my presidency of Young Democrats at UofA where I helped elect Arkansas\'s first Latina state legislator, and founding Bright Beginnings Books – a nonprofit that has distributed 13,000+ books across all 50 states – I have developed a comprehensive approach to advocacy combining grassroots organizing with strategic communications. My writing reaches 30,000+ readers through the Arkansas Traveler and Hill Magazine.',
       'about.timeline.title': 'Professional Journey',
       'about.stats.title': 'Key Achievements',
@@ -35,6 +35,9 @@ const resources = {
       'about.location': 'Fayetteville, Arkansas',
 
       // Timeline Items
+      'timeline.textingCoordinator.title': 'Texting Coordinator',
+      'timeline.textingCoordinator.org': 'Middle Seat',
+      'timeline.textingCoordinator.desc': 'Full-time role supporting progressive digital campaigns through peer-to-peer texting strategy, supporter engagement, and rapid-response political communication.',
       'timeline.emailIntern.title': 'Email Intern',
       'timeline.emailIntern.org': 'Middle Seat',
       'timeline.emailIntern.desc': 'Digital fundraising campaigns and email communications for progressive causes.',
@@ -211,15 +214,15 @@ const resources = {
       'hero.title': 'Addie Elizabeth Jones',
       'hero.role1': 'Estudiante de Periodismo y Ciencias Políticas',
       'hero.role2': 'Becaria Fulbright Honors Sturgis',
-      'hero.description': 'Dedicada al compromiso cívico, la defensa de la alfabetización y el análisis de políticas. Experta en periodismo investigativo + de artículos y comunicación política. Actualmente sirviendo como Pasante de Correo Electrónico en Middle Seat y Pasante Editorial en The American Prospect.',
+      'hero.description': 'Dedicada al compromiso cívico, la defensa de la alfabetización y el análisis de políticas. Experta en periodismo investigativo + de artículos y comunicación política. En 2026, se incorporará a Middle Seat a tiempo completo como Coordinadora de Mensajes de Texto después de servir como Pasante de Correo Electrónico.',
       'hero.cta': 'Ver Mi Trabajo',
       'hero.contact': 'Contactar',
 
       // About Section
       'about.title': 'Acerca de Addie Elizabeth Jones',
-      'about.subtitle': 'Dedicada al compromiso cívico, la defensa de la alfabetización y el análisis de políticas. Experta en periodismo investigativo + de artículos y comunicación política. Actualmente sirviendo como Pasante de Correo Electrónico en Middle Seat y Pasante Editorial en The American Prospect.',
+      'about.subtitle': 'Dedicada al compromiso cívico, la defensa de la alfabetización y el análisis de políticas. Experta en periodismo investigativo + de artículos y comunicación política. En 2026, se incorporará a Middle Seat a tiempo completo como Coordinadora de Mensajes de Texto después de servir como Pasante de Correo Electrónico.',
       'about.bio.p1': 'Soy estudiante de Periodismo y Ciencias Políticas en la Universidad de Arkansas con especialidades menores en Estudios de Género, Estudios Sin Fines de Lucro y Redacción de Retórica. Como Becaria Fulbright Honors College Sturgis, me dedico a las comunicaciones de campañas progresistas, el análisis de políticas y el periodismo investigativo.',
-      'about.bio.p2': 'Actualmente sirviendo como Pasante de Correo Electrónico en Middle Seat y Pasante Editorial en The American Prospect, me enfoco en traducir temas de políticas complejas en narrativas accesibles que impulsen el compromiso. Mi trabajo abarca desde campañas de recaudación de fondos digitales hasta periodismo investigativo, con énfasis particular en la equidad educativa y la amplificación de voces subrepresentadas.',
+      'about.bio.p2': 'En 2026, me incorporaré a Middle Seat a tiempo completo como Coordinadora de Mensajes de Texto después de servir como Pasante de Correo Electrónico, desarrollando mi trabajo de traducir temas de políticas complejas en narrativas accesibles que impulsen el compromiso. Mi trabajo abarca desde campañas digitales hasta periodismo investigativo, con énfasis particular en la equidad educativa y la amplificación de voces subrepresentadas.',
       'about.bio.p3': 'A través de pasantías legislativas federales y estatales anteriores, mi presidencia de Jóvenes Demócratas en UofA donde ayudé a elegir a la primera legisladora estatal latina de Arkansas, y la fundación de Bright Beginnings Books, una organización sin fines de lucro que ha distribuido más de 13,000 libros en los 50 estados, he desarrollado un enfoque integral de defensa que combina la organización de base con las comunicaciones estratégicas. Mi escritura llega a más de 30,000 lectores a través de Arkansas Traveler y Hill Magazine.',
       'about.timeline.title': 'Trayectoria Profesional',
       'about.stats.title': 'Logros Clave',
@@ -231,6 +234,9 @@ const resources = {
       'about.location': 'Fayetteville, Arkansas',
 
       // Timeline Items
+      'timeline.textingCoordinator.title': 'Coordinadora de Mensajes de Texto',
+      'timeline.textingCoordinator.org': 'Middle Seat',
+      'timeline.textingCoordinator.desc': 'Puesto de tiempo completo apoyando campañas digitales progresistas mediante estrategia de mensajes de texto entre pares, participación de simpatizantes y comunicación política de respuesta rápida.',
       'timeline.emailIntern.title': 'Pasante de Correo Electrónico',
       'timeline.emailIntern.org': 'Middle Seat',
       'timeline.emailIntern.desc': 'Campañas de recaudación de fondos digitales y comunicaciones por correo electrónico para causas progresistas.',

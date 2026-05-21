@@ -25,6 +25,14 @@ export default function About() {
   const timeline: TimelineItem[] = [
     {
       year: "2026",
+      title: t('timeline.textingCoordinator.title'),
+      organization: t('timeline.textingCoordinator.org'),
+      description: t('timeline.textingCoordinator.desc'),
+      type: "experience",
+      icon: Briefcase
+    },
+    {
+      year: "2026",
       title: t('timeline.emailIntern.title'),
       organization: t('timeline.emailIntern.org'),
       description: t('timeline.emailIntern.desc'),
@@ -134,13 +142,13 @@ export default function About() {
     >
       {/* Timeline Line */}
       {index < timeline.length - 1 && (
-        <div className="absolute left-5 top-10 h-full w-0.5 bg-gradient-to-b from-purple-500 to-transparent sm:left-6 sm:top-12" />
+        <div className="absolute left-5 top-10 h-full w-0.5 bg-border sm:left-6 sm:top-12" />
       )}
 
       {/* Icon */}
       <div className="relative z-10">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 sm:h-12 sm:w-12">
-          <item.icon className="h-5 w-5 text-white sm:h-6 sm:w-6" />
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary sm:h-12 sm:w-12">
+          <item.icon className="h-5 w-5 text-primary-foreground sm:h-6 sm:w-6" />
         </div>
       </div>
 
@@ -148,11 +156,8 @@ export default function About() {
       <div className="flex-1 pb-8">
         <div className="rounded-2xl border border-border bg-card p-4 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 sm:p-6">
           <div className="mb-3 flex flex-wrap items-center gap-2 sm:gap-3">
-            <span className="text-purple-600 font-semibold">{item.year}</span>
-            <span className={`px-2 py-1 rounded-full text-xs font-medium ${item.type === 'education' ? 'bg-blue-100 text-blue-600' :
-              item.type === 'experience' ? 'bg-green-100 text-green-600' :
-                'bg-yellow-100 text-yellow-600'
-              }`}>
+            <span className="font-semibold text-primary">{item.year}</span>
+            <span className="rounded-full bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">
               {t(`timeline.type.${item.type}`)}
             </span>
           </div>

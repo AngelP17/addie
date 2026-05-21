@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, ArrowRight } from 'lucide-react';
-import { TypeAnimation } from 'react-type-animation';
 import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function Hero() {
   const { t } = useTranslation();
+  const { language } = useLanguage();
 
   const scrollToNext = () => {
     const nextSection = document.getElementById('about');
@@ -14,49 +15,26 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section className="relative flex min-h-[calc(100vh-4rem)] items-center overflow-hidden bg-background px-4 py-16 sm:px-6">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(100,116,139,0.08),transparent_50%)]"></div>
-        <div className="absolute top-20 left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 bg-background">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(100,116,139,0.13),transparent_34%),radial-gradient(circle_at_88%_72%,rgba(148,163,184,0.09),transparent_32%)]"></div>
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[minmax(0,1fr)_28rem]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-12"
+          className="text-center lg:text-left"
         >
-          {/* Profile Image */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="relative mb-8"
-          >
-            <div className="w-40 h-40 mx-auto relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary via-accent to-primary rounded-full blur-xl opacity-30 animate-pulse"></div>
-              <div className="relative w-full h-full bg-gray-100 rounded-full p-1">
-                <div className="w-full h-full bg-gray-100 rounded-full overflow-hidden">
-                  <img
-                    src="/avatar.jpg"
-                    alt={t('hero.title')}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
           {/* Name */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-6xl md:text-7xl lg:text-8xl font-bold text-foreground mb-6 tracking-tight"
+            className="mb-5 max-w-5xl text-balance text-[clamp(3.25rem,7vw,6.35rem)] font-bold leading-[0.96] tracking-tight text-foreground"
           >
             {t('hero.title')}
           </motion.h1>
@@ -68,23 +46,13 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mb-8"
           >
-            <h2 className="text-2xl md:text-3xl text-muted-foreground mb-4">
-              I'm a{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 font-semibold">
-                <TypeAnimation
-                  sequence={[
-                    t('hero.role1'),
-                    2000,
-                    t('hero.role2'),
-                    2000,
-                  ]}
-                  wrapper="span"
-                  speed={50}
-                  repeat={Infinity}
-                />
+            <h2 className="mb-4 text-xl text-muted-foreground sm:text-2xl md:text-3xl">
+              {language === 'es' ? 'Soy ' : "I'm a "}
+              <span className="font-semibold text-primary">
+                {t('hero.role1')}
               </span>
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg md:text-xl md:leading-relaxed lg:mx-0">
               {t('hero.description')}
             </p>
           </motion.div>
@@ -94,12 +62,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4 lg:justify-start"
           >
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary group text-lg px-8 py-4 flex items-center gap-3"
+              className="btn-primary group flex items-center justify-center gap-3 px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg"
               onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {t('hero.cta')}
@@ -109,7 +77,7 @@ export default function Hero() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-outline group text-lg px-8 py-4 flex items-center gap-3"
+              className="btn-outline group flex items-center justify-center gap-3 px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {t('hero.contact')}
@@ -118,12 +86,30 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, x: 28 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
+          className="hidden lg:grid grid-cols-5 grid-rows-6 gap-3"
+          aria-hidden="true"
+        >
+          <div className="col-span-3 row-span-6 overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+            <img src="/avatar.jpg" alt="" className="h-full w-full object-cover" />
+          </div>
+          <div className="col-span-2 row-span-3 overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+            <img src="/leftinthedark.jpg" alt="" className="h-full w-full object-cover" />
+          </div>
+          <div className="col-span-2 row-span-3 overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+            <img src="/articles/bolivia/photo-1.jpg" alt="" className="h-full w-full object-cover" />
+          </div>
+        </motion.div>
+
         {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 sm:block"
         >
           <motion.button
             animate={{ y: [0, 10, 0] }}
@@ -136,32 +122,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Floating Elements */}
-      <motion.div
-        animate={{
-          y: [0, -20, 0],
-          rotate: [0, 5, 0]
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute top-20 right-20 w-4 h-4 bg-primary/60 rounded-full"
-      />
-      <motion.div
-        animate={{
-          y: [0, 20, 0],
-          rotate: [0, -5, 0]
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2
-        }}
-        className="absolute bottom-40 left-20 w-3 h-3 bg-accent/60 rounded-full"
-      />
     </section>
   );
 }

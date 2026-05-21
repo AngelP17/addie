@@ -22,7 +22,7 @@ const resources = {
         title: 'Addie Jones',
         role1: 'Narrative Strategist',
         role2: 'Political Communications Expert',
-        description: 'Transforming complex stories into compelling narratives that drive impact and foster meaningful connections.',
+        description: 'Transforming complex stories into compelling narratives that drive impact and foster meaningful connections. In 2026, joining Middle Seat full time as a Texting Coordinator.',
         cta: 'View My Work',
         contact: 'Get in Touch',
       },
@@ -30,7 +30,7 @@ const resources = {
         title: 'About Me',
         bio: {
           p1: 'I\'m a narrative strategist and political communicator based in Fayetteville, Arkansas, with a deep commitment to storytelling that creates change. Pursuing a dual degree in Journalism and Political Science at the University of Arkansas, I bring an interdisciplinary lens to every project I take on.',
-          p2: 'From editing a 30,000-reader campus newspaper to writing email fundraising campaigns for progressive causes, my career has been built at the intersection of compelling writing and civic impact. I believe the right story, told the right way, can move people to act.',
+          p2: 'From editing a 30,000-reader campus newspaper to writing digital campaigns for progressive causes, my career has been built at the intersection of compelling writing and civic impact. In 2026, I will join Middle Seat full time as a Texting Coordinator.',
           p3: 'When I\'m not writing, you\'ll find me coordinating literacy volunteers, mentoring aspiring journalists, or strategizing my next move in advocacy spaces. I\'m passionate about building a more informed, engaged, and equitable public discourse.',
         },
         timeline: {
@@ -48,6 +48,11 @@ const resources = {
           education: 'Education',
           experience: 'Experience',
           achievement: 'Achievement',
+        },
+        textingCoordinator: {
+          title: 'Texting Coordinator',
+          org: 'Middle Seat',
+          desc: 'Full-time role supporting progressive digital campaigns through peer-to-peer texting strategy, supporter engagement, and rapid-response political communication.',
         },
         emailIntern: {
           title: 'Email Intern',
@@ -231,7 +236,7 @@ const resources = {
         title: 'Addie Jones',
         role1: 'Estratega Narrativa',
         role2: 'Experta en Comunicación Política',
-        description: 'Transformando historias complejas en narrativas convincentes que generan impacto y fomentan conexiones significativas.',
+        description: 'Transformando historias complejas en narrativas convincentes que generan impacto y fomentan conexiones significativas. En 2026, se incorporará a Middle Seat a tiempo completo como Coordinadora de Mensajes de Texto.',
         cta: 'Ver Mi Trabajo',
         contact: 'Contactarme',
       },
@@ -239,7 +244,7 @@ const resources = {
         title: 'Sobre Mí',
         bio: {
           p1: 'Soy estratega narrativa y comunicadora política con base en Fayetteville, Arkansas, profundamente comprometida con la narrativa que genera cambios. Cursando una doble licenciatura en Periodismo y Ciencias Políticas en la Universidad de Arkansas, aporto una perspectiva interdisciplinaria a cada proyecto.',
-          p2: 'Desde editar un periódico universitario con 30.000 lectores hasta escribir campañas de recaudación de fondos para causas progresistas, mi carrera se ha construido en la intersección de la escritura convincente y el impacto cívico.',
+          p2: 'Desde editar un periódico universitario con 30.000 lectores hasta escribir campañas digitales para causas progresistas, mi carrera se ha construido en la intersección de la escritura convincente y el impacto cívico. En 2026, me incorporaré a Middle Seat a tiempo completo como Coordinadora de Mensajes de Texto.',
           p3: 'Cuando no estoy escribiendo, coordino voluntarios de alfabetización, mentoreo a periodistas aspirantes o estrategizo mi próximo paso en espacios de defensa. Me apasiona construir un discurso público más informado, comprometido y equitativo.',
         },
         timeline: {
@@ -257,6 +262,11 @@ const resources = {
           education: 'Educación',
           experience: 'Experiencia',
           achievement: 'Logro',
+        },
+        textingCoordinator: {
+          title: 'Coordinadora de Mensajes de Texto',
+          org: 'Middle Seat',
+          desc: 'Puesto de tiempo completo apoyando campañas digitales progresistas mediante estrategia de mensajes de texto entre pares, participación de simpatizantes y comunicación política de respuesta rápida.',
         },
         emailIntern: {
           title: 'Pasante de Email',

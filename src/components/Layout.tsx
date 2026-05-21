@@ -38,7 +38,10 @@ export default function Layout({ children }: LayoutProps) {
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
+      return;
     }
+
+    window.location.href = `/${sectionId}`;
   };
 
   return (
@@ -56,6 +59,10 @@ export default function Layout({ children }: LayoutProps) {
               className="flex min-w-0 max-w-[calc(100%-3.5rem)] items-center gap-3 truncate text-lg font-bold text-foreground transition-all duration-300 sm:text-2xl md:max-w-none"
               onClick={(e) => {
                 e.preventDefault();
+                if (window.location.pathname !== '/') {
+                  window.location.href = '/';
+                  return;
+                }
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               whileHover={{ scale: 1.05 }}
@@ -166,15 +173,15 @@ export default function Layout({ children }: LayoutProps) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-background/95 backdrop-blur-md border-t border-border"
+              className="md:hidden border-t border-border bg-background/95 shadow-lg backdrop-blur-md"
             >
-              <div className="container mx-auto px-4 py-6">
-                <div className="flex flex-col space-y-4">
+              <div className="container mx-auto px-4 py-5">
+                <div className="flex flex-col gap-2">
                   {navLinks.map((link) => (
                     <motion.a
                       key={link.href}
                       href={link.href}
-                      className="nav-link py-2 px-4 rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
+                      className="nav-link rounded-lg px-4 py-3 text-base hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                       onClick={(e) => {
                         e.preventDefault();
                         scrollToSection(link.href);
@@ -188,16 +195,16 @@ export default function Layout({ children }: LayoutProps) {
                     href="/resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-primary inline-flex w-full items-center justify-center gap-2"
+                    className="btn-primary mt-3 inline-flex w-full items-center justify-center gap-2 py-3"
                     aria-label="Download Resume"
                   >
                     Download Resume
                     <ArrowRight className="h-4 w-4" />
                   </a>
-                  <div className="flex flex-col gap-3 border-t border-border pt-4 sm:flex-row sm:items-center">
+                  <div className="mt-3 grid grid-cols-2 gap-3 border-t border-border pt-4">
                     <motion.button
                       onClick={toggleTheme}
-                      className="flex w-full items-center justify-center space-x-2 rounded-lg px-4 py-2 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground hover:text-primary sm:w-auto sm:justify-start"
+                      className="flex w-full items-center justify-center space-x-2 rounded-lg border border-border px-3 py-3 text-sm text-foreground transition-colors hover:bg-accent hover:text-accent-foreground hover:text-primary"
                       whileHover={{ scale: 1.05 }}
                     >
                       {theme === 'dark' ? (
@@ -214,7 +221,7 @@ export default function Layout({ children }: LayoutProps) {
                     </motion.button>
                     <motion.button
                       onClick={toggleLanguage}
-                      className="flex w-full items-center justify-center space-x-2 rounded-lg px-4 py-2 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground hover:text-primary sm:w-auto sm:justify-start"
+                      className="flex w-full items-center justify-center space-x-2 rounded-lg border border-border px-3 py-3 text-sm text-foreground transition-colors hover:bg-accent hover:text-accent-foreground hover:text-primary"
                       whileHover={{ scale: 1.05 }}
                     >
                       <Globe className="w-5 h-5" />
@@ -228,7 +235,7 @@ export default function Layout({ children }: LayoutProps) {
         </AnimatePresence>
       </nav>
 
-      <main className="pt-16">
+      <main className="w-full max-w-full overflow-x-hidden pt-16">
         {children}
       </main>
 
@@ -236,7 +243,7 @@ export default function Layout({ children }: LayoutProps) {
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold text-foreground">
                 AJ
               </h1>
               <p className="text-muted-foreground text-sm">
