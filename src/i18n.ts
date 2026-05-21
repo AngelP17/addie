@@ -13,7 +13,7 @@ const resources = {
 
       // Hero Section
       'hero.title': 'Addie Elizabeth Jones',
-      'hero.role1': 'Journalism & Political Science Student',
+      'hero.role1': 'Journalist & Political Communications Strategist',
       'hero.role2': 'Fulbright Honors Sturgis Fellow',
       'hero.description': 'Dedicated to civic engagement, literacy advocacy, and policy analysis. Skilled in investigative + feature journalism and political communication. In 2026, joining Middle Seat full time as a Texting Coordinator after serving as an Email Intern.',
       'hero.cta': 'View My Work',
@@ -151,7 +151,7 @@ const resources = {
 
       // Portfolio Section
       'portfolio.title': 'Writing Samples',
-      'portfolio.subtitle': 'Journalism & Political Science Student | Fulbright Honors Sturgis Fellow',
+      'portfolio.subtitle': 'Journalist & Political Communications Strategist | Fulbright Honors Sturgis Fellow',
       'portfolio.downloadResume': 'Download Resume',
       'portfolio.filter.all': 'All',
       'portfolio.filter.investigative': 'Investigative Journalism',
@@ -212,7 +212,7 @@ const resources = {
 
       // Hero Section
       'hero.title': 'Addie Elizabeth Jones',
-      'hero.role1': 'Estudiante de Periodismo y Ciencias Políticas',
+      'hero.role1': 'Periodista y Estratega de Comunicación Política',
       'hero.role2': 'Becaria Fulbright Honors Sturgis',
       'hero.description': 'Dedicada al compromiso cívico, la defensa de la alfabetización y el análisis de políticas. Experta en periodismo investigativo + de artículos y comunicación política. En 2026, se incorporará a Middle Seat a tiempo completo como Coordinadora de Mensajes de Texto después de servir como Pasante de Correo Electrónico.',
       'hero.cta': 'Ver Mi Trabajo',
@@ -350,7 +350,7 @@ const resources = {
 
       // Portfolio Section
       'portfolio.title': 'Muestras de Escritura',
-      'portfolio.subtitle': 'Estudiante de Periodismo y Ciencias Políticas | Becaria Fulbright Honors Sturgis',
+      'portfolio.subtitle': 'Periodista y Estratega de Comunicación Política | Becaria Fulbright Honors Sturgis',
       'portfolio.downloadResume': 'Descargar Currículum',
       'portfolio.filter.all': 'Todos',
       'portfolio.filter.investigative': 'Periodismo Investigativo',
