@@ -54,7 +54,7 @@ const copy: Record<Language, ArticleCopy> = {
     ],
     sections: [
       {
-        image: { src: '/articles/bolivia/photo-1.jpg', captionIndex: 0 },
+        image: { src: '/bolivia-books.jpg', captionIndex: 0 },
         paragraphs: [
           'A handwritten cardboard donation box in San Pablo Cafe & Libreria in Santa Cruz, Bolivia reads “un lector hoy, un lider manana.” A reader today, a leader tomorrow.',
           '“We have book clubs with more than 30 people each,” said an anonymous employee. “There are people who even get turned away and have to wait for the next one. There is a reading community in Bolivia.”',
@@ -158,7 +158,7 @@ const copy: Record<Language, ArticleCopy> = {
     ],
     sections: [
       {
-        image: { src: '/articles/bolivia/photo-1.jpg', captionIndex: 0 },
+        image: { src: '/bolivia-books.jpg', captionIndex: 0 },
         paragraphs: [
           'Una caja de donaciones escrita a mano en San Pablo Cafe & Libreria en Santa Cruz, Bolivia, dice “un lector hoy, un lider manana.”',
           '“Tenemos clubes de lectura con mas de 30 personas cada uno”, dijo una empleada anonima. “Hay personas que incluso se quedan sin cupo y tienen que esperar al siguiente. Hay una comunidad lectora en Bolivia.”',

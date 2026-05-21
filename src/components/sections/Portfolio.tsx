@@ -42,7 +42,7 @@ const writingSamples: WritingSample[] = [
     description: "A field-reported feature on Bolivia's reading culture, education access, indigenous languages, and the divide between urban book communities and rural literacy barriers.",
     descriptionEs: "Un reportaje de campo sobre la cultura lectora en Bolivia, el acceso a la educación, las lenguas indígenas y la brecha entre comunidades lectoras urbanas y barreras rurales de alfabetización.",
     url: "/articles/bolivia",
-    image: "/articles/bolivia/photo-1.jpg",
+    image: "/bolivia-books.jpg",
     featured: true,
     isInternal: true,
     actionLabel: {

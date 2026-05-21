@@ -100,7 +100,7 @@ export default function Hero() {
             <img src="/leftinthedark.jpg" alt="" className="h-full w-full object-cover" />
           </div>
           <div className="col-span-2 row-span-3 overflow-hidden rounded-lg border border-border bg-card shadow-sm">
-            <img src="/articles/bolivia/photo-1.jpg" alt="" className="h-full w-full object-cover" />
+            <img src="/bolivia-books.jpg" alt="" className="h-full w-full object-cover" />
           </div>
         </motion.div>
 
