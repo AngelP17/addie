@@ -28,8 +28,8 @@ export default function Hero() {
   const content = copy[language];
 
   return (
-    <section className="relative overflow-hidden bg-background px-4 pb-0 pt-10 sm:px-6 lg:pt-12">
-      <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-10 pb-10 lg:min-h-[calc(100dvh-10rem)] lg:grid-cols-[minmax(33rem,1.14fr)_minmax(25rem,0.86fr)] lg:gap-16 lg:pb-8">
+    <section className="relative overflow-hidden bg-background px-4 pb-0 pt-10 sm:px-6 md:pt-12">
+      <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-10 pb-10 md:min-h-[calc(100dvh-10rem)] md:grid-cols-[minmax(24rem,1.08fr)_minmax(18rem,0.92fr)] md:gap-8 md:pb-8 lg:grid-cols-[minmax(33rem,1.14fr)_minmax(25rem,0.86fr)] lg:gap-16">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ export default function Hero() {
           <p className="mt-8 max-w-[31rem] text-lg leading-8 text-muted-foreground sm:text-xl">
             {content.statement}
           </p>
-          <div className="mt-10 hidden items-center gap-6 lg:flex">
+          <div className="mt-10 hidden flex-wrap items-center gap-6 md:flex">
             <button
               className="btn-primary group inline-flex items-center gap-3 px-7 py-4"
               onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
@@ -68,12 +68,12 @@ export default function Hero() {
           initial={{ opacity: 0, x: 22 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="relative order-2 mt-3 min-h-[23rem] lg:mt-0 lg:min-h-[min(62vh,40rem)]"
+          className="relative order-2 mt-3 min-h-[23rem] md:mt-0 md:min-h-[min(58vh,35rem)] lg:min-h-[min(62vh,40rem)]"
         >
           <img
             src="/avatar.jpg"
             alt="Portrait of Addie Elizabeth Jones"
-            className="absolute inset-x-0 top-0 h-[88%] w-full object-cover object-top lg:left-10 lg:right-0 lg:w-auto"
+            className="absolute inset-x-0 top-0 h-[88%] w-full object-cover object-top md:left-6 md:right-0 md:w-auto lg:left-10"
           />
           <img
             src="/bolivia-books.jpg"
@@ -85,10 +85,10 @@ export default function Hero() {
             src="/leftinthedark.jpg"
             alt=""
             aria-hidden="true"
-            className="absolute bottom-[4%] right-4 hidden h-[25%] w-[30%] border-[6px] border-background object-cover shadow-[0_18px_40px_rgba(44,30,25,0.12)] sm:block lg:right-auto lg:left-[41%]"
+            className="absolute bottom-[4%] right-4 hidden h-[25%] w-[30%] border-[6px] border-background object-cover shadow-[0_18px_40px_rgba(44,30,25,0.12)] sm:block md:right-auto md:left-[41%]"
           />
         </motion.div>
-        <div className="order-3 flex flex-col items-start gap-6 sm:flex-row sm:items-center lg:hidden">
+        <div className="order-3 flex flex-col items-start gap-6 sm:flex-row sm:items-center md:hidden">
           <button
             className="btn-primary group inline-flex items-center gap-3 px-7 py-4"
             onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
