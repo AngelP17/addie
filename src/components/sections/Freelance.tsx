@@ -20,7 +20,7 @@ export default function Freelance() {
             <h2 className="text-5xl font-medium tracking-[-0.05em] text-foreground sm:text-6xl">{t('freelance.title')}</h2>
             <p className="mt-7 max-w-lg text-lg leading-8 text-muted-foreground">{t('freelance.description')}</p>
             <a
-              href="https://jones-co.vercel.app/"
+              href="https://www.jonescopr.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary mt-10 inline-flex items-center gap-3 px-7 py-4"
@@ -32,9 +32,14 @@ export default function Freelance() {
 
           <div className="border-t border-border">
             {services.map((service) => (
-              <div key={service} className="grid grid-cols-[2rem_1fr] items-center border-b border-border py-6">
-                <span className="font-serif text-lg text-primary">+</span>
-                <p className="text-lg font-medium text-foreground">{t(`freelance.services.${service}`)}</p>
+              <div key={service} className="grid grid-cols-[2rem_1fr] items-start border-b border-border py-5 sm:py-6">
+                <span className="pt-0.5 font-serif text-lg text-primary">+</span>
+                <div>
+                  <p className="text-lg font-medium text-foreground">{t(`freelance.services.${service}`)}</p>
+                  <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
+                    {t(`freelance.services.${service}.description`)}
+                  </p>
+                </div>
               </div>
             ))}
             <p className="pt-7 text-sm leading-6 text-muted-foreground">{t('freelance.moreDetails')}</p>

@@ -96,7 +96,8 @@ const writingSamples: WritingSample[] = [
     id: 5,
     title: "Springtime of Youth 2023",
     publication: "Division of Student Affairs Bulletin",
-    category: "Campus Features",
+    category: "Arts & Culture",
+    categoryEs: "Arte y cultura",
     description: "Through more than a dozen features for the Division of Student Affairs Bulletin blog, I crafted engaging narratives about campus life, from student organizations to academic achievements, reaching thousands of students, staff, and alumni.",
     url: "https://studentaffairsbulletin.uark.edu/springtime-of-youth-2023/",
     image: "/soy2023.jpg"
@@ -124,7 +125,8 @@ const writingSamples: WritingSample[] = [
     id: 8,
     title: "Funding cuts leave domestic violence programs in crisis",
     publication: "Arkansas Traveler",
-    category: "Investigative Journalism",
+    category: "Public Interest Reporting",
+    categoryEs: "Reportajes de interés público",
     description: "An examination of how funding cuts are affecting programs meant to help victims of domestic violence, and how organizations like Peace at Home rely on alternative methods to achieve funding goals.",
     url: "https://www.uatrav.com/news/article_4dc3454d-26e8-4b11-8fbd-da2690e7ef91.html",
     image: "/domesticviolence.webp",
@@ -134,7 +136,8 @@ const writingSamples: WritingSample[] = [
     id: 9,
     title: "SNAP benefits delay leaves Arkansans struggling with food insecurity",
     publication: "Arkansas Traveler",
-    category: "Investigative Journalism",
+    category: "Public Interest Reporting",
+    categoryEs: "Reportajes de interés público",
     description: "A report on how the delay in SNAP benefits is impacting Arkansas families and how community efforts like local blessing boxes are stepping in to combat food insecurity.",
     url: "https://www.uatrav.com/news/article_50a7b6ac-9d87-4120-98e4-98db4800671e.html",
     image: "/nutrition.webp",
@@ -144,12 +147,9 @@ const writingSamples: WritingSample[] = [
 
 const categories = [
   { value: 'All', en: 'All', es: 'Todos' },
-  { value: 'Investigative Journalism', en: 'Investigative Journalism', es: 'Periodismo investigativo' },
-  { value: 'Feature', en: 'Feature', es: 'Reportaje' },
-  { value: 'Arts & Entertainment', en: 'Arts & Entertainment', es: 'Arte y entretenimiento' },
+  { value: 'Public Interest Reporting', en: 'Public Interest Reporting', es: 'Reportajes de interés público' },
   { value: 'Arts & Culture', en: 'Arts & Culture', es: 'Arte y cultura' },
-  { value: 'Music Journalism', en: 'Music Journalism', es: 'Periodismo musical' },
-  { value: 'Campus Features', en: 'Campus Features', es: 'Historias universitarias' }
+  { value: 'Music Journalism', en: 'Music Journalism', es: 'Periodismo musical' }
 ];
 
 const portfolioCopy = {
@@ -157,13 +157,13 @@ const portfolioCopy = {
     selectedTitle: 'Selected Work',
     selectedDescription: 'A curated first look at Addie’s strongest reporting, feature writing, and portfolio-only work.',
     archiveTitle: 'More Reporting',
-    archiveDescription: 'Search and filter additional published stories across policy, culture, and community life.',
+    archiveDescription: 'Search additional published work below. Featured pieces, including the Bolivia feature, are presented above.',
   },
   es: {
     selectedTitle: 'Trabajo destacado',
     selectedDescription: 'Una selección inicial de los reportajes, perfiles y muestras de portafolio más fuertes de Addie.',
     archiveTitle: 'Más reportajes',
-    archiveDescription: 'Busca y filtra historias publicadas adicionales sobre política, cultura y vida comunitaria.',
+    archiveDescription: 'Busca trabajos publicados adicionales. Los reportajes destacados, incluido el de Bolivia, aparecen arriba.',
   },
 };
 
