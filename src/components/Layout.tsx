@@ -64,7 +64,7 @@ export default function Layout({ children }: LayoutProps) {
                 {link.label}
               </a>
             ))}
-            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="editorial-link text-sm">
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="nav-link text-sm">
               {language === 'en' ? 'Resume' : 'Currículum'}
               <ArrowUpRight className="ml-2 inline h-4 w-4" />
             </a>

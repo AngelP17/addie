@@ -29,7 +29,7 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-background px-4 pb-0 pt-10 sm:px-6 lg:pt-12">
-      <div className="mx-auto grid min-h-[calc(100dvh-4rem)] max-w-[1400px] grid-cols-1 items-center gap-10 pb-10 lg:grid-cols-[minmax(33rem,1.14fr)_minmax(25rem,0.86fr)] lg:gap-16 lg:pb-12">
+      <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-10 pb-10 lg:min-h-[calc(100dvh-10rem)] lg:grid-cols-[minmax(33rem,1.14fr)_minmax(25rem,0.86fr)] lg:gap-16 lg:pb-8">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -68,24 +68,24 @@ export default function Hero() {
           initial={{ opacity: 0, x: 22 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="relative order-2 mt-3 min-h-[23rem] lg:mt-0 lg:min-h-[min(72vh,46rem)]"
+          className="relative order-2 mt-3 min-h-[23rem] lg:mt-0 lg:min-h-[min(62vh,40rem)]"
         >
-          <img
-            src="/bolivia-books.jpg"
-            alt="Reader browsing books at a street-side bookstand in Bolivia"
-            fetchPriority="high"
-            className="absolute inset-x-0 top-0 h-[88%] w-full object-cover lg:left-10 lg:right-0 lg:w-auto"
-          />
           <img
             src="/avatar.jpg"
             alt="Portrait of Addie Elizabeth Jones"
-            className="absolute bottom-0 left-0 hidden h-[36%] w-[32%] border-[6px] border-background object-cover object-top shadow-[0_18px_40px_rgba(44,30,25,0.12)] sm:block"
+            className="absolute inset-x-0 top-0 h-[88%] w-full object-cover object-top lg:left-10 lg:right-0 lg:w-auto"
+          />
+          <img
+            src="/bolivia-books.jpg"
+            alt=""
+            aria-hidden="true"
+            className="absolute bottom-0 left-0 hidden h-[34%] w-[38%] border-[6px] border-background object-cover shadow-[0_18px_40px_rgba(44,30,25,0.12)] sm:block"
           />
           <img
             src="/leftinthedark.jpg"
             alt=""
             aria-hidden="true"
-            className="absolute bottom-[4%] right-4 h-[26%] w-[32%] border-[6px] border-background object-cover shadow-[0_18px_40px_rgba(44,30,25,0.12)] lg:right-auto lg:left-[35%]"
+            className="absolute bottom-[4%] right-4 h-[25%] w-[30%] border-[6px] border-background object-cover shadow-[0_18px_40px_rgba(44,30,25,0.12)] lg:right-auto lg:left-[41%]"
           />
         </motion.div>
       </div>

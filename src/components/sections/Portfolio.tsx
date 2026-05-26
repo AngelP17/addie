@@ -156,14 +156,14 @@ const portfolioCopy = {
   en: {
     selectedTitle: 'Selected Work',
     selectedDescription: 'A curated first look at Addie’s strongest reporting, feature writing, and portfolio-only work.',
-    archiveTitle: 'Article Archive',
-    archiveDescription: 'Search and filter the full collection of writing samples.',
+    archiveTitle: 'More Reporting',
+    archiveDescription: 'Search and filter additional published stories across policy, culture, and community life.',
   },
   es: {
     selectedTitle: 'Trabajo destacado',
     selectedDescription: 'Una selección inicial de los reportajes, perfiles y muestras de portafolio más fuertes de Addie.',
-    archiveTitle: 'Archivo de artículos',
-    archiveDescription: 'Busca y filtra la colección completa de muestras de escritura.',
+    archiveTitle: 'Más reportajes',
+    archiveDescription: 'Busca y filtra historias publicadas adicionales sobre política, cultura y vida comunitaria.',
   },
 };
 

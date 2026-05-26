@@ -21,7 +21,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.classList.add(theme);
     root.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    console.log('[ThemeContext] Theme set to:', theme);
   }, [theme]);
 
   const toggleTheme = () => {
@@ -41,4 +40,4 @@ export function useTheme() {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
-} 
+}
