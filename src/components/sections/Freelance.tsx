@@ -1,76 +1,46 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { ExternalLink, Share2, Monitor, FileText, PenTool, Megaphone, Settings } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { ArrowUpRight } from 'lucide-react';
 
 export default function Freelance() {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
+  const { language } = useLanguage();
 
-    const services = [
-        { key: 'social', icon: Share2 },
-        { key: 'websites', icon: Monitor },
-        { key: 'marketing', icon: FileText },
-        { key: 'content', icon: PenTool },
-        { key: 'pr', icon: Megaphone },
-        { key: 'setup', icon: Settings }
-    ];
+  const services = ['social', 'websites', 'marketing', 'content', 'pr', 'setup'];
 
-    return (
-        <section id="freelance" className="relative border-t border-border/40 bg-background px-4 py-24 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center"
-                >
-                    {/* Main Content Area */}
-                    <div className="mb-12">
-                        <h2 className="mb-6 font-serif text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
-                            {t('freelance.title')}
-                        </h2>
+  return (
+    <section id="freelance" className="bg-secondary px-4 py-20 sm:px-6 sm:py-28">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="grid gap-12 lg:grid-cols-[0.52fr_0.48fr] lg:gap-20">
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+              {language === 'en' ? 'Communications practice' : 'Práctica de comunicación'}
+            </p>
+            <h2 className="text-5xl font-medium tracking-[-0.05em] text-foreground sm:text-6xl">{t('freelance.title')}</h2>
+            <p className="mt-7 max-w-lg text-lg leading-8 text-muted-foreground">{t('freelance.description')}</p>
+            <a
+              href="https://jones-co.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary mt-10 inline-flex items-center gap-3 px-7 py-4"
+            >
+              {t('freelance.cta')}
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </motion.div>
 
-                        <p className="mx-auto max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl md:text-2xl">
-                            {t('freelance.description')}
-                        </p>
-                    </div>
-
-                    {/* Service Pills */}
-                    <div className="flex flex-wrap justify-center gap-3 mb-8">
-                        {services.map((service) => (
-                            <div
-                                key={service.key}
-                                className="flex items-center gap-2 rounded-full border border-border/50 bg-card/60 px-4 py-2.5 text-foreground shadow-sm transition-colors hover:bg-card/80 sm:px-5"
-                            >
-                                <service.icon className="w-4 h-4 text-primary" />
-                                <span className="text-sm md:text-base">
-                                    {t(`freelance.services.${service.key}`)}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Details & CTA */}
-                    <div className="flex flex-col items-center gap-8 mt-12">
-                        <p className="text-muted-foreground text-base max-w-lg mx-auto">
-                            {t('freelance.moreDetails')}
-                        </p>
-
-                        <motion.a
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            href="https://jones-co.vercel.app/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-foreground px-6 py-4 text-base font-semibold text-background shadow-lg transition-colors hover:bg-foreground/90 sm:w-auto sm:px-8 sm:text-lg"
-                        >
-                            {t('freelance.cta')}
-                            <ExternalLink className="w-5 h-5" />
-                        </motion.a>
-                    </div>
-
-                </motion.div>
-            </div>
-        </section>
-    );
+          <div className="border-t border-border">
+            {services.map((service) => (
+              <div key={service} className="grid grid-cols-[2rem_1fr] items-center border-b border-border py-6">
+                <span className="font-serif text-lg text-primary">+</span>
+                <p className="text-lg font-medium text-foreground">{t(`freelance.services.${service}`)}</p>
+              </div>
+            ))}
+            <p className="pt-7 text-sm leading-6 text-muted-foreground">{t('freelance.moreDetails')}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

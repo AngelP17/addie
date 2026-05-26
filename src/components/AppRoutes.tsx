@@ -14,10 +14,10 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <About />
-      <EditorialSignal />
-      <Competencies />
       <Portfolio />
+      <EditorialSignal />
+      <About />
+      <Competencies />
       <Freelance />
       <Contact />
     </>

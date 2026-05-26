@@ -1,4 +1,5 @@
 import { BrowserRouter as Router } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Layout from './components/Layout';
@@ -17,9 +18,11 @@ function App() {
     <Router>
       <ThemeProvider>
         <LanguageProvider>
-          <Layout>
-            <AppRoutes />
-          </Layout>
+          <MotionConfig reducedMotion="user">
+            <Layout>
+              <AppRoutes />
+            </Layout>
+          </MotionConfig>
         </LanguageProvider>
       </ThemeProvider>
     </Router>

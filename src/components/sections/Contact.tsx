@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import {
-  Mail, Phone, MapPin, Send, Clock,
-  Linkedin, CheckCircle,
-  AlertCircle, User, MessageSquare, Building
-} from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { ArrowRight, CheckCircle, AlertCircle, Linkedin } from 'lucide-react';
 
 interface ContactForm {
   name: string;
@@ -21,383 +18,179 @@ interface FormErrors {
 
 export default function Contact() {
   const { t } = useTranslation();
-
+  const { language } = useLanguage();
   const [formData, setFormData] = useState<ContactForm>({
     name: '',
     email: '',
     company: '',
     subject: '',
-    message: ''
+    message: '',
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: t('contact.info.title'),
-      value: "addie.elizabethjones@gmail.com",
-      href: "mailto:addie.elizabethjones@gmail.com",
-      description: t('contact.info.email.desc')
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "(870) 577-0389",
-      href: "tel:+18705770389",
-      description: t('contact.info.phone.desc')
-    },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: "Fayetteville, Arkansas",
-      href: "#",
-      description: t('contact.info.location.desc')
-    }
-  ];
-
-  const socialLinks = [
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/addie-jones-b5a5b6250/",
-      color: "hover:bg-blue-500/20 hover:text-blue-400"
-    }
-  ];
+  const [submitError, setSubmitError] = useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
+    const messages = language === 'en'
+      ? {
+          name: 'Name is required',
+          email: 'Email is required',
+          validEmail: 'Please enter a valid email address',
+          subject: 'Subject is required',
+          message: 'Message is required',
+          messageLength: 'Message must be at least 10 characters long',
+        }
+      : {
+          name: 'El nombre es obligatorio',
+          email: 'El correo electrónico es obligatorio',
+          validEmail: 'Ingresa un correo electrónico válido',
+          subject: 'El asunto es obligatorio',
+          message: 'El mensaje es obligatorio',
+          messageLength: 'El mensaje debe tener al menos 10 caracteres',
+        };
 
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-
+    if (!formData.name.trim()) newErrors.name = messages.name;
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = messages.email;
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = messages.validEmail;
     }
-
-    if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
-    }
-
+    if (!formData.subject.trim()) newErrors.subject = messages.subject;
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
+      newErrors.message = messages.message;
     } else if (formData.message.length < 10) {
-      newErrors.message = 'Message must be at least 10 characters long';
+      newErrors.message = messages.messageLength;
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     if (!validateForm()) return;
 
     setIsSubmitting(true);
+    setSubmitError(false);
+    const submitData = new FormData();
+    Object.entries(formData).forEach(([key, value]) => submitData.append(key, value));
 
     try {
-      const submitData = new FormData();
-      submitData.append('name', formData.name);
-      submitData.append('email', formData.email);
-      submitData.append('company', formData.company);
-      submitData.append('subject', formData.subject);
-      submitData.append('message', formData.message);
-
       const response = await fetch('https://formspree.io/f/xzddpogv', {
         method: 'POST',
         body: submitData,
-        headers: {
-          'Accept': 'application/json',
-        },
+        headers: { Accept: 'application/json' },
       });
+      if (!response.ok) throw new Error('Form submission failed');
 
-      if (response.ok) {
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-
-        // Reset form after successful submission
-        setTimeout(() => {
-          setFormData({
-            name: '',
-            email: '',
-            company: '',
-            subject: '',
-            message: ''
-          });
-          setIsSubmitted(false);
-        }, 5000);
-      } else {
-        throw new Error('Form submission failed');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', company: '', subject: '', message: '' });
+    } catch {
+      setSubmitError(true);
+    } finally {
       setIsSubmitting(false);
-      // Could add error state here
     }
   };
 
   const handleInputChange = (field: keyof ContactForm, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: '' }));
-    }
+    setFormData((previous) => ({ ...previous, [field]: value }));
+    if (errors[field]) setErrors((previous) => ({ ...previous, [field]: '' }));
   };
 
-  const ContactInfoCard = ({ info }: { info: typeof contactInfo[0] }) => (
-    <motion.div
-      whileHover={{ y: -4 }}
-      className="rounded-2xl border border-border bg-card p-5 shadow-lg transition-all duration-300 hover:border-primary/30 sm:p-6"
-    >
-      <div className="flex items-start gap-4">
-        <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
-          <info.icon className="w-6 h-6 text-primary-foreground" />
-        </div>
-        <div className="flex-1">
-          <h3 className="text-lg font-semibold text-card-foreground mb-1">{info.label}</h3>
-          <a
-            href={info.href}
-            className="break-all font-medium text-foreground transition-colors hover:text-primary"
-          >
-            {info.value}
-          </a>
-          <p className="text-muted-foreground text-sm mt-2">{info.description}</p>
-        </div>
-      </div>
-    </motion.div>
-  );
+  const inputClass = 'form-input';
 
   return (
-    <section id="contact" className="bg-background px-4 py-20 sm:px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-12 text-center sm:mb-16"
-        >
-          <h2 className="mb-6 text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">
-            {t('contact.title')}
-          </h2>
-          <p className="mx-auto max-w-2xl text-base text-muted-foreground sm:text-xl">
-            {t('contact.description')}
+    <section id="contact" className="bg-background px-4 py-20 sm:px-6 sm:py-28">
+      <div className="mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[0.43fr_0.57fr] lg:gap-20">
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+            {language === 'en' ? 'Contact' : 'Contacto'}
           </p>
+          <h2 className="max-w-md text-5xl font-medium leading-tight tracking-[-0.05em] text-foreground sm:text-6xl">
+            {language === 'en' ? 'Start a conversation.' : 'Iniciemos una conversación.'}
+          </h2>
+          <p className="mt-7 max-w-md text-base leading-7 text-muted-foreground">
+            {language === 'en'
+              ? 'For reporting, political communications, or editorial collaborations, reach out directly or send a note.'
+              : 'Para reportajes, comunicación política o colaboraciones editoriales, envía un mensaje.'}
+          </p>
+
+          <div className="mt-12 border-t border-border text-sm">
+            <a href="mailto:addie.elizabethjones@gmail.com" className="editorial-link block border-b border-border py-5">
+              addie.elizabethjones@gmail.com
+            </a>
+            <a href="tel:+18705770389" className="editorial-link block border-b border-border py-5">
+              (870) 577-0389
+            </a>
+            <a
+              href="https://www.linkedin.com/in/addie-jones-b5a5b6250/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="editorial-link flex items-center gap-2 border-b border-border py-5"
+            >
+              <Linkedin className="h-4 w-4" />
+              LinkedIn
+            </a>
+          </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <div>
-              <h3 className="mb-6 flex items-center gap-2 text-xl font-semibold text-foreground sm:text-2xl">
-                <MessageSquare className="w-6 h-6 text-primary" />
-                {t('contact.form.title')}
-              </h3>
-
-              {isSubmitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="bg-green-500/20 border border-green-500/30 rounded-2xl p-6 text-center"
-                >
-                  <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                  <h4 className="text-xl font-semibold text-foreground mb-2">{t('contact.form.success.title')}</h4>
-                  <p className="text-muted-foreground">
-                    {t('contact.form.success.message')}
-                  </p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-foreground text-sm font-medium mb-2">
-                        {t('contact.form.name')} *
-                      </label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
-                        <input
-                          type="text"
-                          value={formData.name}
-                          onChange={(e) => handleInputChange('name', e.target.value)}
-                          className={`w-full bg-card border rounded-xl px-4 py-3 pl-10 text-card-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 ${errors.name ? 'border-destructive' : 'border-border'
-                            }`}
-                          placeholder="Your name"
-                        />
-                      </div>
-                      {errors.name && (
-                        <p className="text-destructive text-sm mt-1 flex items-center gap-1">
-                          <AlertCircle className="w-4 h-4" />
-                          {errors.name}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label className="block text-foreground text-sm font-medium mb-2">
-                        {t('contact.form.email')} *
-                      </label>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                        <input
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => handleInputChange('email', e.target.value)}
-                          className={`w-full bg-card border rounded-xl px-4 py-3 pl-10 text-card-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 ${errors.email ? 'border-destructive' : 'border-border'
-                            }`}
-                          placeholder="your@email.com"
-                        />
-                      </div>
-                      {errors.email && (
-                        <p className="text-destructive text-sm mt-1 flex items-center gap-1">
-                          <AlertCircle className="w-4 h-4" />
-                          {errors.email}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-foreground text-sm font-medium mb-2">
-                      {t('contact.form.company')}
-                    </label>
-                    <div className="relative">
-                      <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                      <input
-                        type="text"
-                        value={formData.company}
-                        onChange={(e) => handleInputChange('company', e.target.value)}
-                        className="w-full bg-card border border-border rounded-xl px-4 py-3 pl-10 text-card-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200"
-                        placeholder="Your company (optional)"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-foreground text-sm font-medium mb-2">
-                      {t('contact.form.subject')} *
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.subject}
-                      onChange={(e) => handleInputChange('subject', e.target.value)}
-                      className={`w-full bg-card border rounded-xl px-4 py-3 text-card-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 ${errors.subject ? 'border-destructive' : 'border-border'
-                        }`}
-                      placeholder="What can I help you with?"
-                    />
-                    {errors.subject && (
-                      <p className="text-destructive text-sm mt-1 flex items-center gap-1">
-                        <AlertCircle className="w-4 h-4" />
-                        {errors.subject}
-                      </p>
-                    )}
-                  </div>
-
-                  <div>
-                    <label className="block text-foreground text-sm font-medium mb-2">
-                      {t('contact.form.message')} *
-                    </label>
-                    <textarea
-                      value={formData.message}
-                      onChange={(e) => handleInputChange('message', e.target.value)}
-                      rows={6}
-                      className={`w-full bg-card border rounded-xl px-4 py-3 text-card-foreground placeholder-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 resize-none ${errors.message ? 'border-destructive' : 'border-border'
-                        }`}
-                      placeholder="Tell me about your project or inquiry..."
-                    />
-                    {errors.message && (
-                      <p className="text-destructive text-sm mt-1 flex items-center gap-1">
-                        <AlertCircle className="w-4 h-4" />
-                        {errors.message}
-                      </p>
-                    )}
-                  </div>
-
-                  <motion.button
-                    type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    disabled={isSubmitting}
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-4 font-semibold text-primary-foreground transition-all duration-200 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        {t('contact.form.sending')}
-                      </>
-                    ) : (
-                      <>
-                        {t('contact.form.submit')}
-                        <Send className="w-5 h-5" />
-                      </>
-                    )}
-                  </motion.button>
-                </form>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="border-t border-border pt-8 lg:pt-0"
+        >
+          {isSubmitted ? (
+            <div className="flex min-h-[22rem] flex-col justify-center border-b border-border py-12">
+              <CheckCircle className="mb-5 h-8 w-8 text-primary" />
+              <h3 className="text-3xl font-medium text-foreground">{t('contact.form.success.title')}</h3>
+              <p className="mt-4 text-muted-foreground">{t('contact.form.success.message')}</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="grid gap-x-7 gap-y-6 md:grid-cols-2">
+              <Field label={t('contact.form.name')} error={errors.name}>
+                <input value={formData.name} onChange={(event) => handleInputChange('name', event.target.value)} className={inputClass} aria-required="true" />
+              </Field>
+              <Field label={t('contact.form.email')} error={errors.email}>
+                <input type="email" value={formData.email} onChange={(event) => handleInputChange('email', event.target.value)} className={inputClass} aria-required="true" />
+              </Field>
+              <Field label={t('contact.form.company')}>
+                <input value={formData.company} onChange={(event) => handleInputChange('company', event.target.value)} className={inputClass} />
+              </Field>
+              <Field label={t('contact.form.subject')} error={errors.subject}>
+                <input value={formData.subject} onChange={(event) => handleInputChange('subject', event.target.value)} className={inputClass} aria-required="true" />
+              </Field>
+              <div className="md:col-span-2">
+                <Field label={t('contact.form.message')} error={errors.message}>
+                  <textarea value={formData.message} onChange={(event) => handleInputChange('message', event.target.value)} rows={6} className={`${inputClass} resize-none`} aria-required="true" />
+                </Field>
+              </div>
+              {submitError && (
+                <p className="flex items-center gap-2 text-sm text-destructive md:col-span-2" role="alert">
+                  <AlertCircle className="h-4 w-4" />
+                  {language === 'en' ? 'Your message could not be sent. Please email directly.' : 'El mensaje no pudo enviarse. Escribe por correo electrónico.'}
+                </p>
               )}
-            </div>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
-          >
-            {/* Contact Information */}
-            <div>
-              <h3 className="text-2xl font-semibold text-foreground mb-6">{t('contact.info.title')}</h3>
-              <div className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <ContactInfoCard key={index} info={info} />
-                ))}
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">{t('contact.social.title')}</h3>
-              <div className="flex gap-3">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    className={`w-12 h-12 bg-card border border-border rounded-xl flex items-center justify-center transition-all duration-200 ${social.color}`}
-                  >
-                    <social.icon className="w-5 h-5 text-muted-foreground" />
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-
-            {/* Response Time */}
-            <div className="bg-card rounded-2xl p-6 border border-border">
-              <div className="flex items-center gap-3 mb-3">
-                <Clock className="w-6 h-6 text-primary" />
-                <h4 className="text-lg font-semibold text-card-foreground">{t('contact.response.title')}</h4>
-              </div>
-              <p className="text-muted-foreground text-sm">
-                {t('contact.response.message')}
-              </p>
-            </div>
-          </motion.div>
-        </div>
+              <button type="submit" disabled={isSubmitting} className="btn-primary group inline-flex items-center justify-center gap-3 px-7 py-4 md:col-span-2 md:justify-self-start">
+                {isSubmitting ? t('contact.form.sending') : t('contact.form.submit')}
+                {!isSubmitting && <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />}
+              </button>
+            </form>
+          )}
+        </motion.div>
       </div>
     </section>
+  );
+}
+
+function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+  return (
+    <label className="block">
+      <span className="mb-3 block text-sm font-medium text-foreground">{label}</span>
+      {children}
+      {error && <span className="mt-2 block text-sm text-destructive">{error}</span>}
+    </label>
   );
 }

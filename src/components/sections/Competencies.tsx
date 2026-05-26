@@ -1,223 +1,78 @@
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useTranslation } from 'react-i18next';
-import {
-  PenTool, Users, MessageSquare, Target, BookOpen, Lightbulb,
-  TrendingUp, Award, Star, CheckCircle
-} from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
-interface Competency {
-  icon: React.ComponentType<{ className?: string }>;
-  title: string;
-  description: string;
-  level: number;
-  skills: string[];
-  achievements: string[];
-}
+const expertise = {
+  en: [
+    { title: 'Policy research', detail: 'Legislative tracking, federal affairs, and analysis that makes public decisions legible.' },
+    { title: 'Investigative reporting', detail: 'Document research and source-driven reporting on community impact.' },
+    { title: 'Campaign communication', detail: 'Digital fundraising, supporter engagement, and persuasive messaging.' },
+    { title: 'Editorial direction', detail: 'Reporting, editing, newsletters, and audience-minded content strategy.' },
+    { title: 'Literacy advocacy', detail: 'Nonprofit leadership and access-to-books work across all 50 states.' },
+    { title: 'Civic engagement', detail: 'Organizing, coalition building, and public-facing communication.' },
+  ],
+  es: [
+    { title: 'Investigación de políticas', detail: 'Seguimiento legislativo, asuntos federales y análisis de decisiones públicas.' },
+    { title: 'Periodismo investigativo', detail: 'Investigación documental y reportajes basados en fuentes y comunidades.' },
+    { title: 'Comunicación de campañas', detail: 'Recaudación digital, participación y mensajes persuasivos.' },
+    { title: 'Dirección editorial', detail: 'Reportajes, edición, boletines y estrategia de contenidos.' },
+    { title: 'Defensa de la alfabetización', detail: 'Liderazgo sin fines de lucro y acceso a libros en los 50 estados.' },
+    { title: 'Participación cívica', detail: 'Organización, coaliciones y comunicación pública.' },
+  ],
+};
 
-const competencies: Competency[] = [
-  {
-    icon: PenTool,
-    title: "Policy Analysis & Research",
-    description: "Legislative tracking, policy evaluation, federal affairs",
-    level: 95,
-    skills: ["Federal legislation tracking", "Policy brief development", "Congressional hearing analysis", "Stakeholder research"],
-    achievements: ["Track 500+ bills through legislative process", "Evaluate state policy proposals for progressive alignment", "Analyze educational equity impacts on underrepresented communities"]
-  },
-  {
-    icon: Users,
-    title: "Civic Engagement & Leadership",
-    description: "Student organization leadership, voter engagement, community organizing",
-    level: 90,
-    skills: ["Organization leadership", "Voter education", "Community outreach", "Cross-campus partnerships"],
-    achievements: ["President of Young Democrats at UofA", "Led historic election campaign for first Latina state legislator", "Coordinated 100+ student members in civic initiatives"]
-  },
-  {
-    icon: MessageSquare,
-    title: "Editorial & Content Management",
-    description: "Newsletter writing, editorial leadership, AP style",
-    level: 88,
-    skills: ["Newsletter development", "Editorial planning", "AP style editing", "Content strategy"],
-    achievements: ["30,000+ newsletter readers across publications", "100+ articles published on arts, culture, and policy", "Weekly editorial leadership for campus newspaper"]
-  },
-  {
-    icon: Target,
-    title: "Literacy Advocacy & Community Service",
-    description: "Nonprofit leadership, volunteer coordination, fundraising",
-    level: 92,
-    skills: ["Nonprofit management", "Volunteer coordination", "Fundraising strategy", "Community partnerships"],
-    achievements: ["Distributed 13,000+ books across all 50 states", "Coordinated 100+ volunteers through literacy programs", "Raised $7,000+ in funds through strategic partnerships"]
-  },
-  {
-    icon: BookOpen,
-    title: "Academic Excellence & Research",
-    description: "Honors thesis, educational equity research, multidisciplinary studies",
-    level: 89,
-    skills: ["Educational equity research", "Research methodology", "Academic writing", "Multidisciplinary approach"],
-    achievements: ["Fulbright Honors Sturgis Fellow", "3.903 GPA in Journalism & Political Science", "Honors thesis on educational equity and book access in Northwest Arkansas"]
-  },
-  {
-    icon: Lightbulb,
-    title: "Diversity, Equity & Inclusion",
-    description: "DEI leadership, multicultural journalism, inclusive advocacy",
-    level: 94,
-    skills: ["DEI program development", "Multicultural mentorship", "Inclusive leadership", "Social awareness"],
-    achievements: ["DEI Director for 600+ members", "Multicultural journalism mentor for 50+ high school students", "Diverse business partnerships through foundation work"]
-  }
-];
+const figures = {
+  en: [
+    ['13,000+', 'Books distributed'],
+    ['100+', 'Published articles'],
+    ['30,000+', 'Newsletter readers'],
+    ['500+', 'Bills tracked'],
+  ],
+  es: [
+    ['13,000+', 'Libros distribuidos'],
+    ['100+', 'Artículos publicados'],
+    ['30,000+', 'Lectores de boletines'],
+    ['500+', 'Proyectos seguidos'],
+  ],
+};
 
 export default function Competencies() {
-  const { t } = useTranslation();
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const CompetencyCard = ({ competency }: { competency: Competency }) => {
-    return (
-      <motion.div
-        variants={cardVariants}
-        whileHover={{ y: -8 }}
-        className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 sm:p-6"
-      >
-        <div className="absolute inset-0 bg-muted/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        {/* Header */}
-        <div className="relative z-10">
-          <div className="mb-6 flex items-start gap-3 sm:gap-4">
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary transition-all duration-300 group-hover:shadow-lg sm:h-12 sm:w-12"
-            >
-              <competency.icon className="h-5 w-5 text-primary-foreground sm:h-6 sm:w-6" />
-            </motion.div>
-            <div className="flex-1">
-              <h3 className="mb-1 text-base font-semibold text-card-foreground transition-colors group-hover:text-primary sm:text-lg">
-                {competency.title}
-              </h3>
-              <p className="text-xs text-muted-foreground sm:text-sm">{competency.description}</p>
-            </div>
-          </div>
-
-          {/* Skills */}
-          <div className="mb-4">
-            <h4 className="text-sm font-semibold text-card-foreground mb-2 flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-green-500" />
-              {t('competencies.keySkills')}
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {competency.skills.map((skill, skillIndex) => (
-                <span
-                  key={skillIndex}
-                  className="px-2 py-1 bg-muted text-muted-foreground rounded text-xs border border-border"
-                >
-                  <span className="font-medium">{skill}</span>
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Achievements */}
-          <div>
-            <h4 className="text-sm font-semibold text-card-foreground mb-2 flex items-center gap-2">
-              <Award className="w-4 h-4 text-yellow-500" />
-              {t('competencies.achievements')}
-            </h4>
-            <ul className="space-y-1">
-              {competency.achievements.map((achievement, achievementIndex) => (
-                <li key={achievementIndex} className="flex items-start gap-2 text-xs text-muted-foreground">
-                  <Star className="w-3 h-3 text-primary mt-0.5 flex-shrink-0" />
-                  <span>{achievement}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </motion.div>
-    );
-  };
+  const { language } = useLanguage();
 
   return (
-    <section id="competencies" className="bg-background px-4 py-20 sm:px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-12 text-center sm:mb-16"
-        >
-          <h2 className="mb-6 text-3xl font-bold text-foreground sm:text-4xl md:text-5xl">
-            {t('competencies.title')}
-          </h2>
-          <p className="mx-auto max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-xl">
-            {t('competencies.description')}
-          </p>
-        </motion.div>
+    <section id="competencies" className="bg-background px-4 py-20 sm:px-6 sm:py-28">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="grid gap-8 lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+              {language === 'en' ? 'Expertise' : 'Experiencia'}
+            </p>
+            <h2 className="text-4xl font-medium tracking-[-0.045em] text-foreground sm:text-5xl">
+              {language === 'en' ? 'Areas of practice' : 'Áreas de práctica'}
+            </h2>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.18 }}
+            className="grid gap-x-10 md:grid-cols-2"
+          >
+            {expertise[language].map((item) => (
+              <article key={item.title} className="border-t border-border py-6">
+                <h3 className="text-xl font-medium text-foreground">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.detail}</p>
+              </article>
+            ))}
+          </motion.div>
+        </div>
 
-        {/* Competencies Grid */}
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {competencies.map((competency, index) => (
-            <CompetencyCard key={index} competency={competency} />
+        <div className="mt-16 grid grid-cols-2 border-y border-border md:grid-cols-4">
+          {figures[language].map(([value, label]) => (
+            <div key={label} className="border-border px-3 py-8 first:pl-0 md:border-l md:px-8 md:first:border-l-0 md:first:px-0">
+              <p className="font-serif text-4xl font-medium text-primary sm:text-5xl">{value}</p>
+              <p className="mt-3 text-sm text-muted-foreground">{label}</p>
+            </div>
           ))}
-        </motion.div>
-
-        {/* Summary Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4 sm:gap-6"
-        >
-          {[
-            { label: "Books Distributed", value: "13,000+", icon: TrendingUp },
-            { label: "Bills Tracked", value: "500+", icon: Award },
-            { label: "Newsletter Readers", value: "30,000+", icon: Star },
-            { label: "GPA", value: "3.903", icon: BookOpen }
-          ].map((stat, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.05 }}
-              className="rounded-2xl border border-border bg-card p-4 text-center backdrop-blur-sm sm:p-6"
-            >
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <stat.icon className="w-6 h-6 text-primary" />
-              </div>
-              <div className="mb-2 text-xl font-bold text-card-foreground sm:text-2xl">{stat.value}</div>
-              <div className="text-muted-foreground text-sm">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

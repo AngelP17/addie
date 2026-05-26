@@ -181,7 +181,7 @@ const resources = {
           sending: 'Sending...',
           success: {
             title: 'Message Sent!',
-            message: 'Thank you for reaching out. I\'ll get back to you within 24–48 hours.',
+            message: 'Thank you for reaching out. I\'ll get back to you within 24-48 hours.',
           },
         },
         social: {
@@ -189,7 +189,7 @@ const resources = {
         },
         response: {
           title: 'Response Time',
-          message: 'I typically respond within 24–48 hours on weekdays.',
+          message: 'I typically respond within 24-48 hours on weekdays.',
         },
       },
       experience: {
@@ -202,7 +202,7 @@ const resources = {
       },
       freelance: {
         title: 'Jones & Co. Media',
-        description: 'Ready to elevate your brand\'s story? I offer full-spectrum communications services — from social media strategy and web copy to PR and digital setup.',
+        description: 'Editorial and digital communications for organizations with a public purpose, from social media strategy and web copy to PR and digital setup.',
         services: {
           social: 'Social Media',
           websites: 'Websites',
@@ -395,7 +395,7 @@ const resources = {
           sending: 'Enviando...',
           success: {
             title: '¡Mensaje Enviado!',
-            message: 'Gracias por contactarme. Te responderé en 24–48 horas.',
+            message: 'Gracias por contactarme. Te responderé en 24-48 horas.',
           },
         },
         social: {
@@ -403,7 +403,7 @@ const resources = {
         },
         response: {
           title: 'Tiempo de Respuesta',
-          message: 'Normalmente respondo en 24–48 horas en días hábiles.',
+          message: 'Normalmente respondo en 24-48 horas en días hábiles.',
         },
       },
       experience: {
@@ -416,7 +416,7 @@ const resources = {
       },
       freelance: {
         title: 'Jones & Co. Media',
-        description: '¿Lista para elevar la historia de tu marca? Ofrezco servicios de comunicación de espectro completo — desde estrategia en redes sociales y contenido web hasta RR.PP. y configuración digital.',
+        description: 'Comunicación editorial y digital para organizaciones con propósito público, desde estrategia en redes sociales y contenido web hasta RR.PP. y configuración digital.',
         services: {
           social: 'Redes Sociales',
           websites: 'Sitios Web',

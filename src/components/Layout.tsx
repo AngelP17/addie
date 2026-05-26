@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Menu, X, Sun, Moon, Globe, ArrowRight } from 'lucide-react';
+import { Menu, X, Sun, Moon, Globe, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface LayoutProps {
@@ -12,24 +12,11 @@ export default function Layout({ children }: LayoutProps) {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [showThemeTooltip, setShowThemeTooltip] = useState(false);
-  const [showLangTooltip, setShowLangTooltip] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navLinks = [
-    { href: '#about', label: language === 'en' ? 'About' : 'Sobre mí' },
-    { href: '#competencies', label: language === 'en' ? 'Core Competencies' : 'Competencias' },
-    { href: '#portfolio', label: language === 'en' ? 'Portfolio' : 'Portafolio' },
-    { href: '#freelance', label: language === 'en' ? 'Freelance' : 'Freelance' },
+    { href: '#portfolio', label: language === 'en' ? 'Work' : 'Trabajo' },
+    { href: '#about', label: language === 'en' ? 'About' : 'Acerca de' },
+    { href: '#freelance', label: language === 'en' ? 'Services' : 'Servicios' },
     { href: '#contact', label: language === 'en' ? 'Contact' : 'Contacto' },
   ];
 
@@ -46,188 +33,103 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-      <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled
-          ? 'bg-background/80 backdrop-blur-md shadow-sm border-b border-border'
-          : 'bg-transparent'
-          }`}
-      >
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16">
-            <motion.a
-              href="#"
-              className="flex min-w-0 max-w-[calc(100%-3.5rem)] items-center gap-3 truncate text-lg font-bold text-foreground transition-all duration-300 sm:text-2xl md:max-w-none"
-              onClick={(e) => {
-                e.preventDefault();
-                if (window.location.pathname !== '/') {
-                  window.location.href = '/';
-                  return;
-                }
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="truncate">Addie Elizabeth Jones</span>
-            </motion.a>
+      <nav className="fixed top-0 z-50 w-full border-b border-border bg-background/94 backdrop-blur-sm">
+        <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 sm:px-6">
+          <a
+            href="#"
+            className="font-serif text-2xl font-semibold tracking-[-0.05em] text-foreground"
+            onClick={(event) => {
+              event.preventDefault();
+              if (window.location.pathname !== '/') {
+                window.location.href = '/';
+                return;
+              }
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
+            AEJ
+          </a>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navLinks.map((link) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  className="nav-link relative group"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollToSection(link.href);
-                  }}
-                  whileHover={{ y: -2 }}
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-                </motion.a>
-              ))}
-
-              {/* Resume Button */}
+          <div className="hidden items-center gap-8 md:flex">
+            {navLinks.map((link) => (
               <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary ml-4 hidden lg:inline-flex items-center gap-2"
-                aria-label="Download Resume"
+                key={link.href}
+                href={link.href}
+                className="nav-link"
+                onClick={(event) => {
+                  event.preventDefault();
+                  scrollToSection(link.href);
+                }}
               >
-                Download Resume
-                <ArrowRight className="w-4 h-4" />
+                {link.label}
               </a>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <motion.button
-                  onClick={toggleTheme}
-                  className="p-2 rounded-lg transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus-ring"
-                  aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onMouseEnter={() => setShowThemeTooltip(true)}
-                  onMouseLeave={() => setShowThemeTooltip(false)}
-                >
-                  {theme === 'dark' ? (
-                    <Sun className="w-5 h-5" />
-                  ) : (
-                    <Moon className="w-5 h-5" />
-                  )}
-                </motion.button>
-                {showThemeTooltip && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-10 bg-popover text-popover-foreground text-xs rounded px-2 py-1 shadow-lg z-50 border border-border">
-                    {theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-                  </div>
-                )}
-              </div>
-
-              {/* Language Toggle */}
-              <div className="relative">
-                <motion.button
-                  onClick={toggleLanguage}
-                  className="p-2 rounded-lg transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus-ring flex items-center gap-2"
-                  aria-label={language === 'en' ? 'Cambiar a español' : 'Switch to English'}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onMouseEnter={() => setShowLangTooltip(true)}
-                  onMouseLeave={() => setShowLangTooltip(false)}
-                >
-                  <Globe className="w-5 h-5" />
-                  <span className="text-sm font-medium">
-                    {language === 'en' ? 'ES' : 'EN'}
-                  </span>
-                </motion.button>
-                {showLangTooltip && (
-                  <div className="absolute left-1/2 -translate-x-1/2 top-10 bg-popover text-popover-foreground text-xs rounded px-2 py-1 shadow-lg z-50 border border-border">
-                    {language === 'en' ? 'Cambiar a español' : 'Switch to English'}
-                  </div>
-                )}
-              </div>
+            ))}
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="editorial-link text-sm">
+              {language === 'en' ? 'Resume' : 'Currículum'}
+              <ArrowUpRight className="ml-2 inline h-4 w-4" />
+            </a>
+            <div className="ml-2 flex items-center border-l border-border pl-5">
+              <button
+                onClick={toggleTheme}
+                className="focus-ring p-2 text-muted-foreground transition-colors hover:text-primary"
+                aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
+                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </button>
+              <button
+                onClick={toggleLanguage}
+                className="focus-ring ml-2 flex items-center gap-2 p-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                aria-label={language === 'en' ? 'Cambiar a español' : 'Switch to English'}
+              >
+                <Globe className="h-5 w-5" />
+                {language === 'en' ? 'ES' : 'EN'}
+              </button>
             </div>
-
-            {/* Mobile Menu Button */}
-            <motion.button
-              className="md:hidden flex-shrink-0 rounded-lg p-2 transition-all duration-200 hover:bg-accent hover:text-accent-foreground focus-ring"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              {isMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </motion.button>
           </div>
+
+          <button
+            className="focus-ring p-2 text-foreground md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
 
-        {/* Mobile Navigation */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden border-t border-border bg-background/95 shadow-lg backdrop-blur-md"
+              className="border-t border-border bg-background md:hidden"
             >
-              <div className="container mx-auto px-4 py-5">
-                <div className="flex flex-col gap-2">
-                  {navLinks.map((link) => (
-                    <motion.a
-                      key={link.href}
-                      href={link.href}
-                      className="nav-link rounded-lg px-4 py-3 text-base hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        scrollToSection(link.href);
-                      }}
-                      whileHover={{ x: 8 }}
-                    >
-                      {link.label}
-                    </motion.a>
-                  ))}
+              <div className="space-y-1 px-4 py-5">
+                {navLinks.map((link) => (
                   <a
-                    href="/resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary mt-3 inline-flex w-full items-center justify-center gap-2 py-3"
-                    aria-label="Download Resume"
+                    key={link.href}
+                    href={link.href}
+                    className="block border-b border-border py-4 font-medium"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      scrollToSection(link.href);
+                    }}
                   >
-                    Download Resume
-                    <ArrowRight className="h-4 w-4" />
+                    {link.label}
                   </a>
-                  <div className="mt-3 grid grid-cols-2 gap-3 border-t border-border pt-4">
-                    <motion.button
-                      onClick={toggleTheme}
-                      className="flex w-full items-center justify-center space-x-2 rounded-lg border border-border px-3 py-3 text-sm text-foreground transition-colors hover:bg-accent hover:text-accent-foreground hover:text-primary"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {theme === 'dark' ? (
-                        <>
-                          <Sun className="w-5 h-5" />
-                          <span>Light Mode</span>
-                        </>
-                      ) : (
-                        <>
-                          <Moon className="w-5 h-5" />
-                          <span>Dark Mode</span>
-                        </>
-                      )}
-                    </motion.button>
-                    <motion.button
-                      onClick={toggleLanguage}
-                      className="flex w-full items-center justify-center space-x-2 rounded-lg border border-border px-3 py-3 text-sm text-foreground transition-colors hover:bg-accent hover:text-accent-foreground hover:text-primary"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      <Globe className="w-5 h-5" />
-                      <span>{language === 'en' ? 'Español' : 'English'}</span>
-                    </motion.button>
-                  </div>
+                ))}
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="block py-4 font-medium text-primary">
+                  {language === 'en' ? 'Resume' : 'Currículum'}
+                </a>
+                <div className="flex gap-5 pt-3">
+                  <button onClick={toggleTheme} className="flex items-center gap-2 py-2 text-sm text-muted-foreground">
+                    {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                    {theme === 'dark' ? 'Light' : 'Dark'}
+                  </button>
+                  <button onClick={toggleLanguage} className="flex items-center gap-2 py-2 text-sm text-muted-foreground">
+                    <Globe className="h-5 w-5" />
+                    {language === 'en' ? 'Español' : 'English'}
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -235,40 +137,23 @@ export default function Layout({ children }: LayoutProps) {
         </AnimatePresence>
       </nav>
 
-      <main className="w-full max-w-full overflow-x-hidden pt-16">
-        {children}
-      </main>
+      <main className="w-full overflow-x-hidden pt-16">{children}</main>
 
-      <footer className="bg-card/50 backdrop-blur-sm border-t border-border py-12 mt-20">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-6 md:mb-0">
-              <h1 className="text-2xl font-bold text-foreground">
-                AJ
-              </h1>
-              <p className="text-muted-foreground text-sm">
-                © {new Date().getFullYear()} All rights reserved.
-              </p>
-            </div>
-            <div className="flex space-x-6">
-              <a
-                href="https://www.linkedin.com/in/addie-jones-b5a5b6250/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="mailto:addie.elizabethjones@gmail.com"
-                className="text-muted-foreground hover:text-primary transition-colors duration-200"
-              >
-                Email
-              </a>
-            </div>
+      <footer className="border-t border-border bg-background py-10">
+        <div className="mx-auto flex max-w-[1400px] flex-col justify-between gap-5 px-4 sm:flex-row sm:items-end sm:px-6">
+          <div>
+            <p className="font-serif text-3xl tracking-[-0.05em]">Addie Elizabeth Jones</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {language === 'en' ? 'Journalism and political communications' : 'Periodismo y comunicación política'}
+            </p>
+          </div>
+          <div className="flex items-center gap-6 text-sm">
+            <a href="https://www.linkedin.com/in/addie-jones-b5a5b6250/" target="_blank" rel="noopener noreferrer" className="editorial-link">LinkedIn</a>
+            <a href="mailto:addie.elizabethjones@gmail.com" className="editorial-link">Email</a>
+            <span className="text-muted-foreground">&copy; {new Date().getFullYear()}</span>
           </div>
         </div>
       </footer>
     </div>
   );
-} 
+}
