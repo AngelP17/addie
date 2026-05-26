@@ -47,7 +47,7 @@ export default function Hero() {
           <p className="mt-8 max-w-[31rem] text-lg leading-8 text-muted-foreground sm:text-xl">
             {content.statement}
           </p>
-          <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+          <div className="mt-10 hidden items-center gap-6 lg:flex">
             <button
               className="btn-primary group inline-flex items-center gap-3 px-7 py-4"
               onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
@@ -85,9 +85,24 @@ export default function Hero() {
             src="/leftinthedark.jpg"
             alt=""
             aria-hidden="true"
-            className="absolute bottom-[4%] right-4 h-[25%] w-[30%] border-[6px] border-background object-cover shadow-[0_18px_40px_rgba(44,30,25,0.12)] lg:right-auto lg:left-[41%]"
+            className="absolute bottom-[4%] right-4 hidden h-[25%] w-[30%] border-[6px] border-background object-cover shadow-[0_18px_40px_rgba(44,30,25,0.12)] sm:block lg:right-auto lg:left-[41%]"
           />
         </motion.div>
+        <div className="order-3 flex flex-col items-start gap-6 sm:flex-row sm:items-center lg:hidden">
+          <button
+            className="btn-primary group inline-flex items-center gap-3 px-7 py-4"
+            onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            {content.work}
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </button>
+          <button
+            className="editorial-link"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            {content.contact}
+          </button>
+        </div>
       </div>
 
       <a
