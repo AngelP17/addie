@@ -53,7 +53,7 @@ Before you begin, ensure you have the following installed:
 
 ### GitHub Pages Deployment
 
-This project uses GitHub Actions for automated deployment to GitHub Pages. The workflow is configured in `.github/workflows/ci.yml`.
+This project uses GitHub Actions for automated deployment to GitHub Pages. The workflow is configured in `.github/workflows/deploy.yml`.
 
 #### Setup Steps:
 
@@ -67,8 +67,7 @@ This project uses GitHub Actions for automated deployment to GitHub Pages. The w
    - It will build, test, and deploy your site
 
 3. **Access Your Site**
-   - Your site will be available at: `https://[username].github.io/addie/`
-   - Replace `[username]` with your GitHub username
+   - Your site will be available at: `https://addieelizjones.com/` after the GitHub Pages deployment completes and DNS is pointed at GitHub Pages
 
 ### Manual Deployment
 
@@ -79,10 +78,13 @@ If you prefer to deploy manually:
    npm run build
    ```
 
-2. **Deploy to GitHub Pages**
+2. **Run the deployment checks locally**
    ```bash
    npm run deploy
    ```
+
+3. **Publish**
+   Push to the `main` branch or run the **Deploy site** workflow manually from GitHub Actions.
 
 ## 🔧 Configuration
 
@@ -98,9 +100,9 @@ VITE_API_URL=your_api_url_here
 
 To use a custom domain:
 
-1. Add your domain to the `cname` field in `.github/workflows/ci.yml`
+1. Keep `public/CNAME` set to `addieelizjones.com` so each GitHub Pages deployment preserves the custom domain
 2. Configure your DNS settings to point to GitHub Pages
-3. Add a `CNAME` file in the `public` directory with your domain
+3. In repository settings, verify Pages uses GitHub Actions and the custom domain is set to `addieelizjones.com`
 
 ## 📁 Project Structure
 
