@@ -51,23 +51,27 @@ Before you begin, ensure you have the following installed:
 
 ## 🌐 Deployment Setup
 
-### GitHub Pages Deployment
+### Vercel Deployment
 
-This project uses GitHub Actions for automated deployment to GitHub Pages. The workflow is configured in `.github/workflows/deploy.yml`.
+This project is deployed on Vercel at `https://addieelizjones.com/`. Pushes to `main` are deployed by the linked Vercel project, and the custom domain is aliased to the latest production deployment.
 
 #### Setup Steps:
 
-1. **Enable GitHub Pages**
-   - Go to your repository settings
-   - Navigate to "Pages" in the sidebar
-   - Under "Source", select "GitHub Actions"
+1. **Link the Vercel project**
+   ```bash
+   vercel link
+   ```
 
 2. **Push to Main Branch**
-   - The workflow automatically triggers on pushes to the `main` branch
-   - It will build, test, and deploy your site
+   - The Vercel Git integration automatically deploys production from `main`
+   - The production deployment should include the `https://addieelizjones.com` alias
 
 3. **Access Your Site**
-   - Your site will be available at: `https://addieelizjones.com/` after the GitHub Pages deployment completes and DNS is pointed at GitHub Pages
+   - Your site is available at: `https://addieelizjones.com/`
+
+4. **Automatic Healthcheck**
+   - `.github/workflows/healthcheck.yml` checks DNS and HTTPS every 15 minutes
+   - Run `npm run healthcheck` locally to verify DNS, HTTPS, and the Vercel alias
 
 ### Manual Deployment
 
@@ -78,13 +82,15 @@ If you prefer to deploy manually:
    npm run build
    ```
 
-2. **Run the deployment checks locally**
+2. **Run the healthcheck**
+   ```bash
+   npm run healthcheck
+   ```
+
+3. **Deploy to Vercel production**
    ```bash
    npm run deploy
    ```
-
-3. **Publish**
-   Push to the `main` branch or run the **Deploy site** workflow manually from GitHub Actions.
 
 ## 🔧 Configuration
 
@@ -100,9 +106,11 @@ VITE_API_URL=your_api_url_here
 
 To use a custom domain:
 
-1. Keep `public/CNAME` set to `addieelizjones.com` so each GitHub Pages deployment preserves the custom domain
-2. Configure your DNS settings to point to GitHub Pages
-3. In repository settings, verify Pages uses GitHub Actions and the custom domain is set to `addieelizjones.com`
+1. Keep `addieelizjones.com` attached to the Vercel project
+2. Keep the domain DNS delegated to Vercel nameservers: `ns1.vercel-dns.com` and `ns2.vercel-dns.com`
+3. A browser message like "This site can’t be reached" / `DNS_PROBE_FINISHED_NXDOMAIN` usually means local DNS or router DNS is failing
+4. Verify public DNS with `dig @1.1.1.1 addieelizjones.com A +short`
+5. Verify the live site with `npm run healthcheck`
 
 ## 📁 Project Structure
 
@@ -110,7 +118,8 @@ To use a custom domain:
 addie/
 ├── .github/
 │   └── workflows/
-│       └── ci.yml          # GitHub Actions workflow
+│       ├── deploy.yml      # GitHub Pages deployment workflow
+│       └── healthcheck.yml # Scheduled live-site healthcheck
 ├── public/
 │   ├── avatar.jpg          # Profile image
 │   ├── favicon.svg         # Site favicon
