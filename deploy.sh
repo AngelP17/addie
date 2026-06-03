@@ -1,57 +1,42 @@
 #!/bin/bash
 
-# Deploy script for Addie Jones Portfolio
-# This script builds the project and deploys it to GitHub Pages
+# Local deployment checks for Addie Jones Portfolio.
+# Production publishing is handled by .github/workflows/deploy.yml on pushes to main
+# or by manually running the "Deploy site" workflow in GitHub Actions.
 
-echo "🚀 Starting deployment process..."
+set -euo pipefail
 
-# Check if we're in the right directory
+echo "🚀 Running local deployment checks..."
+
 if [ ! -f "package.json" ]; then
     echo "❌ Error: package.json not found. Please run this script from the project root."
     exit 1
 fi
 
-# Install dependencies
 echo "📦 Installing dependencies..."
 npm ci
 
-# Run linting
 echo "🔍 Running ESLint..."
 npm run lint
 
-# Build the project
 echo "🏗️ Building project..."
 npm run build
 
-# Check if build was successful
 if [ ! -d "dist" ]; then
     echo "❌ Error: Build failed. dist directory not found."
     exit 1
 fi
 
-echo "✅ Build completed successfully!"
-
-# Deploy to GitHub Pages using gh-pages package
-echo "🌐 Deploying to GitHub Pages..."
-
-# Check if gh-pages is installed
-if ! npm list gh-pages > /dev/null 2>&1; then
-    echo "📦 Installing gh-pages..."
-    npm install --save-dev gh-pages
+if [ ! -f "dist/CNAME" ]; then
+    echo "❌ Error: dist/CNAME missing. GitHub Pages custom domain would not be preserved."
+    exit 1
 fi
 
-# Add deploy script to package.json if it doesn't exist
-if ! grep -q '"deploy"' package.json; then
-    echo "📝 Adding deploy script to package.json..."
-    # This is a simple way to add the script - you might want to do this manually
-    echo "Please add the following script to your package.json:"
-    echo '"deploy": "gh-pages -d dist"'
+if ! grep -qx "addieelizjones.com" dist/CNAME; then
+    echo "❌ Error: dist/CNAME must contain addieelizjones.com."
+    exit 1
 fi
 
-# Deploy
-npx gh-pages -d dist
-
-echo "🎉 Deployment completed!"
-echo "Your site should be available at: https://angelp17.github.io/addie/"
-echo ""
-echo "Note: It may take a few minutes for changes to appear." 
+echo "✅ Local deployment checks completed successfully."
+echo "Publish by pushing to main or running the 'Deploy site' workflow in GitHub Actions."
+echo "Live site: https://addieelizjones.com/"
